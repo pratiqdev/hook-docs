@@ -1,0 +1,237 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #9000ff;
+  --ifm-color-primary-dark: #6e03c0;
+  --ifm-color-primary-darker: #560495;
+  --ifm-color-primary-darkest: #380161;
+  --ifm-color-primary-light: #a130f8;
+  --ifm-color-primary-lighter: #b556fe;
+  --ifm-color-primary-lightest: #c987fb;
+  --ifm-code-font-size: 95%;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #9000ff;
+  --ifm-color-primary-dark: #6e03c0;
+  --ifm-color-primary-darker: #560495;
+  --ifm-color-primary-darkest: #380161;
+  --ifm-color-primary-light: #a130f8;
+  --ifm-color-primary-lighter: #b556fe;
+  --ifm-color-primary-lightest: #c987fb;
+  --ifm-code-font-size: 95%;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+/* CUSTOM PROPERTIES ============================================================ */
+
+.demo-heading-closed{
+  border: 1px solid #bbb;
+  border-radius: .5rem;
+  padding: 1rem;
+}
+
+.demo-heading-open{
+  border: 1px solid #bbb;
+  border-radius: .5rem;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 1rem;
+}
+
+.demo-layout{
+  border: 1px solid #ddd;
+  border-radius: .5rem;
+  padding: 1rem;
+  background: #efefef;
+}
+
+[data-theme='dark'] .demo-layout{
+  border: 1px solid #222;
+  background: #111;
+}
+
+
+.demo-layout button{
+  margin-right: .5rem;
+}
+
+.demo-layout p{
+  margin:0;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.demo-layout pre{
+  padding: .5rem;
+}
+
+.demo-layout .desc-row{
+  /* border-bottom: 1px solid rgb(100,100,100,.2); */
+  display: flex;
+  align-items: center;
+  margin-bottom: .25rem;
+}
+
+.demo-layout .desc-row:last-child{
+  margin-bottom: .25rem;
+}
+
+.demo-layout .desc-row button{
+  font-family: monospace;
+  margin-right: 0;
+  margin-bottom: .25rem;
+  padding: 0 .5rem;
+  height: 1.6rem;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.demo-layout .desc-row button:hover{
+  background: var(--ifm-color-primary-light);
+}
+
+.demo-layout .desc-row pre{
+  margin: 0;
+  margin-right: .75rem;
+  margin-bottom: .25rem;
+  padding: .1rem .25rem;
+  padding-left: .5rem;
+  height: 1.6rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background: #ccc;
+}
+
+[data-theme='dark'] .demo-layout .desc-row pre{
+  background: #444;
+}
+
+.demo-layout .desc-row p{
+  font-size: .8rem;
+}
+
+
+
+.demo-layout .method{
+  display: flex;
+  flex-direction: column;
+  padding: 0 .5rem;
+  padding-top: .5rem;
+  margin-bottom: .25rem;
+  transition: .3s;
+  border-radius: .5rem;
+  /* padding-bottom: .5rem; */
+  border-bottom: 1px solid rgb(100,100,100,.2);
+  /* border: 1px solid green; */
+}
+
+.demo-layout .method:last-child{
+  border-bottom: 0px solid rgb(100,100,100,.2);
+}
+
+.demo-layout .method:hover{
+  background: #ddd;
+  border-bottom: 1px solid transparent;
+}
+
+[data-theme='dark'] .demo-layout .method:hover{
+  background: #222;
+  border-bottom: 1px solid transparent;
+}
+
+.demo-layout .method * {
+  margin: 0;
+  padding: 0;
+}
+
+
+.title-row{
+  /* border: 1px solid #555; */
+  display: flex;
+  align-items: center;
+}
+
+.demo-layout .method .title-row{
+  margin-bottom: .5rem;
+  cursor: pointer;
+}
+
+.demo-layout .method .title-row .chevron{
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+
+.demo-layout .method .title-row b {
+  margin-right: 1rem;
+  font-size: 1rem;
+  min-width: 5rem;
+  color: var(--ifm-color-primary-light)
+}
+
+.chevron-icon-down{
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
+  filter: var(--ifm-menu-link-sublist-icon-filter);
+  width: .8rem;
+  height: .8rem;
+  margin-top: 1rem;
+  transform: rotate(180deg);
+}
+
+.chevron-icon-right{
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
+  filter: var(--ifm-menu-link-sublist-icon-filter);
+  width: .8rem;
+  height: .8rem;
+  margin-top: 1rem;
+  transform: rotate(90deg);
+}
+
+.demo-layout .method-open{
+  height: auto;
+}
+
+.demo-layout .method-closed{
+  height: 0;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+.demo-layout button{
+  background: var(--ifm-color-primary);
+  color: #fff;
+  padding: .25rem .5rem;
+  border: 0px solid white;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+
+.demo-layout button:hover{
+  background: #44f;
+}

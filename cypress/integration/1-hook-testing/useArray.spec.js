@@ -1,0 +1,186 @@
+/// <reference types="cypress" />
+
+let initialValue = ''
+
+it('Load demo - useArray', () => {
+  cy.visit('http://localhost:3000/docs/demos/usearray')
+
+  cy.get("#initial-value").invoke('val').then((text) => {
+    cy.get('#demo-display').should('have.text', text)
+  });
+})
+
+
+describe('METHOD 1 | clear()', () => {
+
+  it('1 - 1 | clear()', () => {
+    cy.get('#method-clear').click({force: true})
+    cy.get('#demo-display').should('have.text', '[]')
+  })
+
+})
+
+
+describe('METHOD 2 | reset()', () => {
+
+  it('1 - 1 | reset()', () => {
+    cy.get('#method-reset').click({force: true})
+    cy.get("#initial-value").invoke('val').then((text) => {
+      cy.get('#demo-display').should('have.text', text)
+    });
+  })
+
+})
+
+
+describe('METHOD 3 | set()', () => {
+
+  it('3 - 1 | set([1,2,3])', () => {
+    cy.get('#method-set-1').click({force: true})
+    cy.get('#demo-display').should('have.text', '[1,2,3]')
+  })
+
+  it("3 - 2 | set(['one','two','three'])", () => {
+    cy.get('#method-set-2').click({force: true})
+    cy.get('#demo-display').should('have.text', '["one","two","three"]')
+  })
+
+
+})
+
+
+describe('METHOD 4 | push()', () => {
+
+  it('4 - 1 | push(7)', () => {
+    cy.get('#method-set-1').click({force: true}) // set([1,2,3])
+    cy.get('#method-push-1').click({force: true})
+    cy.get('#demo-display').should('have.text', '[1,2,3,7]')
+  })
+
+  it('4 - 2 | push("seven")', () => {
+    cy.get('#method-push-2').click({force: true})
+    cy.get('#demo-display').should('have.text', '[1,2,3,7,"seven"]')
+  })
+
+  it('4 - 3 | push(7,8,9)', () => {
+    cy.get('#method-push-3').click({force: true})
+    cy.get('#demo-display').should('have.text', '[1,2,3,7,"seven",7,8,9]')
+  })
+
+
+  it('4 - 4 | push([7,8,9])', () => {
+    cy.get('#method-push-4').click({force: true})
+    cy.get('#demo-display').should('have.text', '[1,2,3,7,"seven",7,8,9,[7,8,9]]')
+  })
+
+  it('4 - 5 | push()', () => {
+    cy.get('#method-push-5').click({force: true})
+    cy.get('#demo-display').should('have.text', '[1,2,3,7,"seven",7,8,9,[7,8,9]]')
+  })
+
+
+})
+
+
+describe('METHOD 5 | filter()', () => {
+
+  it('5 - 1 | filter(number)', () => {
+    cy.get('#method-set-2').click({force: true}) // set(['one','two','three'])
+    cy.get('#method-push-3').click({force: true}) // push(7,8,9)
+    cy.get('#method-filter-1').click({force: true}) // filter(number)
+    cy.get('#demo-display').should('have.text', '[7,8,9]')
+  })
+
+  it("5 - 2 | filter(string)", () => {
+    cy.get('#method-set-2').click({force: true}) // set(['one','two','three'])
+    cy.get('#method-push-3').click({force: true}) // push(7,8,9)
+    cy.get('#method-filter-2').click({force: true}) // filter(string)
+    cy.get('#demo-display').should('have.text', '["one","two","three"]')
+  })
+
+})
+
+
+describe('METHOD 6 | pop()', () => {
+
+  it('6 - 1 | pop()', () => {
+    cy.get('#method-set-1').click({force: true}) // set([1,2,3])
+    cy.get('#method-pop-1').click({force: true}) // pop() => 3
+    cy.get('#demo-display').should('have.text', '[1,2]')
+    cy.get('#test-value').should('have.value', '3')
+  })
+
+  it('6 - 1 | pop()', () => {
+    cy.get('#method-pop-1').click({force: true}) // pop() => 2
+    cy.get('#demo-display').should('have.text', '[1]')
+    cy.get('#test-value').should('have.value', '2')
+  })
+
+})
+
+
+describe('METHOD 7 | shift()', () => {
+
+  it('7 - 1 | shift()', () => {
+    cy.get('#method-set-1').click({force: true}) // set([1,2,3])
+    cy.get('#method-shift-1').click({force: true}) // shift() => 1
+    cy.get('#demo-display').should('have.text', '[2,3]')
+    cy.get('#test-value').should('have.value', '1')
+  })
+
+  it('7 - 1 | shift()', () => {
+    cy.get('#method-shift-1').click({force: true}) // shift() => 2
+    cy.get('#demo-display').should('have.text', '[3]')
+    cy.get('#test-value').should('have.value', '2')
+  })
+
+})
+
+describe('METHOD 8 | unshift()', () => {
+
+  it('8 - 1 | unshift(9)', () => {
+    cy.get('#method-set-1').click({force: true}) // set([1,2,3])
+    cy.get('#method-unshift-1').click({force: true})
+    cy.get('#demo-display').should('have.text', '[9,1,2,3]')
+    cy.get('#test-value').should('have.value', '4')
+  })
+
+  it('8 - 2 | unshift("hello")', () => {
+    cy.get('#method-unshift-2').click({force: true})
+    cy.get('#demo-display').should('have.text', '["hello",9,1,2,3]')
+    cy.get('#test-value').should('have.value', '5')
+  })
+
+  it('8 - 3 | unshift(9,10,11)', () => {
+    cy.get('#method-unshift-3').click({force: true})
+    cy.get('#demo-display').should('have.text', '[9,10,11,"hello",9,1,2,3]')
+    cy.get('#test-value').should('have.value', '8')
+  })
+
+  it('8 - 4 | unshift(9,10,11)', () => {
+    cy.get('#method-unshift-4').click({force: true})
+    cy.get('#demo-display').should('have.text', '[[9,10,11],9,10,11,"hello",9,1,2,3]')
+    cy.get('#test-value').should('have.value', '9')
+  })
+
+
+
+})
+
+describe('METHOD 9 | sort()', () => {
+
+  it('9 - 1 | unshift(9)', () => {
+    cy.get('#method-set-1').click({force: true}) // set([1,2,3])
+    cy.get('#method-unshift-1').click({force: true}) // unshift(9) => 9,1,2,3
+    cy.get('#method-unshift-3').click({force: true}) // unshift(9,10,11) => 9,10,11,9,1,2,3
+    cy.get('#method-sort-3').click({force: true}) // sort( < )
+    // .then(x => {
+      cy.get('#demo-display').should('have.text', '[1,2,3,9,9,10,11]')
+    // })
+  })
+
+
+
+
+
+})

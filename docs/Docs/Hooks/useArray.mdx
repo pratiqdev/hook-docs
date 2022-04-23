@@ -1,0 +1,67 @@
+import DemoComponent from '../../../src/hooks/demos/useArray'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+# useArray
+
+Hook for managing the state of an array with common manipulation methods.
+
+
+## Demo
+
+<DemoComponent />
+
+
+
+
+
+## Usage
+
+<Tabs>
+
+<TabItem value='simple' label='Simple'>
+
+```js 
+import { useArray } from '@pratiq/hooks'
+
+const [value, ...methods] = useArray([])
+
+methods.set([1,2,3])
+```
+
+</TabItem>
+
+<TabItem value='advanced' label='Advanced'>
+
+```js
+import { useArray } from '@pratiq/hooks'
+
+const initialState = [1,2,3]
+
+const [
+    value, 
+    set, 
+    push, 
+    pop, 
+    shift, 
+    unshift,
+    reset
+    ] = useArray(initialState)
+```
+
+</TabItem>
+
+</Tabs>
+
+
+
+
+
+## Parameters
+
+| Name | Description |
+|-|:-|
+| value | State value of the array |
+| set   | Set the state to a new value |
+| push  | Append a new value to the end of the array |
+| pop   | Remove the last element of the array and return the removed value |
