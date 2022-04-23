@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Layout from '../components/DemoLayout'
 import Methods from '../components/Methods'
 import Method from '../components/Method'
+import MethodInput from '../components/MethodInput'
 import { useArray } from '@pratiq/hooks'
 
 /*
@@ -30,6 +31,7 @@ import { useArray } from '@pratiq/hooks'
 const demoComponent = (props:any) => {
     const initialState = ['initial','state']
     const [testValue, setTestValue] = useState<any>()
+    const [customValue, setCustomValue] = useState<any>([1,2,3])
     const {array, ...methods} = useArray(['initial','state'])
 
     return(
@@ -49,7 +51,10 @@ const demoComponent = (props:any) => {
 
             <Methods title='set' desc='Set the state to a new array' >
                 <Method get='set-1' pre='set([1,2,3])' func={() => methods.set([1,2,3])}  />
-                <Method get='set-2' pre="set('one','two','three')" func={() => methods.set(['one','two','three'])}  />
+                <Method get='set-2' pre="set(['one','two','three'])" func={() => methods.set(['one','two','three'])}  />
+                <Method get='set-3' pre='set([{text:"Hello"},{text:"World"}])' func={() => methods.set([{text:"Hello"},{text:"World"}])}  />
+                <Method get='set-4' pre='set([[[[[["why"]]]]]])' func={() => methods.set([[[[[["why"]]]]]])}  />
+                <Method get='set-4' pre='set("not","an","array")' func={() => methods.set('not','an','array')}  />
             </Methods>
 
             <Methods title='push' desc='Append element(s) to the end of the array' >
@@ -82,7 +87,7 @@ const demoComponent = (props:any) => {
             </Methods>
 
             <Methods title='sort' desc='Sort the array with an optional sort method' >
-                <Method get='sort-1' pre="sort((a,b) => a < b ? 1 : -1)" func={() => setTestValue(() => methods.sort())}  /> 
+                <Method get='sort-1' pre="sort()" func={() => setTestValue(() => methods.sort())}  /> 
                 <Method get='sort-2' pre="sort((a,b) => a < b ? 1 : -1)" func={() => setTestValue(() => methods.sort((a,b) => a < b))}  /> 
                 <Method get='sort-3' pre="sort((a,b) => a < b ? -1 : 1)" func={() => setTestValue(() => methods.sort((a,b) => a < b ? -1 : 1))}  />
                 <Method get='sort-4' pre="sort((a,b) => a > b ? -1 : 1)" func={() => setTestValue(() => methods.sort((a,b) => a > b ? -1 : 1))}  />
