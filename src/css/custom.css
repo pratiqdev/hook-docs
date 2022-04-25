@@ -93,6 +93,13 @@
   margin-bottom: .25rem;
 }
 
+.demo-layout .desc-row-hidden{
+  /* border-bottom: 1px solid rgb(100,100,100,.2); */
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
 .demo-layout .desc-row:last-child{
   margin-bottom: .25rem;
 }

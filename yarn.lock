@@ -1681,10 +1681,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@pratiq/hooks@0.0.36":
-  version "0.0.36"
-  resolved "https://registry.yarnpkg.com/@pratiq/hooks/-/hooks-0.0.36.tgz#74e440b4d05638238982e344a9fcb2f8d48654ee"
-  integrity sha512-ra4lgMHWU1/0dezLMmohp2IVr33dyAEnlO5t3pa6+bAAuOPFPXRfc2fjjLxD1bsK0Hglf2vZVrhmn+FLW71m5Q==
+"@pratiq/hooks@0.0.40":
+  version "0.0.40"
+  resolved "https://registry.yarnpkg.com/@pratiq/hooks/-/hooks-0.0.40.tgz#0e5dd209354769a9d332b91dd1c88215fe371f41"
+  integrity sha512-0FSFCIcFoEaguEQMi4kNwudkZLwJQMG5rYwor9dQysG5Q8DUFZKPDyN/ssFGmNH3qMsgkxFDseo0a4/kjglYuw==
   dependencies:
     jsdom "^19.0.0"
     resize-observer-polyfill "^1.5.1"

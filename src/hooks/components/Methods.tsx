@@ -6,7 +6,7 @@ const ChevronIconDown = () => <div className='chevron-icon-down' />
 const Methods = (props:any) => {
     const [open, setOpen] = useState(props.open || false)
     return(
-        <div className='method'>
+        <div className='method' id={`group-${props.title}`}>
             <div className='title-row' onClick={()=>setOpen(b => !b)}>
                 <div className='chevron'>
                     {open ? <ChevronIconDown /> : <ChevronIconRight />}
