@@ -138,6 +138,12 @@
   font-size: .8rem;
 }
 
+.demo-layout label{
+  position: relative;
+  display: inline-block;
+  min-width: 8rem;
+}
+
 
 
 .demo-layout .method{

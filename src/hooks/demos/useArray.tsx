@@ -92,13 +92,13 @@ const demoComponent = (props:any) => {
 
             <Methods title='clear' desc='Set the state to an empty array' open>
                 <Method id='clear' pre='clear()' func={() => methods.clear()}  />
-                <GenerateMethodForEachType hidden={false} method='clear' />
+                <GenerateMethodForEachType hidden={true} method='clear' />
             </Methods>
 
 
             <Methods title='reset' desc='Set the state to the initial value' >
                 <Method id='reset' pre='reset()' func={() => methods.reset()}  />
-                <GenerateMethodForEachType hidden={false} method='reset' />
+                <GenerateMethodForEachType hidden={true} method='reset' />
             </Methods>
 
 
@@ -109,7 +109,7 @@ const demoComponent = (props:any) => {
                 <Method id='set-4' pre='set([[[[[["why"]]]]]])' func={() => methods.set([[[[[["why"]]]]]])}  />
                 <Method id='set-4' pre='set("not","an","array")' func={() => methods.set('not')}  />
 
-                <GenerateMethodForEachType hidden={false} method='set' />
+                <GenerateMethodForEachType hidden={true} method='set' />
                 {/* <Method hidden id='set-x1' func={() => methods.set()}  />
                 <Method hidden id='set-x2' func={() => methods.set(null)}  />
                 <Method hidden id='set-x3' func={() => methods.set(undefined)}  />

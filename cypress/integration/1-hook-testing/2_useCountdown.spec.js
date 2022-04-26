@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 
-const _loadPage = () => cy.visit('http://localhost:3000/docs/demos/useAsync')
+const _loadPage = () => cy.visit('http://localhost:3000/docs/demos/useCountdown')
 
 
 const _display = () => cy.get('#demo-display')
@@ -25,7 +25,6 @@ it('Load demo - useAsync', () => {
 describe('METHOD 1 | clear()', () => {
 
   it('1 - 1 | clear()', () => {
-    _clear()
     _display().should('have.text', '[]')
   })
   
