@@ -29,19 +29,6 @@ import { useArray } from '@pratiq/hooks'
         remove
 */
 
-//~ ALL METHODS SHOULD HAVE TESTS FOR EACH VALUE TYPE:                  
-//~     - ~empty~       no value                                        
-//~     - 'string'      string                                          
-//~     - ''            empty string                                    
-//~     - true          boolean true                                    
-//~     - false         boolean false                                   
-//~     - 1             number truthy                                   
-//~     - 0             number falsy                                    
-//~     - null          null type                                       
-//~     - undefined     undefined type                                  
-//~     - {}            empty object                                    
-//~     - []            empty array                                     
-//~     - ()=>{}        empty function                                  
 
 const allTypes = [
     'no-value',

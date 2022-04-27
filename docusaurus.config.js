@@ -53,12 +53,18 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          // {
-          //   type: 'doc',
-          //   docId: 'intro',
-          //   position: 'left',
-          //   label: 'Tutorial',
-          // },
+          {
+            type: 'doc',
+            docId: 'Docs/Hooks/useArray',
+            position: 'left',
+            label: 'Docs',
+          },
+          {
+            type: 'doc',
+            docId: 'Demos/useCountdown',
+            position: 'left',
+            label: 'Demos',
+          },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/pratiqdev/custom-hooks',

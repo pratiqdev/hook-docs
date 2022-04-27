@@ -2,7 +2,7 @@ import * as React from 'react';
 
 const Display = (props:any) => {
     return (
-        <div className='display-input'>
+        <div className={props.hide ? 'display-input-hidden' : 'display-input'}>
             <label>
                 {props.id}
             </label>

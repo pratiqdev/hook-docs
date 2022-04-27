@@ -144,6 +144,28 @@
   min-width: 8rem;
 }
 
+.display-input-hidden{
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+}
+
+.row{
+  display: flex;
+  align-items: center;
+}
+.padded{
+  padding: 1rem;
+  padding-top: 0;
+}
+.padded *{
+  margin-right: .5rem;
+}
+
+.test-display{
+  min-width: 4rem;
+  font-size: 1.2rem;
+}
 
 
 .demo-layout .method{
@@ -246,5 +268,5 @@
 }
 
 .demo-layout button:hover{
-  background: #44f;
+  background: var(--ifm-color-primary-light);
 }

@@ -11,58 +11,83 @@ import { useCountdown } from '@pratiq/hooks'
 
 const demoComponent = (props:any) => {
 
-    // console.log('package:', pkg)
+    const hide = false
+
     const [dur, setDur] = React.useState(3_000)
     const [cb, setCb] = React.useState()
 
     const {time, done, start, stop, reset} = useCountdown({
         duration: dur,
         callbacks:{
-            'start': () => setCb('A - ran a cb at start'),
-            '2000':  () => setCb('B - ran a cb at 2s'),
-            '1000':  () => setCb('C - ran another cb at 1s'),
-            'end':   () => setCb('D - ran a cb at the end'),
+            'start': () => setCb('A'),
+            '2000':  () => setCb('B'),
+            1000:    () => setCb('C'),
+            'end':   () => setCb('D'),
         }
     })
 
-    const pseudoCode =
-`const { time, done, start, stop, reset } = useCountdown({
-    duration: ${dur},
-    callbacks:{
-        'start': () => console.log('A - ran a cb at start'),
-        '2000':  () => console.log('B - ran a cb at 2s'),
-        '1000':  () => console.log('C - ran another cb at 1s'),
-        'end':   () => console.log('D - ran a cb at the end'),
-    }
-})
+    const {
+        time: time2, 
+        done: done2, 
+        start: start2, 
+        stop: stop2, 
+        reset: reset2
+    } = useCountdown({ 
+        duration: 99999999999,
+        interval: 10,
+    })
 
-log: ${cb || ''}
-done: ${done}
-time: ${JSON.stringify(time, null, 2)}`
+    const timeString = 
+`${time2.hours < 10 ? `0${time2.hours}` : time2.hours}
+:${time2.minutes < 10 ? `0${time2.minutes}` : time2.minutes}
+:${time2.seconds < 10 ? `0${time2.seconds}` : time2.seconds}
+.${time2.milliseconds < 100 ? time2.milliseconds < 10 ? `00${time2.milliseconds}` : `0${time2.milliseconds}` : time2.milliseconds}`
+
 
     return(
         <Layout>
-            {/* <Display id='total' value={time.total} />
-            <Display id='milliseconds' value={time.milliseconds} />
-            <Display id='seconds' value={time.seconds} />
-            <Display id='minutes' value={time.minutes} />
-            <Display id='hours' value={time.hours} />
-            <Display id='days' value={time.days} /> */}
+            <div className='row padded'>
+                <p>Standard timer</p>
+                <button id='method-start-1' onClick={start}>Start</button>
+                <button id='method-stop-1' onClick={stop}>Stop</button>
+                <button id='method-reset-1' onClick={reset}>Reset</button>
+                <p className='test-display-1'>{time.total}</p>
+            </div>
 
-            <pre id='demo-display' >{pseudoCode}</pre>
+
+            <div className='row padded'>
+                <p>Long timer</p>
+                <button id='method-start-2' onClick={start2}>Start</button>
+                <button id='method-stop-2' onClick={stop2}>Stop</button>
+                <button id='method-reset-2' onClick={reset2}>Reset</button>
+                <p className='test-display-2'>{timeString}</p>
+            </div>
 
 
-            <Methods open title='Control' desc='Start, stop or reset the countdown' >
+            <Display hide={hide} id='total' value={time.total} />
+            <Display hide={hide} id='milliseconds' value={time.milliseconds} />
+            <Display hide={hide} id='seconds' value={time.seconds} />
+            <Display hide={hide} id='minutes' value={time.minutes} />
+            <Display hide={hide} id='hours' value={time.hours} />
+            <Display hide={hide} id='days' value={time.days} />
+            <Display hide={hide} id='done' value={done} />
+            <Display hide={hide} id='callback' value={cb} />
+
+            {/* <pre id='demo-display' >{pseudoCode}</pre> */}
+
+
+
+            {/* <Methods open title='Control' desc='Start, stop or reset the countdown' >
+                <Method id='start' pre='start()' func={() => start()}  />
+                <Method id='stop' pre='stop()' func={() => stop()}  />
+                <Method id='reset' pre='reset()' func={() => reset()}  />
+            </Methods> */}
+
+            {/* <Methods title='Parameters' desc='Change the parameters of the hoook' >
                 <Method id='start-3' pre='start()' func={() => start()}  />
                 <Method id='stop-3' pre='stop()' func={() => stop()}  />
                 <Method id='reset-3' pre='reset()' func={() => reset()}  />
-            </Methods>
-
-            <Methods title='Parameters' desc='Change the parameters of the hoook' >
-                <Method id='start-3' pre='start()' func={() => start()}  />
-                <Method id='stop-3' pre='stop()' func={() => stop()}  />
-                <Method id='reset-3' pre='reset()' func={() => reset()}  />
-            </Methods>
+            </Methods> */}
 
 
             {/* <Methods title='set' desc='Set the state to a new array' >
@@ -72,9 +97,8 @@ time: ${JSON.stringify(time, null, 2)}`
                
             </Methods>
 
-            <Methods title='unshift' desc='Adds an element(s) to the beginning of the array and returns new length' >
-                <Method hidden id='unshift-x1' func={() => methods.unshift(1)}  />
-            </Methods> */}
+    */}
+
 
 
         </Layout>
