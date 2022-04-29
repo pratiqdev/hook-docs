@@ -1,4 +1,5 @@
 // @ts-nocheck
+
 import React, { useState } from 'react'
 import Layout from '../components/DemoLayout'
 import Methods from '../components/Methods'
@@ -7,21 +8,32 @@ import MethodInput from '../components/MethodInput'
 import Display from '../components/Display'
 import { useCountdown } from '@pratiq/hooks'
 
-//~///////////////////////////////////////////////////////////////////////////////////////////
+
+/// # useCountdown (v2) 
+/// Run a countdown timer that invokes optional callbacks and provides state 
+/// describing stages and times
 
 
 /**
  * useCountdown
  *
- * run a countdown timer that invokes optional callbacks and provides state describing stages and times
+ * run a countdown timer that invokes optional callbacks and provides state 
+ * describing stages and times
  *
  * @param duration: total duration of the timer in milliseconds
- * @param interval (optional) the duration between refreshes of the countdown time in milliseconds - default 100ms
- * @param callbacks (optional) an object containing callback functions where the key is the time of invocation, or string of start/end, and the value is the callback function
+ * @param interval (optional) the duration between refreshes of the countdown 
+ * time in milliseconds - default 100ms
+ * @param callbacks (optional) an object containing callback functions where 
+ * the key is the time of invocation, or string of start/end, and the value 
+ * is the callback function
  *
  * @example:
- * const {time, done, running, started, start, stop, reset} = useCountdown({ duration: 10_000 })
+ * const {
+ *  time, done, running, started, start, stop, reset
+ * } = useCountdown({ duration: 10_000 })
  */
+
+/// ## interfaces
 
 export interface I_CountdownConfig {
   duration: number;
@@ -63,7 +75,15 @@ const useRealCount = (config: I_CountdownConfig) => {
   const [running, setRunning] = React.useState(false);
   const clockRef = React.useRef<any>(null);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+  /// __________________________________________________________________________
+  /// ## Refresh Times 
+  /// this is sweet
+  
   const refreshTimes = React.useCallback(() => {
     if (!ticking) return  
     if (stopTime && startTime && !done) {
@@ -98,7 +118,14 @@ const useRealCount = (config: I_CountdownConfig) => {
     }, settings.interval);
   }, [settings.interval, startTime, ticking, done, stopTime, time]);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+  /// __________________________________________________________________________
+  /// ## Convert Time Remaining
+
   const convertTimeRemaining = React.useCallback(() => {
     let s = Math.floor(time / 1000);
 
@@ -118,8 +145,14 @@ const useRealCount = (config: I_CountdownConfig) => {
     };
   }, [time]);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
-  // ACCUMULATE CALLBACKS
+
+
+
+
+
+  /// __________________________________________________________________________
+  /// ## Accumulate Callbacks
+  
   React.useEffect(() => {
     if (
       Object.entries(cbs).length === 0 &&
@@ -138,14 +171,29 @@ const useRealCount = (config: I_CountdownConfig) => {
     }
   }, [settings.callbacks]);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+  /// __________________________________________________________________________
+  /// ## UE | Call Refresh Times
+  /// 
+  /// Call the `refreshTimes()` function anytime ticking is toggled and ticking
+  /// is true.
+
   React.useEffect(() => {
     if (ticking) refreshTimes();
     return () => clearTimeout(clockRef.current);
   }, [ticking, refreshTimes]);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
-  // HANDLE CALLBACKS
+
+
+
+  /// __________________________________________________________________________
+  /// ## Handle Callbacks
+ 
   React.useEffect(() => {
     if (time === settings.duration) return;
 
@@ -159,8 +207,11 @@ const useRealCount = (config: I_CountdownConfig) => {
     }
   }, [time, cbs]);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
-  // HANDLE TIME
+
+
+  /// __________________________________________________________________________
+  /// ## Handle Timing?
+
   React.useEffect(() => {
     if (ticking) {
       if (!running && !done) setRunning(true);
@@ -183,8 +234,16 @@ const useRealCount = (config: I_CountdownConfig) => {
     }
   }, [trigger, settings.interval]);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////
-  // METHODS
+
+
+
+
+
+  /// __________________________________________________________________________
+  /// ## Methods
+
+
+  /// ### Method | start()
   const start = () => {
     if (done) return;
     setTicking(true);
@@ -202,6 +261,9 @@ const useRealCount = (config: I_CountdownConfig) => {
     }
   };
 
+
+
+  /// ### Method | stop()
   const stop = () => {
     clearTimeout(clockRef.current);
     setTicking(false);
@@ -212,6 +274,9 @@ const useRealCount = (config: I_CountdownConfig) => {
     }
   };
 
+
+
+  /// ### Method | reset()
   const reset = () => {
     // console.clear();
     setTicking(false);
@@ -228,6 +293,8 @@ const useRealCount = (config: I_CountdownConfig) => {
     }
   };
 
+
+  /// ### Returns 
   return {
     time: convertTimeRemaining(),
     done,
@@ -241,6 +308,12 @@ const useRealCount = (config: I_CountdownConfig) => {
 };
 
 
+
+
+
+
+/// __________________________________________________________________________
+/// ## Demo Component
 
 //~///////////////////////////////////////////////////////////////////////////////////////////
 
