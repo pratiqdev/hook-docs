@@ -1,7 +1,8 @@
 /// <reference types="cypress" />
 
 
-const _loadPage = () => cy.visit('http://localhost:3000/docs/demos/useCountdown')
+const _loadPage = () => 
+  cy.visit('http://localhost:3000/docs/demos/useCountdown')
 
 
 
@@ -21,6 +22,8 @@ const _runTrial = (time, repeat) => {
       .invoke('val')
       .then(val => _accum(val, time))
   }
+
+  cy.log(dev)
 
 }
 

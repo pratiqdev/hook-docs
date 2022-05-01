@@ -1,15 +1,18 @@
-import DemoComponent from '../../../src/hooks/demos/useArray'
+import DemoComponent from '../../src/hooks/demos/useCountdown'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-# useArray
-
-Hook for managing the state of an array with common manipulation methods.
+# useCountdown
 
 
-## Demo
 
-<DemoComponent />
+
+
+
+## Description
+
+Countdown timer with optional callbacks. 
+
 
 
 
@@ -57,11 +60,12 @@ const [
 
 
 
-## Parameters
 
-| Name | Description |
-|-|:-|
-| value | State value of the array |
-| set   | Set the state to a new value |
-| push  | Append a new value to the end of the array |
-| pop   | Remove the last element of the array and return the removed value |
+
+
+--------------------------------------------------------------------------------
+
+## Meta
+
+This hook internally uses the `useState` hook to store the array and provides 
+a wrapper around common array modification methods.

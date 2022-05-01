@@ -50,7 +50,6 @@ const allTypes = [
 const demoComponent = (props:any) => {
     const initialState = ['initial','state']
     const [testValue, setTestValue] = useState<any>()
-    const [customValue, setCustomValue] = useState<any>([1,2,3])
     const {array, ...methods} = useArray(['initial','state'])
 
     const GenerateMethodForEachType = (props) => {
@@ -69,11 +68,11 @@ const demoComponent = (props:any) => {
         )
     }
 
+
     return(
         <Layout>
             <input type='hidden' id='initial-value' value={JSON.stringify(initialState)} />
-            <input type='' id='test-value' value={testValue} />
-            <pre id='demo-display' >{JSON.stringify(array)}</pre>
+            <pre id='demo-display' >{JSON.stringify(array)} {testValue && `=>`} {testValue}</pre>
 
             <Method hidden id='clear-test-value' func={() => setTestValue('')}  />
 
