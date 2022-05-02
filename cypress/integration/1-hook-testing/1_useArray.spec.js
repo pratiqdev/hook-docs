@@ -289,7 +289,7 @@ describe('METHOD 3 | set()', () => {
     _clear()
   })
 
-  testArgumentTypes('set', '[]')
+  // testArgumentTypes('set', '[]')
 
   it('3 - 1 | set([1,2,3])', () => {
     _set._1()

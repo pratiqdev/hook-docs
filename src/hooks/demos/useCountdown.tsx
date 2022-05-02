@@ -79,6 +79,7 @@ ${time2.hours < 10 ? `0${time2.hours}` : time2.hours}
                 <p className='test-display-1 mb-2 fs-3'>{time.total}</p>
                 <p className='fs-1 mb-3'>Increment: 10ms</p>
 
+                <Display hide={hide} id='total' value={time.total} />
                 <Display hide={hide} id='milliseconds' value={time.milliseconds} />
                 <Display hide={hide} id='seconds' value={time.seconds} />
                 <Display hide={hide} id='minutes' value={time.minutes} />
@@ -100,6 +101,7 @@ ${time2.hours < 10 ? `0${time2.hours}` : time2.hours}
                 <p className='test-display-1 mb-2 fs-3'>{timeString}</p>
                 <p className='fs-1 mb-3'>Increment: 100ms</p>
 
+                <Display hide={hide} id='total' value={time2.total} />
                 <Display hide={hide} id='milliseconds' value={time2.milliseconds} />
                 <Display hide={hide} id='seconds' value={time2.seconds} />
                 <Display hide={hide} id='minutes' value={time2.minutes} />
@@ -120,6 +122,7 @@ ${time2.hours < 10 ? `0${time2.hours}` : time2.hours}
                 <p className='test-display-1 mb-2 fs-3'>{time3.total}</p>
                 <p className='fs-1 mb-3'>Increment: 1000ms</p>
 
+                <Display hide={hide} id='total' value={time3.total} />
                 <Display hide={hide} id='milliseconds' value={time3.milliseconds} />
                 <Display hide={hide} id='seconds' value={time3.seconds} />
                 <Display hide={hide} id='minutes' value={time3.minutes} />

@@ -19,4 +19,10 @@
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
+
+  on('after:run', (results) => {
+    console.log('CYPRESS PLUGIN ---------------------------')
+    console.log('TOTAL: '+results.totalTests)
+    console.log('GRADE: '+ ((results.totalPassed / results.totalTests) * 100).toFixed(2) + '%')
+  })
 }

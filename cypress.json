@@ -1,5 +1,13 @@
 {
     "viewportWidth": 1800,
     "viewportHeight": 1000,
-    "theme":"dark"
+    "theme":"dark",
+    "screenshotOnRunFailure": false,
+    "video": false,
+    "defaultCommandTimeout": 500,
+
+    "component": {
+        "testFiles": "**/*.test.{js,ts,jsx,tsx}",
+        "componentFolder": "src"
+      }
 }

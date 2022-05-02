@@ -72,7 +72,7 @@ const demoComponent = (props:any) => {
     return(
         <Layout>
             <input type='hidden' id='initial-value' value={JSON.stringify(initialState)} />
-            <pre id='demo-display' >{JSON.stringify(array)} {testValue && `=>`} {testValue}</pre>
+            <pre id='demo-display' >{JSON.stringify(array)}{testValue && ` => ${testValue}`}</pre>
 
             <Method hidden id='clear-test-value' func={() => setTestValue('')}  />
 
@@ -95,15 +95,17 @@ const demoComponent = (props:any) => {
                 <Method id='set-4' pre='set([[[[[["why"]]]]]])' func={() => methods.set([[[[[["why"]]]]]])}  />
                 <Method id='set-4' pre='set("not","an","array")' func={() => methods.set('not')}  />
 
-                <GenerateMethodForEachType hidden={true} method='set' />
-                {/* <Method hidden id='set-x1' func={() => methods.set()}  />
+                {/* <GenerateMethodForEachType hidden={true} method='set' /> */}
+                {/* 
+            */}
+                <Method hidden id='set-x1' func={() => methods.set()}  />
                 <Method hidden id='set-x2' func={() => methods.set(null)}  />
                 <Method hidden id='set-x3' func={() => methods.set(undefined)}  />
                 <Method hidden id='set-x4' func={() => methods.set(true)}  />
                 <Method hidden id='set-x5' func={() => methods.set(1)}  />
                 <Method hidden id='set-x6' func={() => methods.set({})}  />
                 <Method hidden id='set-x7' func={() => methods.set('not an array')}  />
-                <Method hidden id='set-x8' func={() => methods.set([])}  /> */}
+                <Method hidden id='set-x8' func={() => methods.set([])}  /> 
             </Methods>
 
 
@@ -128,14 +130,14 @@ const demoComponent = (props:any) => {
                 <Method id='unshift-4' pre="unshift([9,10,11])" func={() => setTestValue(() => methods.unshift([9,10,11]))}  />
 
                 <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift())}  />
-                <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift(true))}  />
-                <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift(false))}  />
-                <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift(null))}  />
-                <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift(undefined))}  />
-                <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift(1))}  />
-                <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift(0))}  />
-                <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift({}))}  />
-                <Method hidden id='unshift-x1' func={() => setTestValue(() => methods.unshift([]))}  />
+                <Method hidden id='unshift-x2' func={() => setTestValue(() => methods.unshift(true))}  />
+                <Method hidden id='unshift-x3' func={() => setTestValue(() => methods.unshift(false))}  />
+                <Method hidden id='unshift-x4' func={() => setTestValue(() => methods.unshift(null))}  />
+                <Method hidden id='unshift-x5' func={() => setTestValue(() => methods.unshift(undefined))}  />
+                <Method hidden id='unshift-x6' func={() => setTestValue(() => methods.unshift(1))}  />
+                <Method hidden id='unshift-x7' func={() => setTestValue(() => methods.unshift(0))}  />
+                <Method hidden id='unshift-x8' func={() => setTestValue(() => methods.unshift({}))}  />
+                <Method hidden id='unshift-x9' func={() => setTestValue(() => methods.unshift([]))}  />
             </Methods>
 
 
