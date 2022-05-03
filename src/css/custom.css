@@ -44,6 +44,13 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.table-of-contents__link{
+  transition: .3s;
+  color: var(--ifm-color-primary);
+  border-left: 2px solid transparent;
+  padding-left: 3px;
+  margin-left: -5px;
+}
 
 .table-of-contents__link--active{
   /* border-bottom: 1px solid rgb(150, 150, 150, .2); */
@@ -51,6 +58,7 @@
   padding-left: 3px;
   margin-left: -5px;
   background: rgb(77, 136, 255, .2);
+  color: white;
 }
 
 

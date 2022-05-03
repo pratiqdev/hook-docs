@@ -120,6 +120,64 @@ build steps. Add extra content or notes just for the author in these sections.
 
 
 
+
+
+
+
+
+
+
+
+<!--=========================================================================-->
+<br />
+<hr />
+
+## Config
+
+Values used for initial state and internal settings are provided as a config
+object 
+
+
+```ts
+// config object
+{
+  config: 'values',
+  used: ['for', 'FOR'],
+  initial: 'state',
+  internal: 'settings',
+  or: 'whatever'
+}
+
+// interface
+{
+  config: string;
+  used?: string[];
+  initial?: string;
+  internal?: number;
+  or?: SomeInterface | AnotherInterface;  
+}
+```
+
+| Key | Type | Default | Description |
+|:--|:--|:--|:--|
+`config` | string | 'beep-bop' | A fake config option for stype-guide
+`values` | string[] | [] | Another placeholder config variable
+
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--=========================================================================-->
 <br />
 <hr />
@@ -218,12 +276,18 @@ not provide access to the current state for callback functions.
 
 
 <!--=========================================================================-->
+
+<!--
+  Create a component that takes an array of related hooks (name, link, descr)
+  and renders a full width table with clickable links to the related docs
+-->
+
 <br />
-<hr />
 
 
-## Related Hooks
+| Related Hooks | Description |
+|:--|:--|  
+[useSimilarHook](hooks/useArray) | Does the same thing only different
+[useOtherHook](some/other/hook) | Even more different while exactly the same
 
-[useSimilarHook](hooks/useArray) - Does the same thing only different
-
-[useOtherHook](some/other/hook) - Even more different while exactly the same
+<br />
