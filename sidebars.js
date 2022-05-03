@@ -20,11 +20,6 @@ const sidebars = {
   tutorialSidebar: [
     {
       type: 'doc',
-      label: 'Style GUide',
-      id: 'style-guide'
-    },
-    {
-      type: 'doc',
       label: 'Introduction',
       id: 'intro'
     },
@@ -34,6 +29,7 @@ const sidebars = {
       label: 'Getting Started',
       items: [
         'GettingStarted/installation',
+        'GettingStarted/usage',
       ]
     },
     {
@@ -43,6 +39,16 @@ const sidebars = {
         'Hooks/useArray',
         'Hooks/useCountdown'
       ],
+    },
+    {
+      type: 'doc',
+      label: 'Contributing',
+      id: 'contributing'
+    },
+    {
+      type: 'doc',
+      label: 'Style Guide',
+      id: 'style-guide'
     },
   ],
 };

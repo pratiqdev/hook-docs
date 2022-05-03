@@ -3,9 +3,9 @@
   "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-      "paths": {
-          "components/*": ["src/hooks/components/*"],
-          "demos/*": ["src/hooks/demos/*"],
-      }
+    "paths": {
+        "components/*": ["src/hooks/components/*"],
+        "demos/*": ["./src/hooks/demos/*"],
+    }
   }
 }

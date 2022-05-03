@@ -10,22 +10,22 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Use and Reuse',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Designed to simplify the developer experience and reduce repitition with
+        hooks that are easy to use and work everywhere. 
       </>
     ),
   },
   {
-    title: 'Thoroughly Tested',
+    title: 'Tested. Tested again.',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Tested in all environments to ensure reliability without unintended 
+        side-effects and sticky extras.
       </>
     ),
   },
@@ -34,8 +34,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Add <code>@pratiq/hooks</code> to your projects, check out the docs 
+        and demos for a closer look then get back to creating something awesome.
       </>
     ),
   },

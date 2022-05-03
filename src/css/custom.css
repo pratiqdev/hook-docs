@@ -32,6 +32,7 @@
   --ifm-color-primary-lightest: hsl(220, 100%, 90%);
   --ifm-code-font-size: 95%;
 }
+
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
   display: block;
@@ -45,9 +46,14 @@
 
 
 .table-of-contents__link--active{
-  border-bottom: 1px solid rgb(150, 150, 150, .2);
-  border-left: 3px solid white;
+  /* border-bottom: 1px solid rgb(150, 150, 150, .2); */
+  border-left: 2px solid var(--ifm-color-primary);
+  padding-left: 3px;
+  margin-left: -5px;
+  background: rgb(77, 136, 255, .2);
 }
+
+
 
 
 
@@ -286,6 +292,13 @@
   height: 1px;
   background: rgb(150, 150, 150, .1)
 
+}
+
+hr{
+  border: 0px solid transparent;
+  height: 1px;
+  /* background: linear-gradient(90deg, var(--ifm-color-primary-darkest), var(--ifm-color-primary-lightest), var(--ifm-color-primary)); */
+  background: var(--ifm-color-primary)
 }
 
 

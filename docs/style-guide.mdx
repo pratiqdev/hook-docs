@@ -1,18 +1,23 @@
-import DemoComponent from './demos/useArray'
+import DemoComponent from '../src/hooks/demos/useArray'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-# useArray
+# Style Guide
 
-Hook for managing the state of an array with common manipulation methods.
-
-
-
+The structure of a hook documentation page is made clear by this style guide / 
+template.
 
 
 
 
 
+
+
+
+
+
+<!--=========================================================================-->
+<br /><hr />
 
 ## Usage
 
@@ -24,9 +29,10 @@ Hook for managing the state of an array with common manipulation methods.
 import { useArray } from '@pratiq/hooks'
 
 const pkg = useArray([])
-
 pkg.set([1,2,3])
+```
 
+```jsx
 <div>{pkg.value}</div>
 ```
 
@@ -50,6 +56,18 @@ const {
 } = useArray(initialState)
 ```
 
+```jsx
+<div>{value}</div>
+
+<button onClick={ reset }>
+  Reset Array to Initial State
+</button>
+
+<button onClick={() => set([5,6,7]) }>
+  Set New Array State
+</button>
+```
+
 </TabItem>
 
 </Tabs>
@@ -60,10 +78,58 @@ const {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<!--=========================================================================-->
+<br />
+<hr />
+
+## Demo
+
+<DemoComponent />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+Large amounts of space between sections is helpful and will be removed during
+build steps. Add extra content or notes just for the author in these sections.
+-->
+
+
+
+<!--=========================================================================-->
+<br />
+<hr />
+
 ## Methods
 
-### Set
-Set the state to a new array. Value must be of type array.
+State values and state-modification functions included in `package`
+
+### List
+Provide a short description about the abilities and usage of this function.
 
 ```js
 const { value, set } = useArray([])
@@ -72,9 +138,8 @@ set([{text: "Hello, "}, {text: "World"}])
 ```
 <br />
 
-### Push
-Push a new element into the end of the array.
-
+### Of
+Provide a short description about the abilities and usage of this function.
 ```js
 const { value, push } = useArray([])
 push(7)
@@ -82,8 +147,24 @@ push(7)
 
 <br />
 
-### Pop 
-Remove the last element of the array and return the removed value
+### Functions
+Provide a short description about the abilities and usage of this function.
+
+```js
+const { value, pop } = useArray([])
+const lastItem = pop()
+```
+
+### In
+Provide a short description about the abilities and usage of this function.
+
+```js
+const { value, pop } = useArray([])
+const lastItem = pop()
+```
+
+### Hook
+Provide a short description about the abilities and usage of this function.
 
 ```js
 const { value, pop } = useArray([])
@@ -97,21 +178,52 @@ const lastItem = pop()
 
 
 
-## Demo
-
-<DemoComponent />
 
 
 
 
 
 
+<!--=========================================================================-->
+<br />
+<hr />
 
 
-## Meta
+## Internal
 
-This hook internally uses the `useState` hook to store the array and provides 
+This hook uses:
+
+- `useState`
+
+Describe the inner functionality of this hook and consider describing how this
+hook can improve the developer experiece or code reliability. Some hooks may 
+not have complex inner workings to describe here so the bare minimum should be 
+a list of hooks used, what the hook or function does, 
+
+This hook uses the `React.useState` hook to store the array and provides 
 a wrapper around common array modification methods. 
 
 Methods in `useArray` do
 not provide access to the current state for callback functions.
+
+
+
+
+
+
+
+
+
+
+
+
+<!--=========================================================================-->
+<br />
+<hr />
+
+
+## Related Hooks
+
+[useSimilarHook](hooks/useArray) - Does the same thing only different
+
+[useOtherHook](some/other/hook) - Even more different while exactly the same
