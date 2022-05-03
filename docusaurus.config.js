@@ -55,15 +55,15 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'Hooks/useArray',
+            docId: 'hooks/useArray',
             position: 'left',
             label: 'Docs',
           },
           {
             type: 'doc',
-            docId: 'Demos/useCountdown',
+            docId: 'examples/form',
             position: 'left',
-            label: 'Demos',
+            label: 'Example',
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -80,8 +80,16 @@ const config = {
             title: 'Docs',
             items: [
               {
+                label: 'Introduction',
+                to: 'intro',
+              },
+              {
                 label: 'Getting Started',
-                to: '/GettingStarted/Intro',
+                to: 'docs/gettingStarted/installation',
+              },
+              {
+                label: 'Examples',
+                to: 'docs/examples/form',
               },
             ],
           },

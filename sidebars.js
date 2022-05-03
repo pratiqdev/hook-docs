@@ -28,16 +28,24 @@ const sidebars = {
       type: 'category',
       label: 'Getting Started',
       items: [
-        'GettingStarted/installation',
-        'GettingStarted/usage',
+        'gettingStarted/installation',
+        'gettingStarted/usage',
       ]
     },
     {
       type: 'category',
       label: 'Hooks',
       items: [
-        'Hooks/useArray',
-        'Hooks/useCountdown'
+        'hooks/useArray',
+        'hooks/useCountdown',
+        'hooks/useInput'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Examples',
+      items: [
+        'examples/form',
       ],
     },
     {
