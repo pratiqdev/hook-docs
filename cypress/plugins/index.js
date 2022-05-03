@@ -15,14 +15,18 @@
 /**
  * @type {Cypress.PluginConfig}
  */
+
+import fs from 'fs'
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 
   on('after:run', (results) => {
-    console.log('CYPRESS PLUGIN ---------------------------')
-    console.log('TOTAL: '+results.totalTests)
-    console.log('GRADE: '+ ((results.totalPassed / results.totalTests) * 100).toFixed(2) + '%')
+    fs.writeFile('../stats.json', JSON.stringify(results, null, 2), (err)=>{
+      if(!err){
+        console.log('Cypress stats written to file...')
+      }
+    })
   })
 }
