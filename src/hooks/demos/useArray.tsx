@@ -6,6 +6,9 @@ import Method from '../components/Method'
 import MethodInput from '../components/MethodInput'
 import { useArray } from '@pratiq/hooks'
 
+import BrowserOnly from '@docusaurus/BrowserOnly';
+<BrowserOnly />
+
 /*
         set,
         clear,

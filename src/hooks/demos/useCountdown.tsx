@@ -10,6 +10,8 @@ import { useCountdown } from '@pratiq/hooks'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
+import BrowserOnly from '@docusaurus/BrowserOnly';
+<BrowserOnly />
 
 
 const demoComponent = (props:any) => {
