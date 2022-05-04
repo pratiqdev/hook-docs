@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import BrowserOnly from '@docusaurus/BrowserOnly';
+
 // import styles from './demoLayout.module.css'
 
 const DemoLayout = (props:any) => {
@@ -7,6 +9,7 @@ const DemoLayout = (props:any) => {
 
     return(
         <div>
+            <BrowserOnly />
             {/* <div 
                 className={open ? 'demo-heading-open' : 'demo-heading-closed'} 
                 onClick={() => setOpen(x=>!x)}

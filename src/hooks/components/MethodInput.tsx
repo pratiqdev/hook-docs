@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 
 const MethodInput = (props:any) => {
@@ -6,6 +7,7 @@ const MethodInput = (props:any) => {
 
     return(
         <div className='desc-row'>
+<BrowserOnly />
             <button id={`method-${props.get}`} onClick={() => props.func(JSON.parse(value))}>{'run'}</button>
             <pre>{props.pre}
                 (<input 
