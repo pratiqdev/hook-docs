@@ -7,7 +7,6 @@ import MethodInput from '../components/MethodInput'
 import { useArray } from '@pratiq/hooks'
 
 import BrowserOnly from '@docusaurus/BrowserOnly';
-<BrowserOnly />
 
 /*
         set,
@@ -55,31 +54,34 @@ const demoComponent = (props:any) => {
     const [testValue, setTestValue] = useState<any>()
     const {array, ...methods} = useArray(['initial','state'])
 
-    const GenerateMethodForEachType = (props) => {
-        return allTypes.map((x,i) => 
-            <Method 
-                id={`${props.method}-x${i + 1}`}
-                hidden={props.hidden || false} 
-                func={() => {
-                    if(x === 'no-value'){
-                        setTestValue(() => methods[props.method]())
-                    }else{
-                        setTestValue(() => methods[props.method](x))
-                    }
-                }}
-            />
-        )
-    }
+    // const GenerateMethodForEachType = (props) => {
+    //     return allTypes.map((x,i) => 
+    //         <Method 
+    //             id={`${props.method}-x${i + 1}`}
+    //             hidden={props.hidden || false} 
+    //             func={() => {
+    //                 if(x === 'no-value'){
+    //                     setTestValue(() => methods[props.method]())
+    //                 }else{
+    //                     setTestValue(() => methods[props.method](x))
+    //                 }
+    //             }}
+    //         />
+    //     )
+    // }
 
 
     return(
         <Layout>
+            <BrowserOnly>
+            {()=> <>
             <input type='hidden' id='initial-value' value={JSON.stringify(initialState)} />
+            
             <pre id='demo-display' >{JSON.stringify(array)}{testValue && ` => ${testValue}`}</pre>
 
             <Method hidden id='clear-test-value' func={() => setTestValue('')}  />
 
-            <Methods title='clear' desc='Set the state to an empty array' open>
+            {/* <Methods title='clear' desc='Set the state to an empty array' open>
                 <Method id='clear' pre='clear()' func={() => methods.clear()}  />
                 <GenerateMethodForEachType hidden={true} method='clear' />
             </Methods>
@@ -98,9 +100,6 @@ const demoComponent = (props:any) => {
                 <Method id='set-4' pre='set([[[[[["why"]]]]]])' func={() => methods.set([[[[[["why"]]]]]])}  />
                 <Method id='set-4' pre='set("not","an","array")' func={() => methods.set('not')}  />
 
-                {/* <GenerateMethodForEachType hidden={true} method='set' /> */}
-                {/* 
-            */}
                 <Method hidden id='set-x1' func={() => methods.set()}  />
                 <Method hidden id='set-x2' func={() => methods.set(null)}  />
                 <Method hidden id='set-x3' func={() => methods.set(undefined)}  />
@@ -194,10 +193,10 @@ const demoComponent = (props:any) => {
                 <Method id='sort-2' pre="sort((a,b) => a < b ? 1 : -1)" func={() => setTestValue(() => methods.sort((a,b) => a < b))}  /> 
                 <Method id='sort-3' pre="sort((a,b) => a < b ? -1 : 1)" func={() => setTestValue(() => methods.sort((a,b) => a < b ? -1 : 1))}  />
                 <Method id='sort-4' pre="sort((a,b) => a > b ? -1 : 1)" func={() => setTestValue(() => methods.sort((a,b) => a > b ? -1 : 1))}  />
-            </Methods>
+            </Methods> */}
 
-
-
+            </>}
+            </BrowserOnly>
         </Layout>
     )
 }

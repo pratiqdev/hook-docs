@@ -59,12 +59,12 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {
-            type: 'doc',
-            docId: 'examples/form',
-            position: 'left',
-            label: 'Example',
-          },
+          // {
+          //   type: 'doc',
+          //   docId: 'examples/form',
+          //   position: 'left',
+          //   label: 'Example',
+          // },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/pratiqdev/custom-hooks',
@@ -81,16 +81,16 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: 'intro',
+                to: 'docs/intro',
               },
               {
                 label: 'Getting Started',
                 to: 'docs/gettingStarted/installation',
               },
-              {
-                label: 'Examples',
-                to: 'docs/examples/form',
-              },
+              // {
+              //   label: 'Examples',
+              //   to: 'docs/examples/form',
+              // },
             ],
           },
           {

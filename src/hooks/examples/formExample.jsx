@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import CodeBlock from '@theme/CodeBlock';
-import { useInput, useFetch } from '@pratiq/hooks'
+// import { useInput, useFetch } from '@pratiq/hooks'
+const {useInput, useFetch} = React.lazy(() => import('@pratiq/hooks'));
 
 
 const myNameValidator = () => true
 const myCommentValidator = () => true
 
-const Component = () => {
+const ExampleComponent = () => {
 
     const [start, setStart] = useState(false)
 
@@ -52,7 +53,6 @@ const Component = () => {
         </div>
     )
 }
-export default Component
 
 
 
@@ -83,4 +83,4 @@ export default Form
   }
 
 
-export { Component, ExampleCode }
+export { ExampleComponent, ExampleCode }

@@ -36,7 +36,11 @@
   --ifm-code-font-size: 95%;
 }
 
+.theme-doc-breadcrumbs {
+  display: none;
+}
 
+/* breadcrumbsContainer_node_modules-@docusaurus-theme-classic-lib-next-theme-DocBreadcrumbs-styles-module */
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
   display: block;

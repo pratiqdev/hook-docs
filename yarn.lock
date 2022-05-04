@@ -1332,20 +1332,9 @@
     url-loader "^4.1.1"
     webpack "^5.70.0"
 
-"@docusaurus/module-type-aliases@2.0.0-beta.18":
+"@docusaurus/module-type-aliases@2.0.0-beta.18", "@docusaurus/module-type-aliases@^2.0.0-beta.18":
   version "2.0.0-beta.18"
   resolved "https://registry.npmjs.org/@docusaurus/module-type-aliases/-/module-type-aliases-2.0.0-beta.18.tgz"
-  integrity sha512-e6mples8FZRyT7QyqidGS6BgkROjM+gljJsdOqoctbtBp+SZ5YDjwRHOmoY7eqEfsQNOaFZvT2hK38ui87hCRA==
-  dependencies:
-    "@docusaurus/types" "2.0.0-beta.18"
-    "@types/react" "*"
-    "@types/react-router-config" "*"
-    "@types/react-router-dom" "*"
-    react-helmet-async "*"
-
-"@docusaurus/module-type-aliases@^2.0.0-beta.18":
-  version "2.0.0-beta.18"
-  resolved "https://registry.yarnpkg.com/@docusaurus/module-type-aliases/-/module-type-aliases-2.0.0-beta.18.tgz#001379229c58cbc3ed565e19437cbda86d5e8742"
   integrity sha512-e6mples8FZRyT7QyqidGS6BgkROjM+gljJsdOqoctbtBp+SZ5YDjwRHOmoY7eqEfsQNOaFZvT2hK38ui87hCRA==
   dependencies:
     "@docusaurus/types" "2.0.0-beta.18"
@@ -1705,10 +1694,10 @@
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.21.tgz"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@pratiq/hooks@0.0.64":
-  version "0.0.64"
-  resolved "https://registry.npmjs.org/@pratiq/hooks/-/hooks-0.0.64.tgz"
-  integrity sha512-UOUpx1A+USkQ6QimrhSrTb6lttcYpT7AsusewHDhSar0RetAC5QF6dUy7S28BWAr+178b4mSUpJ0wPJGrC1BHg==
+"@pratiq/hooks@0.0.66":
+  version "0.0.66"
+  resolved "https://registry.yarnpkg.com/@pratiq/hooks/-/hooks-0.0.66.tgz#b94ca77fec233a1f3d25b22fe827c367922f5c59"
+  integrity sha512-tkgj4C44FKHIfPk63Fhy788YiT7Sv6NPBKmWkAZXzaPEib2geVth+4i0PIy3EapJz1CKY4fPVBBmrdHQimhjuQ==
 
 "@sideway/address@^4.1.3":
   version "4.1.4"

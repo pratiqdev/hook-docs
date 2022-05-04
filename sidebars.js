@@ -37,17 +37,17 @@ const sidebars = {
       label: 'Hooks',
       items: [
         'hooks/useArray',
-        'hooks/useCountdown',
-        'hooks/useInput'
+        // 'hooks/useCountdown',
+        // 'hooks/useInput'
       ],
     },
-    {
-      type: 'category',
-      label: 'Examples',
-      items: [
-        'examples/form',
-      ],
-    },
+    // {
+    //   type: 'category',
+    //   label: 'Examples',
+    //   items: [
+    //     'examples/form',
+    //   ],
+    // },
     {
       type: 'doc',
       label: 'Contributing',
