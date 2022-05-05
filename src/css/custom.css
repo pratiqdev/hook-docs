@@ -21,6 +21,7 @@
   --ifm-color-primary-lighter: hsl(220, 100%, 60%);
   --ifm-color-primary-lightest: hsl(220, 100%, 65%);
   --ifm-color-primary-transparent: rgb(77, 136, 255, .2);
+  --ifm-color-codeblock: rgb(39, 39, 39);
   --ifm-code-font-size: 95%;
 }
 
@@ -33,6 +34,7 @@
   --ifm-color-primary-light: hsl(220, 100%, 80%);
   --ifm-color-primary-lighter: hsl(220, 100%, 85%);
   --ifm-color-primary-lightest: hsl(220, 100%, 90%);
+  --ifm-color-codeblock: rgb(39, 39, 39);
   --ifm-code-font-size: 95%;
 }
 
@@ -100,6 +102,8 @@
 /* TABLE -------------------------------------------------------------------- */
 table, tr, th, td{
   border: 0px solid transparent !important;
+  font-size: .8rem;
+  word-break: keep-all;
 }
 th, td{
   border-left: 1px solid rgb(155,155,155, .4) !important;
@@ -119,12 +123,35 @@ th:first-child, td:first-child{
   background: #222 !important;
 }
 
+table k{
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
 
 /* HEADINGS ----------------------------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6{
   color: var(--ifm-color-primary);
 }
+
+
+/* SECTION ------------------------------------------------------------------ */
+
+section {
+  background: rgb(155,155,155,.03);
+  padding: .5rem;
+}
+
+section > * {
+  background: none;
+}
+
+/* section pre{ */
+  /* background: var(--ifm-color-codeblock); */
+/* } */
+
+
 
 
 /* EXAMPLE COMPONENT -------------------------------------------------------- */
@@ -406,12 +433,19 @@ h1, h2, h3, h4, h5, h6{
 
 }
 
+
 hr{
-  border: 0px solid transparent;
-  height: 1px;
+  margin-top: 4rem;
+  display: block !important;
+  position: relative !important;
+  border: 0px solid transparent !important;
+  height: 2px !important;
+  width: 100% !important;
   /* background: linear-gradient(90deg, var(--ifm-color-primary-darkest), var(--ifm-color-primary-lightest), var(--ifm-color-primary)); */
-  background: var(--ifm-color-primary)
+  background: var(--ifm-color-primary) !important;
+  clear: both;
 }
+
 
 
 .p0{ padding: 0 !important }
