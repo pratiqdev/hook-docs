@@ -1783,10 +1783,10 @@
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.21.tgz"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@pratiq/hooks@0.0.66":
-  version "0.0.66"
-  resolved "https://registry.yarnpkg.com/@pratiq/hooks/-/hooks-0.0.66.tgz#b94ca77fec233a1f3d25b22fe827c367922f5c59"
-  integrity sha512-tkgj4C44FKHIfPk63Fhy788YiT7Sv6NPBKmWkAZXzaPEib2geVth+4i0PIy3EapJz1CKY4fPVBBmrdHQimhjuQ==
+"@pratiq/hooks@1.0.10":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@pratiq/hooks/-/hooks-1.0.10.tgz#7161d724c0fc1578340cd0f67fa11053ae36669c"
+  integrity sha512-3fJtBJAqDTjgnNx555TMTiB4X2vTsPxePaapChWL4MIFAHCGFRJc1U4QzZa5d9udEnbXpTH5KKQWEUVnqCX4iw==
 
 "@sideway/address@^4.1.3":
   version "4.1.4"
