@@ -1,6 +1,10 @@
 * {
   /* border: 1px solid green; */
 }
+
+.app{
+  background: #111 !important;
+}
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
