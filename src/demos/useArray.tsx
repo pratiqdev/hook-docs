@@ -103,7 +103,10 @@ const demoComponent = (props:any) => {
                     func: () => methods.set(['Hello', 'World'])
                 },
                 {
-                    pre: `set([{text: 'Hello'}, {text: 'World'}])`,
+                    pre: `set([
+    {text: 'Hello'}, 
+    {text: 'World'}
+])`,
                     func: () => methods.set([{text: 'Hello'},{text: 'World'}])
                 },
                 {
@@ -122,7 +125,7 @@ const demoComponent = (props:any) => {
         <Layout>
             <input type='hidden' id='initial-value' value={JSON.stringify(initialState)} />
             
-            <CodeBlock  language='ts' className='demo-display' >{JSON.stringify(array)}{testValue && ` => ${testValue}`}</CodeBlock>
+            <CodeBlock language='ts' className='demo-display' >{JSON.stringify(array, null, 0)}{testValue && ` => ${testValue}`}</CodeBlock>
 
             {/* <Method hidden id='clear-test-value' func={() => setTestValue('')}  /> */}
 

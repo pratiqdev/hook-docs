@@ -269,7 +269,7 @@ section > * {
 
 .demo-layout .desc-row{
   display: flex;
-  align-items: center;
+  align-items: stretch;
   margin-bottom: .25rem !important;
 }
 
@@ -286,11 +286,13 @@ section > * {
 .demo-layout .desc-row button{
   font-family: monospace;
   margin-right: 0;
-  padding: .35rem !important;
-  height: 1.6rem;
-  min-height: 1.6rem;
+  padding: 0 .75rem !important;
+  height: inherit !important;
+  min-height: 1.6rem !important;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
 
 .demo-layout .desc-row button:hover{
@@ -301,13 +303,17 @@ section > * {
   display: none !important;
 }
 
+.demo-display code{
+  max-width: 100%;
+  white-space: pre-wrap;
+}
 
 
 .method-pre{
   /* pointer-events: none; */
   margin: 0 !important;
   padding: 0 !important;
-  height: 1.6rem;
+  min-height: 1.6rem;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   /* background: #ccc; */
@@ -318,16 +324,34 @@ section > * {
 }
 
 .method-pre pre, .method-pre code {
+  max-width: 100%;
   margin: 0 !important;
   padding: 0 !important;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: .5rem;
-  height: 1.6rem !important;
+  height: inherit !important; 
+  /* overflow: hidden; prevent a scrollbar from showing on small pages */
+  font-size: .8rem !important; 
+  border: 0px solid transparent !important;
+  overflow-y: auto;
 }
 
 .method-pre pre{
-  padding: .15rem .5rem !important;
+  margin-top: 1px !important;
+  margin-bottom: 1px !important;
+}
+
+.method-pre code{
+  padding: 0 !important;
+  height: auto !important;
+  min-height: none !important;
+  overflow-y: auto;
+}
+
+.method-pre code{
+  padding: .3rem .5rem !important;
+  /* padding-bottom: 0 !important */
 }
 
 
