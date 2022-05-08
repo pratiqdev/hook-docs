@@ -3,7 +3,7 @@
 }
 
 .app{
-  background: #111 !important;
+  background: #000 !important;
 }
 /**
  * Any CSS included here will be global. The classic template
@@ -25,7 +25,8 @@
   --ifm-color-primary-lighter: hsl(220, 100%, 60%);
   --ifm-color-primary-lightest: hsl(220, 100%, 65%);
   --ifm-color-primary-transparent: rgb(77, 136, 255, .2);
-  --ifm-color-codeblock: rgb(39, 39, 39);
+  --ifm-color-codeblock-dark: rgb(0, 0, 0);
+  --ifm-color-codeblock-light: rgb(250, 250, 253);
   --ifm-code-font-size: 95%;
 }
 
@@ -45,6 +46,7 @@
 .theme-doc-breadcrumbs {
   display: none;
 }
+
 
 /* breadcrumbsContainer_node_modules-@docusaurus-theme-classic-lib-next-theme-DocBreadcrumbs-styles-module */
 .docusaurus-highlight-code-line {
@@ -75,6 +77,9 @@
   background: #334;
 }
 
+[data-theme='dark'] pre{
+  background: #000;
+}
 
 
 /* -------------------------------------------------------------------------- */
@@ -137,6 +142,10 @@ table k{
 
 h1, h2, h3, h4, h5, h6{
   color: var(--ifm-color-primary);
+}
+
+.admonition h1, .admonition h2,.admonition h3,.admonition h4,.admonition h5,.admonition h6{
+  color: inherit;
 }
 
 
@@ -219,15 +228,27 @@ section > * {
 .demo-layout{
   border: 1px solid #ddd;
   border-radius: .5rem;
-  padding: 1rem;
-  background: #efefef;
+  /* padding: 1rem; */
+  /* background: #efefef; */
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 [data-theme='dark'] .demo-layout{
-  border: 1px solid #222;
-  background: #111;
+  border: 1px solid #444;
+  /* background: #111; */
+}
+
+.demo-layout pre{
+  background: var(--ifm-color-codeblock-light);
+  margin-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+[data-theme='dark'] .demo-layout pre{
+  background: var(--ifm-color-codeblock-dark);
 }
 
 
@@ -245,14 +266,11 @@ section > * {
   margin-right: 1rem;
 }
 
-.demo-layout pre{
-  padding: .5rem;
-}
 
 .demo-layout .desc-row{
   display: flex;
   align-items: center;
-  margin-bottom: .25rem;
+  margin-bottom: .25rem !important;
 }
 
 .demo-layout .desc-row-hidden{
@@ -268,9 +286,9 @@ section > * {
 .demo-layout .desc-row button{
   font-family: monospace;
   margin-right: 0;
-  margin-bottom: .25rem;
-  padding: 0 .5rem;
+  padding: .35rem !important;
   height: 1.6rem;
+  min-height: 1.6rem;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -279,21 +297,39 @@ section > * {
   background: var(--ifm-color-primary-light);
 }
 
-.demo-layout .desc-row pre{
-  margin: 0;
-  margin-right: .75rem;
-  margin-bottom: .25rem;
-  padding: .1rem .25rem;
-  padding-left: .5rem;
-  height: 1.6rem;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  background: #ccc;
+.demo-display button{
+  display: none !important;
 }
 
-[data-theme='dark'] .demo-layout .desc-row pre{
-  background: #444;
+
+
+.method-pre{
+  /* pointer-events: none; */
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 1.6rem;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  /* background: #ccc; */
 }
+
+.method-pre button{
+  display:none !important;
+}
+
+.method-pre pre, .method-pre code {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: .5rem;
+  height: 1.6rem !important;
+}
+
+.method-pre pre{
+  padding: .15rem .5rem !important;
+}
+
 
 .demo-layout .desc-row p{
   font-size: .8rem;
@@ -336,10 +372,10 @@ section > * {
   flex-direction: column;
   padding: 0 .5rem;
   padding-top: .5rem;
-  margin-bottom: .25rem;
   transition: .3s;
   border-radius: .5rem;
   border-bottom: 1px solid rgb(100,100,100,.2);
+  margin-bottom: 0;
 }
 
 .demo-layout .method:last-child{
@@ -347,18 +383,24 @@ section > * {
 }
 
 .demo-layout .method:hover{
-  background: #ddd;
+  background: rgb(230, 230, 230, .4);
   border-bottom: 1px solid transparent;
+  border-radius: 0;
 }
 
 [data-theme='dark'] .demo-layout .method:hover{
-  background: #222;
+  background: rgb(230, 230, 230, .1);
   border-bottom: 1px solid transparent;
 }
+
 
 .demo-layout .method * {
   margin: 0;
   padding: 0;
+}
+
+.demo-layout .method pre{
+  padding: .5rem .5rem;
 }
 
 

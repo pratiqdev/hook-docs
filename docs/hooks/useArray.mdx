@@ -1,8 +1,12 @@
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import DemoComponent from '../../src/demos/useArray'
 
 # useArray
-Hook for managing the state of an array with common manipulation methods.
+
+Hook for managing the state of an array with common methods that change the array
+included in the return object.
+
 
 
 <!--=========================================================================-->
@@ -16,9 +20,10 @@ Hook for managing the state of an array with common manipulation methods.
 ```js 
 import { useArray } from '@pratiq/hooks'
 
-const pkg = useArray([])
+const arr = useArray([])
 
-pkg.set([1,2,3])
+arr.set([1,2,3])
+console.log(arr.value) // [1, 2, 3]
 
 <div>{pkg.value}</div>
 ```
@@ -46,33 +51,29 @@ const {
 </Tabs>
 
 
-<!--=========================================================================-->
 
-<!-- 
+
+
+
+
+
+
+
+
+<!--=========================================================================-->
 
 <hr />
 
-## Configuration
+## Demo
 
-Configuration for this hook is only an array used for initial state.
+<DemoComponent />
 
 
 
-### Interface
-```ts
-```
 
-### Config Example 
-```ts
-```
 
-### Config Values
 
-| Key | Type | Default | Description |
-|:--|:--|:--|:--|
-`type`            | string    | 'text'  | Type of input
 
--->
 
 <!--=========================================================================-->
 
@@ -84,17 +85,22 @@ Configuration for this hook is only an array used for initial state.
 State modification methods privided by `useArray`
 
 
+:::note Non-modification Methods
+Methods that do not change the state of the array are not included.
+:::
 
-### set
-Set the state to a new array. Value must be of type array.
+
+### reset
+ResetArray the array to the initial value.
 
 ```ts
-set: (v:any[]) => void
+() => void 
 
-const { value, set } = useArray([])
-set([1,2,3])
-set([{text: "Hello, "}, {text: "World"}])
+const arr = useArray([1, 2, 3])
+
+arr.reset()  // [1, 2, 3]
 ```
+
 <br />
 
 
@@ -104,24 +110,28 @@ Set the state to an empty array.
 ```ts
 () => void
 
-const { value, clear } = useArray([])
-clear()
+const arr = useArray([1, 2, 3])
+
+arr.clear() // []
 ```
 
 <br/>
 
 
-### reset
-ResetArray the array to the initial value.
+
+### set
+Set the state to a new array. Value must be of type array.
 
 ```ts
-() => void 
+(v:any[]) => void
 
-const { value, reset } = useArray([])
-reset()
+const arr = useArray([1, 2, 3])
+
+arr.set([4,5,6])            // [4, 5, 6]                          
+arr.set([{age:1}, {age:3}]) // [{age:1}, {age:3}]
 ```
+<br />
 
-<br/>
 
 
 
@@ -131,8 +141,11 @@ Push a new element into the end of the array.
 ```ts
 (...e: any) => void
 
-const { value, push } = useArray([])
-push(7)
+const arr = useArray([1, 2, 3]) 
+
+arr.push(7)         // [1, 2, 3, 7]
+arr.push(4,5,6)     // [1, 2, 3, 7, 4, 5, 6]
+arr.push([8,9,10])  // [1, 2, 3, 7, 4, 5, 6, [8, 9, 10] ]
 ```
 
 
@@ -146,8 +159,10 @@ Adds new elements to the beginning of an array, and returns the new length
 ```ts
 (...values:any) => void 
 
-const { value, sort } = useArray([])
-sort((a,b) => a > b ? 1 : -1)
+const arr = useArray([1,2,3])
+
+arr.sort((a,b) => a > b ? 1 : -1)  // [3, 2, 1]
+arr.sort((a,b) => a < b ? 1 : -1)  // [1, 2, 3]
 ```
 
 
@@ -157,13 +172,15 @@ sort((a,b) => a > b ? 1 : -1)
 
 
 ### pop
-Push a new element into the end of the array.
+Remove the last element from the array and return that element
 
 ```ts
 () => any
 
-const { value, pop } = useArray([])
-const lastValue = pop()
+const arr = useArray([1,2,3])
+
+const lastValue = arr.pop()  // [1, 2] => 3
+const lastValue = arr.pop()  // [1] => 2
 ```
 
 
@@ -177,8 +194,10 @@ Removes the first element of an array, and returns that element
 ```ts
 () => void 
 
-const { value, shift } = useArray([])
-const firstValue = shift()
+const arr = useArray([1,2,3])
+
+const firstValue = arr.shift()  // [2, 3] => 1
+const firstValue = arr.shift()  // [3] => 2
 ```
 
 <br />
@@ -191,8 +210,11 @@ Copies array elements within the array, to and from specified positions
 ```ts
 (target:number, start?:number, end?:number) => void 
 
-const { value, pop } = useArray([])
-const lastValue = pop()
+const arr = useArray([1, 2, 3, 4, 5])
+
+arr.copyWithin(0, 2, 3)  // [3, 2, 3, 4, 5]
+arr.copyWithin(0, 1)     // [2, 3, 4, 5, 5]
+arr.copyWithin(2)        // [2, 3, 2, 3, 4]
 ```
 
 <br/>
@@ -205,8 +227,11 @@ Set the state to an array of elements that pass the provided test
 ```ts
 (cb:any) => void
 
-const { value, filter } = useArray([])
-filter(v => true)
+const arr = useArray([1, 2, false, 'hello', 'world'])
+
+arr.filter(v => v == true)            // [1, 2, 'hello']
+arr.filter(v => typeof v == 'number') // [1, 2]
+arr.filter(v => typeof v == 'string') // ['hello', 'world']
 ```
 
 <br />
@@ -219,8 +244,11 @@ Fill the elements in an array with a static value
 ```ts
 (element:any, start?:number, end?:number) => void 
 
-const { value, filter } = useArray([])
-filter(v => true)
+const arr = useArray([1, 2, 3, 4, 5])
+
+arr.fill(9, 1, 2)  // [1, 9, 3, 4, 5]
+arr.fill(9, 2)     // [1, 2, 9, 9, 9]
+arr.fill(9)        // [9, 9, 9, 9, 9]
 ```
 
 <br />
@@ -230,11 +258,16 @@ filter(v => true)
 ### reduce
 Reduce the values of an array to a single value (going left-to-right)
 
+:::caution Should be removed?
+This does not change the state of the array!
+:::
+
 ```ts
 (cb: any, initialValue?:any) => void
 
-const { value, reduce } = useArray([])
-reduce(v => true, 0)
+const arr = useArray([1, 2, 3, 4])
+
+arr.reduce((a,b) => a + b, 0) // 10
 ```
 
 <br />
@@ -261,8 +294,8 @@ Reverses the order of the elements in an array
 ```ts
 () => void 
 
-const { value, reverse } = useArray([])
-reverse()
+const arr = useArray([0,0,1]) // [0, 0, 1]
+arr.reverse()                 // [1, 0, 0]
 ```
 
 <br />
@@ -275,8 +308,10 @@ Sorts the elements of an array
 ```ts
 (cb?:any) => void 
 
-const { value, sort } = useArray([])
-sort((a,b) => a > b ? 1 : -1)
+const arr = useArray([1,2,3])     // [1, 2, 3]
+
+arr.sort((a,b) => a > b ? 1 : -1) // [3, 2, 1]
+arr.sort((a,b) => a < b ? 1 : -1) // [1, 2, 3]
 ```
 
 <br />
@@ -337,19 +372,6 @@ remove()
 ```
 
 <br />
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
