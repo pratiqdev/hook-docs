@@ -81,6 +81,10 @@
   background: #000;
 }
 
+pre code{
+  font-size: .8rem !important; 
+}
+
 
 /* -------------------------------------------------------------------------- */
 
@@ -209,6 +213,21 @@ section > * {
 
 
 /* DEMO COMPONENT ----------------------------------------------------------- */
+
+input{
+  border: 1px solid #aaa6;
+  border-radius: .25rem;
+  padding: .25rem .5rem;
+}
+
+input:hover{
+  border: 1px solid #aaaa
+}
+
+input:focus{
+  outline: 1px solid var(--ifm-color-primary);
+  /* outline: none; */
+}
 
 
 .demo-heading-closed{
@@ -516,6 +535,10 @@ hr{
   clear: both;
 }
 
+.col{
+  display: flex;
+  flex-direction: column;
+}
 
 
 .p0{ padding: 0 !important }
@@ -643,3 +666,13 @@ hr{
 .border-green{ border-color: green !important }
 .border-blue{ border-color: blue !important }
 .border-purple{ border-color: purple !important }
+
+.text-white{ color: white !important }
+.text-black{ color: black !important }
+.text-grey{ color: grey !important }
+.text-red{ color: red !important }
+.text-orange{ color: orange !important }
+.text-yellow{ color: yellow !important }
+.text-green{ color: green !important }
+.text-blue{ color: blue !important }
+.text-purple{ color: purple !important }

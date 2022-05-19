@@ -26,11 +26,11 @@ const config = {
           // Please change this to your repo.
           // editUrl: 'https://github.com/pratiqdev/custom-hooks',
         },
-        blog: {
-          showReadingTime: true,
+        // blog: {
+          // showReadingTime: true,
           // Please change this to your repo.
           // editUrl: 'https://github.com/pratiqdev/custom-hooks',
-        },
+        // },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -59,12 +59,12 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          // {
-          //   type: 'doc',
-          //   docId: 'examples/form',
-          //   position: 'left',
-          //   label: 'Example',
-          // },
+          {
+            type: 'doc',
+            docId: 'examples/form',
+            position: 'left',
+            label: 'Example',
+          },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/pratiqdev/custom-hooks',
