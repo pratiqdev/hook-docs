@@ -4,8 +4,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-        "components/*": ["src/hooks/components/*"],
-        "demos/*": ["./src/hooks/demos/*"],
+        "@components/*": ["src/hooks/components/*"],
+        "@demos/*": ["./src/hooks/demos/*"],
     }
   }
 }

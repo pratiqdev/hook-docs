@@ -5,7 +5,7 @@ Just like `useAnyOther` hook, only better:
 ```jsx
 
 const RequestForm = (props) => {
-  const {value: name, bind} = useInput({
+  const {value: name, bind: bindName} = useInput({
     value: 'John',
     name: 'request-form-name'
     validateOnChange: true,
@@ -13,7 +13,7 @@ const RequestForm = (props) => {
     bind: bindName
   })
 
-  const {value: address, bind} = useInput({
+  const {value: address, bind: bindAddress} = useInput({
     placeholder: '1234 Street Road',
     name: 'request-form-address'
     validateOnChange: true,
@@ -27,6 +27,7 @@ const RequestForm = (props) => {
       <input {...bindName} />
       <input {...bindAddress} />
       <button disabled={!nameValid || !addressValid}>Submit</button>
+      <p>{name} @ {address}</p>
     </div>
   )
 }

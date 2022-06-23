@@ -38,7 +38,7 @@ const sidebars = {
       items: [
         'hooks/useArray',
         // 'hooks/useCountdown',
-        // 'hooks/useInput'
+        'hooks/useInput'
       ],
     },
     // {
