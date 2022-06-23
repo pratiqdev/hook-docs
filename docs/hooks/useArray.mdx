@@ -24,8 +24,6 @@ const arr = useArray([])
 
 arr.set([1,2,3])
 console.log(arr.value) // [1, 2, 3]
-
-<div>{pkg.value}</div>
 ```
 
 </TabItem>
@@ -60,6 +58,16 @@ const {
 
 
 
+
+
+
+
+
+
+
+
+
+
 <!--=========================================================================-->
 
 <hr />
@@ -75,10 +83,60 @@ const {
 
 
 
+
+
+
+
+
+
+
+
 <!--=========================================================================-->
 
 <hr />
 
+## Configuration
+
+Values used for initial state and internal settings are provided as a config
+object 
+
+
+### Interface
+```ts
+interface I_useInputConfig {
+    initialState?: any[]
+}
+```
+
+
+### Config Example
+
+```ts
+{
+  initialState: []
+}
+```
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--=========================================================================-->
+
+<hr />
 
 ## Hook Methods
 
@@ -90,6 +148,7 @@ Methods that do not change the state of the array are not included.
 :::
 
 
+<!-- added to demo ----------------->
 ### reset
 ResetArray the array to the initial value.
 
@@ -104,6 +163,7 @@ arr.reset()  // [1, 2, 3]
 <br />
 
 
+<!-- added to demo ----------------->
 ### clear
 Set the state to an empty array.
 
@@ -119,6 +179,7 @@ arr.clear() // []
 
 
 
+<!-- added to demo ----------------->
 ### set
 Set the state to a new array. Value must be of type array.
 
@@ -135,6 +196,7 @@ arr.set([{age:1}, {age:3}]) // [{age:1}, {age:3}]
 
 
 
+<!-- added to demo ----------------->
 ### push
 Push a new element into the end of the array.
 
@@ -225,10 +287,11 @@ arr.copyWithin(2)        // [2, 3, 2, 3, 4]
 Set the state to an array of elements that pass the provided test
 
 ```ts
-(cb:any) => void
+(cb:any) => boolean
 
 const arr = useArray([1, 2, false, 'hello', 'world'])
 
+arr.filter(callback)        
 arr.filter(v => v == true)            // [1, 2, 'hello']
 arr.filter(v => typeof v == 'number') // [1, 2]
 arr.filter(v => typeof v == 'string') // ['hello', 'world']

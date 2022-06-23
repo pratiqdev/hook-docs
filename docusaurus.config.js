@@ -67,7 +67,7 @@ const config = {
           },
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/pratiqdev/custom-hooks',
+            href: 'https://github.com/pratiqdev/pratiq-hooks',
             label: 'GitHub',
             position: 'right',
           },

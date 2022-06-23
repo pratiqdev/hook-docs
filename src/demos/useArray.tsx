@@ -4,7 +4,8 @@ import Layout from '../components/DemoLayout'
 import Methods from '../components/Methods'
 import Method from '../components/Method'
 // import MethodInput from '../components/MethodInput'
-import { useArray } from '@pratiq/hooks'
+import useArray from '../localHooks/useArray'
+// import { useArray } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
 
 // import { Collapse, Button } from 'antd';
@@ -112,6 +113,50 @@ const demoComponent = (props:any) => {
                 {
                     pre: `set([[1,2,3], [4,5,6]])`,
                     func: () => methods.set([[1,2,3],[4,5,6]])
+                },
+            ]
+        },
+        {
+            title: 'push',
+            description: 'Add a new value at the end of the array',
+            methods:[
+                {
+                    pre: `push('new')`,
+                    func: () => methods.push('new')
+                },
+                {
+                    pre: `push(1,2,3)`,
+                    func: () => methods.push(1,2,3)
+                },
+                {
+                    pre: `push([1,2,3])`,
+                    func: () => methods.push([1,2,3])
+                },
+                {
+                    pre: `push([{'hello': 'world'}])`,
+                    func: () => methods.push({'hello': 'world'})
+                },
+            ]
+        },
+        {
+            title: 'unshift',
+            description: 'Add a new value at the beginning of the array',
+            methods:[
+                {
+                    pre: `unshift('new')`,
+                    func: () => methods.unshift('new')
+                },
+                {
+                    pre: `unshift(1,2,3)`,
+                    func: () => methods.unshift(1,2,3)
+                },
+                {
+                    pre: `unshift([1,2,3])`,
+                    func: () => methods.unshift([1,2,3])
+                },
+                {
+                    pre: `unshift([{'hello': 'world'}])`,
+                    func: () => methods.unshift({'hello': 'world'})
                 },
             ]
         },
