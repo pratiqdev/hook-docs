@@ -94,8 +94,8 @@ const useArray = (initialState: any[] = []) => {
     /** Adds new elements to the beginning of an array, and returns the new length*/
     const unshift: (...values:any) => void 
         = (...values:any) => {
-            let length = array.unshift(values)
-            setArray(array)
+            let length = array.unshift(...values)
+            setArray(a => [...a, ...values])
             return length
         }
 
