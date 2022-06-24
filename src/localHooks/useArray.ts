@@ -17,9 +17,12 @@ const useArray = (initialState: any[] = []) => {
     const [array, setArray] = useState<any[]>(initialState)
 
     /** Set the state to a new array. Value must be of type Array. */
-    const set = (v:any[]) => {
+    const set = (v:any[] | Function) => {
         if(Array.isArray(v)){
             setArray(v)
+        }
+        if(typeof v === 'function'){
+            setArray(v(array))
         }
     }
 
@@ -59,18 +62,27 @@ const useArray = (initialState: any[] = []) => {
         }
 
     /** Fill the elements in an array with a static value */
-    const fill: (element:any, start?:number, end?:number) => void 
-        = (element:any, start?:number, end?:number) => {
-            setArray((a:any[]) => a.fill(element, start, end))
+    const fill: (element:any, start?:number, end?:number, length?: number) => void 
+        = (element:any, start?:number, end?:number, length?: number) => {
+            if(length && length > array.length){
+                let emptyArray = []
+                while(emptyArray.length < length - array.length){
+                    emptyArray.push(0)
+                }
+                let newArray = [...array, ...emptyArray]
+                setArray(newArray.fill(element, start, end))
+            }else{
+                setArray((a:any[]) => a.fill(element, start, end))
+            }
         }
 
     /** Reduce the values of an array to a single value (going left-to-right) */
     const reduce: (cb: any, initialValue?:any) => void 
-        = (cb: any, initialValue?:any) => setArray([array.reduce(cb)])
+        = (cb: any, initialValue:any = 0) => setArray([array.reduce(cb, initialValue)])
 
     /** Reduce the values of an array to a single value (going right-to-left) */
     const reduceRight: (cb: any, initialValue?:any) => void 
-        = (cb: any, initialValue?:any) => setArray([array.reduceRight(cb)])
+        = (cb: any, initialValue:any = 0) => setArray([array.reduceRight(cb, initialValue)])
 
     /** Reverses the order of the elements in an array */
     const reverse: () => void 

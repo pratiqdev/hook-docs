@@ -12,7 +12,7 @@ const Methods = (props:any) => {
                     {open ? <ChevronIconDown /> : <ChevronIconRight />}
                 </div>
                 <b>{props.title}</b>
-                <small>{props.desc}</small>
+                <small>{props.description}</small>
             </div>
             <div className={open ? 'method-open' : 'method-closed'}>
                 {props.children}

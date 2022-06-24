@@ -33,13 +33,8 @@ const PanelHeader = (props) => <div><b className='panel-title'>{props.title}</b>
 const MethodRows = (props:any) => (
         <div>
         {props.items.map((item, index) => 
-            <Methods key={index} title={item.title}>
-                {item.methods.map((m, i) => 
-                    <Method pre={m.pre} func={m.func}>
-                        {/* <button id={`method-${item.title}-${i}`} type='primary' className='method-btn' onClick={m.func}>{` `}</button> */}
-                        {/* <pre>{m.pre}</pre> */}
-                    </Method>
-                )}
+            <Methods key={index} title={item.title} description={item.description}>
+                {item.methods.map((m, i) =>  <Method pre={m.pre} func={m.func} /> )}
             </Methods>
         )}
     </div>
@@ -49,7 +44,7 @@ const MethodRows = (props:any) => (
 const demoComponent = (props:any) => {
     const initialState = ['initial','state']
     const [testValue, setTestValue] = useState<any>('')
-    const {array, ...methods} = useArray(['initial','state'])
+    const {array, ...methods} = useArray([1,2,3,4])
     const lastTV = useRef('')
 
     // const GenerateMethodForEachType = (props) => {
@@ -68,12 +63,12 @@ const demoComponent = (props:any) => {
     //     )
     // }
 
-    const hookMethod = (methodName: string, value: any) => {
-        setTestValue(JSON.stringify(methods[methodName](value) || undefined))
+    const hookMethod = (methodName: string, ...value: any) => {
+        setTestValue(JSON.stringify(methods[methodName](...value) || undefined))
     }
 
     const items = [
-        {
+        { // clear
             title: 'clear',
             description: 'Set the state to an empty array',
             methods:[
@@ -83,7 +78,7 @@ const demoComponent = (props:any) => {
                 },
             ]
         },
-        {
+        { // reset
             title: 'reset',
             description: 'Reset the state to the initial value',
             methods:[
@@ -93,9 +88,9 @@ const demoComponent = (props:any) => {
                 },
             ]
         },
-        {
+        { // set
             title: 'set',
-            description: 'Set the state to a new array',
+            description: 'Set the state to a new array, accepts values or a callback function',
             methods:[
                 {
                     pre: `set([])`,
@@ -106,6 +101,10 @@ const demoComponent = (props:any) => {
                     func: () => hookMethod('set', [1,2,3])
                 },
                 {
+                    pre: `set((arr) => [...arr, 4,5,6])`,
+                    func: () => hookMethod('set', (arr) => [...arr, 4,5,6])
+                },
+                {
                     pre: `set(['Hello', 'World'])`,
                     func: () => hookMethod('set', ['Hello', 'World'])
                 },
@@ -114,51 +113,51 @@ const demoComponent = (props:any) => {
     {text: 'Hello'}, 
     {text: 'World'}
 ])`,
-                    func: () => methods.set([{text: 'Hello'},{text: 'World'}])  && setTestValue('')
+                    func: () => hookMethod('set', [{text: 'Hello'},{text: 'World'}])
                 },
                 {
                     pre: `set([[1,2,3], [4,5,6]])`,
-                    func: () => methods.set([[1,2,3],[4,5,6]])  && setTestValue('')
+                    func: () => hookMethod('set', [[1,2,3],[4,5,6]])
                 },
             ]
         },
-        {
+        { // push
             title: 'push',
-            description: 'Add a new value at the end of the array',
+            description: 'Add a new value at the end of the array, returns the new length',
             methods:[
                 {
                     pre: `push('new')`,
-                    func: () => methods.push('new')  && setTestValue('')
+                    func: () => hookMethod('push', 'new')
                 },
                 {
                     pre: `push(1,2,3)`,
-                    func: () => methods.push(1,2,3)  && setTestValue('')
+                    func: () => hookMethod('push', 1,2,3)
                 },
                 {
                     pre: `push([1,2,3])`,
-                    func: () => methods.push([1,2,3])  && setTestValue('')
+                    func: () => hookMethod('push', [1,2,3]) 
                 },
                 {
                     pre: `push([{'hello': 'world'}])`,
-                    func: () => methods.push({'hello': 'world'})  && setTestValue('')
+                    func: () => hookMethod('push', {'hello': 'world'}) 
                 },
             ]
         },
-        {
+        { // unshift
             title: 'unshift',
-            description: 'Add a new value at the beginning of the array',
+            description: 'Add a new value at the beginning of the array, returns the new length',
             methods:[
                 {
                     pre: `unshift('new')`,
-                    func: () => methods.unshift('new')  && setTestValue('')
+                    func: () => hookMethod('unshift', 'new')
                 },
                 {
                     pre: `unshift(1,2,3)`, 
-                    func: () => methods.unshift(1,2,3)  && setTestValue('')
+                    func: () => hookMethod('unshift', 1,2,3)
                 },
                 {
                     pre: `unshift([1,2,3])`,
-                    func: () => methods.unshift([1,2,3])  && setTestValue('')
+                    func: () => hookMethod('unshift', [1,2,3])
                 },
                 {
                     pre: `unshift([{'hello': 'world'}])`,
@@ -166,7 +165,7 @@ const demoComponent = (props:any) => {
                 },
             ]
         },
-        {
+        { // pop
             title: 'pop',
             description: 'Removes the last element of an array, and returns that element',
             methods:[
@@ -174,6 +173,75 @@ const demoComponent = (props:any) => {
                     pre: `pop()`,
                     func: () => hookMethod('pop', '')
                 },
+            ]
+        },
+        { // shift
+            title: 'shift',
+            description: 'Removes the first element of the array, returns that element',
+            methods:[
+                {
+                    pre: `shift()`,
+                    func: () => hookMethod('shift', '')
+                },
+            ]
+        },
+        { // filter
+            title: 'filter',
+            description: 'Set the state to a new array containing elements that pass the provided test. Only accepts a callback function.',
+            methods:[
+                {
+                    pre: `filter((v) => typeof v === 'number')`,
+                    func: () => hookMethod('filter', (v:any) => typeof v === 'number')
+                },
+                {
+                    pre: `filter((v) => typeof v === 'string')`,
+                    func: () => hookMethod('filter', (v:any) => typeof v === 'string')
+                },
+                {
+                    pre: `filter((v) => (v) => v >= 3)`,
+                    func: () => hookMethod('filter', (v:any) => v >= 3)
+                },
+            ]
+        },
+        { // fill
+            title: 'fill',
+            description: 'Fill the elements in the array with a static value.',
+            methods:[
+                {
+                    pre: `fill(9, 1, 2)`,
+                    func: () => hookMethod('fill', 9,1,2)
+                },
+                {
+                    pre: `fill(9, 1)`,
+                    func: () => hookMethod('fill', 9,1)
+                },
+                {
+                    pre: `fill(8)`,
+                    func: () => hookMethod('fill', 8)
+                },
+                {
+                    pre: `fill(6, 1, 2, 8)`,
+                    func: () => hookMethod('fill', 6,1,2,8)
+                },
+                {
+                    pre: `fill(4, 0, 10, 10)`,
+                    func: () => hookMethod('fill', 9,0, 10,10)
+                },
+            ]
+        },
+        { // reduce
+            title: 'reduce',
+            description: 'Reduce the values of an array to a single value (going left-to-right).',
+            methods:[
+                {
+                    pre: `reduce((p, c) => p + c)`,
+                    func: () => hookMethod('reduce', (p,c) => p+c)
+                },
+                {
+                    pre: `reduce((p, c) => p + c, 4)`,
+                    func: () => hookMethod('reduce', (p,c) => p+c, 4)
+                },
+
             ]
         },
     ]
@@ -185,7 +253,7 @@ const demoComponent = (props:any) => {
         <Layout>
             <input type='hidden' id='initial-value' value={JSON.stringify(initialState)} />
             
-            <CodeBlock language='ts' className='demo-display' >{JSON.stringify(array, null, 0)}{testValue && ` => ${testValue}`}</CodeBlock>
+            <CodeBlock language='ts' className='demo-display' >{`// [ array state ] => return value \n`}{JSON.stringify(array, null, 0)}{testValue && ` => ${testValue}`}</CodeBlock>
 
             {/* <Method hidden id='clear-test-value' func={() => setTestValue('')}  /> */}
 

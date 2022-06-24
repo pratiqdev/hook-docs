@@ -676,3 +676,16 @@ hr{
 .text-green{ color: green !important }
 .text-blue{ color: blue !important }
 .text-purple{ color: purple !important }
+
+
+
+
+
+
+ .theme-code-block-highlighted-line{
+  background: rgba(0,0,0, .05) !important;
+}
+
+[data-theme='dark'] .theme-code-block-highlighted-line{
+  background: rgba(200,200,255, .1) !important;
+}

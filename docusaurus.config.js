@@ -45,6 +45,10 @@ const config = {
         defaultMode: 'dark',
         disableSwitch: false,
         respectPrefersColorScheme: false,
+        
+      },
+      prism: {
+        theme: require('prism-react-renderer/themes/nightOwl'),
       },
       navbar: {
         title: '@pratiq/hooks',

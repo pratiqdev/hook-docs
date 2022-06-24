@@ -17,19 +17,19 @@ included in the return object.
 <Tabs>
 <TabItem value='simple' label='Simple'>
 
-```js 
+```js  {3-4}
 import { useArray } from '@pratiq/hooks'
 
 const arr = useArray([])
-
 arr.set([1,2,3])
+
 console.log(arr.value) // [1, 2, 3]
 ```
 
 </TabItem>
 <TabItem value='advanced' label='Advanced'>
 
-```js
+```js {5-13}
 import { useArray } from '@pratiq/hooks'
 
 const initialState = [1,2,3]
@@ -43,6 +43,8 @@ const {
   unshift,
   reset
 } = useArray(initialState)
+
+console.log(value) // [1, 2, 3]
 ```
 
 </TabItem>
@@ -181,15 +183,17 @@ arr.clear() // []
 
 <!-- added to demo ----------------->
 ### set
-Set the state to a new array. Value must be of type array.
+Set the state to a new array or value. Callback functions can be used but, it is 
+recommended to use the standard `setState` function returned from useArray.
 
 ```ts
-(v:any[]) => void
+(values:any[]) => void
 
 const arr = useArray([1, 2, 3])
 
-arr.set([4,5,6])            // [4, 5, 6]                          
-arr.set([{age:1}, {age:3}]) // [{age:1}, {age:3}]
+arr.set([4, 5, 6])              // [4, 5, 6]                          
+arr.set([{age:1}, {age:3}])     // [{age:1}, {age:3}]
+arr.set((a) => [a[0], 7, 8, 9]) // [4, 7, 8, 9]
 ```
 <br />
 
@@ -198,10 +202,10 @@ arr.set([{age:1}, {age:3}]) // [{age:1}, {age:3}]
 
 <!-- added to demo ----------------->
 ### push
-Push a new element into the end of the array.
+Push a new element into the end of the array. Returns the new length of the array.
 
 ```ts
-(...e: any) => void
+(...values: any) => void
 
 const arr = useArray([1, 2, 3]) 
 
@@ -209,12 +213,12 @@ arr.push(7)         // [1, 2, 3, 7]
 arr.push(4,5,6)     // [1, 2, 3, 7, 4, 5, 6]
 arr.push([8,9,10])  // [1, 2, 3, 7, 4, 5, 6, [8, 9, 10] ]
 ```
+<br />
 
 
 
 
 <!-- added to demo ----------------->
-<br />
 ### unshift
 Adds new elements to the beginning of an array, and returns the new length
 
@@ -284,7 +288,7 @@ arr.copyWithin(2)        // [2, 3, 2, 3, 4]
 
 
 ### filter 
-Set the state to an array of elements that pass the provided test
+Set the state to a new array of elements that pass the provided test. Only accepts a callback function.
 
 ```ts
 (cb:any) => boolean
@@ -468,6 +472,6 @@ functions.
 <br />
 
 
-| <k>Related Hooks</k> | Description |
+| Related Hooks | Description |
 |:--|:--|  
 [useHook](#) | Description of another hook and why it is similar / dissimilar 
