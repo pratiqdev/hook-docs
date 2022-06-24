@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Layout from '../components/DemoLayout'
 import Methods from '../components/Methods'
 import Method from '../components/Method'
@@ -48,8 +48,9 @@ const MethodRows = (props:any) => (
 
 const demoComponent = (props:any) => {
     const initialState = ['initial','state']
-    const [testValue, setTestValue] = useState<any>()
+    const [testValue, setTestValue] = useState<any>('')
     const {array, ...methods} = useArray(['initial','state'])
+    const lastTV = useRef('')
 
     // const GenerateMethodForEachType = (props) => {
     //     return allTypes.map((x,i) => 
@@ -66,6 +67,11 @@ const demoComponent = (props:any) => {
     //         />
     //     )
     // }
+
+    const hookMethod = (methodName: string, value: any) => {
+        setTestValue(JSON.stringify(methods[methodName](value) || undefined))
+    }
+
     const items = [
         {
             title: 'clear',
@@ -73,7 +79,7 @@ const demoComponent = (props:any) => {
             methods:[
                 {
                     pre: `clear()`,
-                    func: () => methods.clear()
+                    func: () => hookMethod('clear', '')
                 },
             ]
         },
@@ -83,7 +89,7 @@ const demoComponent = (props:any) => {
             methods:[
                 {
                     pre: `reset()`,
-                    func: () => methods.reset()
+                    func: () => hookMethod('reset', '')
                 },
             ]
         },
@@ -93,26 +99,26 @@ const demoComponent = (props:any) => {
             methods:[
                 {
                     pre: `set([])`,
-                    func: () => methods.set([])
+                    func: () => hookMethod('set', [])
                 },
                 {
                     pre: `set([1,2,3])`,
-                    func: () => methods.set([1,2,3])
+                    func: () => hookMethod('set', [1,2,3])
                 },
                 {
                     pre: `set(['Hello', 'World'])`,
-                    func: () => methods.set(['Hello', 'World'])
+                    func: () => hookMethod('set', ['Hello', 'World'])
                 },
                 {
                     pre: `set([
     {text: 'Hello'}, 
     {text: 'World'}
 ])`,
-                    func: () => methods.set([{text: 'Hello'},{text: 'World'}])
+                    func: () => methods.set([{text: 'Hello'},{text: 'World'}])  && setTestValue('')
                 },
                 {
                     pre: `set([[1,2,3], [4,5,6]])`,
-                    func: () => methods.set([[1,2,3],[4,5,6]])
+                    func: () => methods.set([[1,2,3],[4,5,6]])  && setTestValue('')
                 },
             ]
         },
@@ -122,19 +128,19 @@ const demoComponent = (props:any) => {
             methods:[
                 {
                     pre: `push('new')`,
-                    func: () => methods.push('new')
+                    func: () => methods.push('new')  && setTestValue('')
                 },
                 {
                     pre: `push(1,2,3)`,
-                    func: () => methods.push(1,2,3)
+                    func: () => methods.push(1,2,3)  && setTestValue('')
                 },
                 {
                     pre: `push([1,2,3])`,
-                    func: () => methods.push([1,2,3])
+                    func: () => methods.push([1,2,3])  && setTestValue('')
                 },
                 {
                     pre: `push([{'hello': 'world'}])`,
-                    func: () => methods.push({'hello': 'world'})
+                    func: () => methods.push({'hello': 'world'})  && setTestValue('')
                 },
             ]
         },
@@ -144,24 +150,33 @@ const demoComponent = (props:any) => {
             methods:[
                 {
                     pre: `unshift('new')`,
-                    func: () => methods.unshift('new')
+                    func: () => methods.unshift('new')  && setTestValue('')
                 },
                 {
-                    pre: `unshift(1,2,3)`,
-                    func: () => methods.unshift(1,2,3)
+                    pre: `unshift(1,2,3)`, 
+                    func: () => methods.unshift(1,2,3)  && setTestValue('')
                 },
                 {
                     pre: `unshift([1,2,3])`,
-                    func: () => methods.unshift([1,2,3])
+                    func: () => methods.unshift([1,2,3])  && setTestValue('')
                 },
                 {
                     pre: `unshift([{'hello': 'world'}])`,
-                    func: () => methods.unshift({'hello': 'world'})
+                    func: () => hookMethod('unshift', {'hello':'world'})
+                },
+            ]
+        },
+        {
+            title: 'pop',
+            description: 'Removes the last element of an array, and returns that element',
+            methods:[
+                {
+                    pre: `pop()`,
+                    func: () => hookMethod('pop', '')
                 },
             ]
         },
     ]
-
 
 
 
