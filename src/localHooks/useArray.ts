@@ -39,10 +39,10 @@ const useArray = (initialState: any[] = []) => {
         = (cb: any) => typeof cb === 'function' && setArray((a: any[]) => a.filter(cb))
 
     /** Adds new elements to the end of an array, and returns the new length */
-    const push: (...e: any) => void
-        = (...e: any) => {
-            setArray(a => [...a, ...e]);
-            return array.length + e.length
+    const push: (...values: any) => void
+        = (...values: any) => {
+            setArray(a => [...a, ...values]);
+            return array.length + values.length
         }
     
     /** Removes the last element of an array, and returns that element */
@@ -95,7 +95,7 @@ const useArray = (initialState: any[] = []) => {
     const unshift: (...values:any) => void 
         = (...values:any) => {
             let length = array.length + values.length
-            setArray(a => [...a, ...values])
+            setArray(a => [...values, ...a])
             return length
         }
 
