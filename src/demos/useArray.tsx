@@ -33,7 +33,7 @@ const PanelHeader = (props) => <div><b className='panel-title'>{props.title}</b>
 const MethodRows = (props:any) => (
         <div>
         {props.items.map((item, index) => 
-            <Methods key={index} title={item.title} description={item.description}>
+            <Methods key={index} item={item}>
                 {item.methods.map((m, i) =>  <Method pre={m.pre} func={m.func} /> )}
             </Methods>
         )}
@@ -187,7 +187,7 @@ const demoComponent = (props:any) => {
         },
         { // filter
             title: 'filter',
-            description: 'Set the state to a new array containing elements that pass the provided test. Only accepts a callback function.',
+            description: 'Set the state to a new array containing elements that pass the provided test.',
             methods:[
                 {
                     pre: `filter((v) => typeof v === 'number')`,
@@ -229,21 +229,45 @@ const demoComponent = (props:any) => {
                 },
             ]
         },
-        // { // reduce
-        //     title: 'reduce',
-        //     description: 'Reduce the values of an array to a single value (going left-to-right).',
-        //     methods:[
-        //         {
-        //             pre: `reduce((p, c) => p + c)`,
-        //             func: () => hookMethod('reduce', (p,c) => p+c)
-        //         },
-        //         {
-        //             pre: `reduce((p, c) => p + c, 4)`,
-        //             func: () => hookMethod('reduce', (p,c) => p+c, 4)
-        //         },
-
-        //     ]
-        // },
+        { // reverse
+            title: 'reverse',
+            description: 'Reverse the values of an array.',
+            methods:[
+                {
+                    pre: `reverse()`,
+                    func: () => hookMethod('reverse')
+                },
+            ]
+        },
+        { // sort
+            title: 'sort',
+            description: 'Sort the values of an array using the callback provided.',
+            methods:[
+                {
+                    pre: `sort((a,b) => a < b ? 1 : -1)`,
+                    func: () => hookMethod('sort', (a,b) => a < b ? 1 : -1)
+                },
+                {
+                    pre: `sort((a,b) => a > b ? 1 : -1)`,
+                    func: () => hookMethod('sort', (a,b) => a > b ? 1 : -1)
+                },
+                {
+                    pre: `sort((a,b) => b - a)`,
+                    func: () => hookMethod('sort', (a,b) => b - a)
+                },
+            ]
+        },
+        { // splice
+            title: 'splice',
+            description: 'Splice values into or out of the array.',
+            type: '(start: number, deleteCount?: number, items?:any) => void',
+            methods:[
+                {
+                    pre: `sort(0)`,
+                    func: () => hookMethod('splice', (a,b) => a < b)
+                },
+            ]
+        },
     ]
 
 

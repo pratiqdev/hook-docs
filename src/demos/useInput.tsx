@@ -18,26 +18,16 @@ const DemoComponent = (props:any) => {
         validateOnBlur: true,
         validator: /^[a-z0-9]+$/,
         invalidMessage: 'Only lowercase letters and numbers allowed...',
-        className: 'default-classname',
+        className: 'default-className',
         rootStyle: {
             background: '#aaa',
             marginRight: '.5rem',
         },
         style: {
-            'valid': 'valid!!',
-            // 'valid-active': 'valid-active!!',
-            // 'valid-focus': 'valid-focus!!',
-            // 'valid-hover': 'valid-hover!!',
-            
-            'invalid': 'invalid!!',
-            // 'invalid-active': {color: 'red'},
-            // 'invalid-focus': 'invalid-focus!!',
-            // 'invalid-hover': 'invalid-hover!!',
-            
-            // 'default': {color: 'blue'},
-            // 'default-active': 'default-active!!',
-            // 'default-focus': 'default-focus!!',
-            // 'default-hover': 'default-hover!!',
+            'valid': {color: 'green'},
+            'invalid': {color: 'red'},
+            'default': {color: 'blue'},
+            'default-active': { color: 'yellow'},
         }
     })
 
@@ -71,20 +61,10 @@ const DemoComponent = (props:any) => {
         marginRight: '.5rem',
     },
     style: {
-        'valid': 'valid!!',
-        'valid-active': 'valid-active!!',
-        'valid-focus': 'valid-focus!!',
-        'valid-hover': 'valid-hover!!',
-        
-        'invalid': 'invalid!!',
-        'invalid-active': {color: 'red'},
-        'invalid-focus': 'invalid-focus!!',
-        'invalid-hover': 'invalid-hover!!',
-        
         'default': {color: 'blue'},
-        'default-active': 'default-active!!',
-        'default-focus': 'default-focus!!',
-        'default-hover': 'default-hover!!',
+        'default-active': { color: 'yellow'},
+        'valid': {color: 'green'},
+        'invalid': {color: 'red'},
     }
 })
 

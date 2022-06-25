@@ -15,36 +15,70 @@ included in the return object.
 ## Usage
 
 <Tabs>
+
 <TabItem value='simple' label='Simple'>
 
-```js  {3-4}
+```js 
 import { useArray } from '@pratiq/hooks'
 
-const arr = useArray([])
+const arr = useArray([5, 6, 7])
 arr.set([1,2,3])
 
 console.log(arr.value) // [1, 2, 3]
 ```
 
 </TabItem>
+
 <TabItem value='advanced' label='Advanced'>
 
-```js {5-13}
+```js
 import { useArray } from '@pratiq/hooks'
 
-const initialState = [1,2,3]
+const initialState = [1, 2, 3, 6]
 
 const {
   value, 
-  set, 
-  push, 
-  pop, 
-  shift, 
-  unshift,
-  reset
+  ...methods
 } = useArray(initialState)
 
-console.log(value) // [1, 2, 3]
+const poppedValue = methods.pop()
+
+console.log(value)       // [1, 2, 3]
+console.log(poppedValue) // [6]
+```
+
+</TabItem>
+
+<TabItem value='full' label='Full'>
+
+```js
+import { useArray } from '@pratiq/hooks'
+
+const initialState = [1, 2, 3]
+
+const {
+  array,
+  set,
+  clear,
+  reset,
+  filter,
+  push,
+  pop,
+  copyWithin,
+  fill,
+  reverse,
+  sort,
+  shift,
+  unshift,
+  splice,
+  flat,
+  insert,
+  remove
+} = useArray(initialState)
+
+push(9)
+
+console.log(value) // [1, 2, 3, 9]
 ```
 
 </TabItem>
@@ -230,10 +264,10 @@ Adds new elements to the beginning of an array, and returns the new length
 (...values:any) => void 
 ```
 ```ts
-const arr = useArray([1,2,3])
+const arr = useArray([1, 2, 3])
 
-arr.sort((a,b) => a > b ? 1 : -1)  // [3, 2, 1]
-arr.sort((a,b) => a < b ? 1 : -1)  // [1, 2, 3]
+arr.unshift(9)  // [9, 3, 2, 1] => 4
+arr.unshift(7)  // [7, 9, 1, 2, 3] => 5
 ```
 
 
@@ -249,7 +283,7 @@ Remove the last element from the array and return that element
 () => any
 ```
 ```ts
-const arr = useArray([1,2,3])
+const arr = useArray([1, 2, 3])
 
 const lastValue = arr.pop()  // [1, 2] => 3
 const lastValue = arr.pop()  // [1] => 2
@@ -267,7 +301,7 @@ Removes the first element of an array, and returns that element
 () => void 
 ```
 ```ts
-const arr = useArray([1,2,3])
+const arr = useArray([1, 2, 3])
 
 const firstValue = arr.shift()  // [2, 3] => 1
 const firstValue = arr.shift()  // [3] => 2
@@ -366,7 +400,7 @@ reduceRight(v => true, 0)
 
 
 ### reverse
-Reverses the order of the elements in an array
+Reverses the order of the elements in an array. Does not require any arguments.
 
 ```ts
 () => void 
@@ -381,13 +415,14 @@ arr.reverse()                 // [1, 0, 0]
 
 
 ### sort
-Sorts the elements of an array 
+Sorts the elements of an array using the provided callback. The callback must 
+return a positive or negative number to be compatable with all browsers (1, -1).
 
 ```ts
 (cb?:any) => void 
 ```
 ```ts
-const arr = useArray([1, 2, 3])     // [1, 2, 3]
+const arr = useArray([1, 2, 3])
 
 arr.sort((a,b) => a > b ? 1 : -1) // [3, 2, 1]
 arr.sort((a,b) => a < b ? 1 : -1) // [1, 2, 3]

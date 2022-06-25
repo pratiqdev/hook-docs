@@ -1,4 +1,4 @@
-import {useMemo, useState, useCallback, useEffect, useRef, CSSProperties} from 'react'
+import {useMemo, useState, useCallback, useEffect, useRef, CSSProperties } from 'react'
     
 
 export enum StyleGroupNames {
@@ -24,7 +24,8 @@ export enum StyleGroupNames {
 export interface I_useInputConfig {
     type?: string;
     name?: string;
-    style?: { [Property in StyleGroupNames]: CSSProperties | string };
+    // style?: { [Property in StyleGroupNames]: CSSProperties | string };
+    style?: { [Property in StyleGroupNames]: { [key: string]: CSSProperties } };
     rootStyle?: { [key: string]: CSSProperties };
     className?: string;
     value?: string;
@@ -66,20 +67,26 @@ export interface I_useInputConfig {
 
 const useInput = (config: I_useInputConfig = {}) => {
 
+    // console.log('og style:', config.style || {})
+
     const getDefaultStyle = () => {
-        let res = {}
-        Object.values(StyleGroupNames).forEach(x => {
-            res[x] = {}
+        let res = config.style || {}
+        Object.values(StyleGroupNames).forEach((x, i) => {
+            if(!(x in res)){
+                res[x] = {}
+            }
         })
+        console.log('new style:', res)
+
         return res
     }
 
 
     const settings = useMemo(() => { return {
+        style:                                      getDefaultStyle(),
         type: config.type                           ?? 'text',
         name: config.name                           ?? '',
         rootStyle: config.rootStyle                 ?? {},
-        style: config.style                         ?? getDefaultStyle(),
         className: config.className                 ?? '',
         value: config.value                         ?? '',
         placeholder: config.placeholder             ?? '',
@@ -107,7 +114,7 @@ const useInput = (config: I_useInputConfig = {}) => {
     const [isHovered, setIsHovered] = useState(false)
     const [isActive, setIsActive] = useState(false)
     const [style, setStyle] = useState({})
-    const [className, setClassName] = useState('')
+    const [className, setClassName] = useState(settings.className)
 
     const initRef = useRef(false)
 
@@ -198,19 +205,13 @@ const useInput = (config: I_useInputConfig = {}) => {
     useEffect(()=>{
         // setting styles should go in order from least important to most
 
-        const handleClassVsStyle = (SGN) => {
-            if(SGN in settings.style){
-                if(typeof settings.style[SGN] === 'string'){
-                    setClassName(settings.className + ' ' + settings.style[SGN])
-                    setStyle({...settings.rootStyle})
-                }else{
-                    setStyle({...settings.rootStyle, ...settings.style[SGN]})
-                    setClassName(settings.className)
-                }
-            }
-            // else{
-            //     setClassName(settings.className)
+        const handleClassVsStyle = (SGN: string, className?: string) => {
+            // if(typeof settings.style[SGN] === 'string'){
+            //     setClassName(settings.className + ' ' + settings.style[SGN])
             //     setStyle(settings.rootStyle)
+            // }else{
+                setStyle({...settings.rootStyle, ...settings.style[SGN]})
+                setClassName(settings.className + ' ' + SGN.replace('-', ' '))
             // }
         }
 
@@ -258,6 +259,7 @@ const useInput = (config: I_useInputConfig = {}) => {
             handleValidate()
         }
         setIsEmpty(value.toString().length === 0)
+        console.log(settings.style)
         
         initRef.current = true
     },[value, settings.validateOnChange])

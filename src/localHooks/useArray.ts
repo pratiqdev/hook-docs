@@ -90,12 +90,16 @@ const useArray = (initialState: any[] = []) => {
 
     /** Reverses the order of the elements in an array */
     const reverse: () => void 
-        = () => setArray((a:any[]) => a.reverse())
+        = () => {
+            let newArray = [...array]
+            newArray.reverse()
+            setArray(newArray)
+        }
 
     /** Sorts the elements of an array */
     const sort: (cb?:any) => void 
         = (cb?:any) => {
-            let newArr = array.sort(cb)
+            let newArr = [...array.sort(cb)]
             setArray(newArr)
         }
 
@@ -150,7 +154,7 @@ const useArray = (initialState: any[] = []) => {
     return {
         /** Current state of the array */
         array,
-        
+
         set,
         clear,
         reset,
