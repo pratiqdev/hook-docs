@@ -229,21 +229,21 @@ const demoComponent = (props:any) => {
                 },
             ]
         },
-        { // reduce
-            title: 'reduce',
-            description: 'Reduce the values of an array to a single value (going left-to-right).',
-            methods:[
-                {
-                    pre: `reduce((p, c) => p + c)`,
-                    func: () => hookMethod('reduce', (p,c) => p+c)
-                },
-                {
-                    pre: `reduce((p, c) => p + c, 4)`,
-                    func: () => hookMethod('reduce', (p,c) => p+c, 4)
-                },
+        // { // reduce
+        //     title: 'reduce',
+        //     description: 'Reduce the values of an array to a single value (going left-to-right).',
+        //     methods:[
+        //         {
+        //             pre: `reduce((p, c) => p + c)`,
+        //             func: () => hookMethod('reduce', (p,c) => p+c)
+        //         },
+        //         {
+        //             pre: `reduce((p, c) => p + c, 4)`,
+        //             func: () => hookMethod('reduce', (p,c) => p+c, 4)
+        //         },
 
-            ]
-        },
+        //     ]
+        // },
     ]
 
 

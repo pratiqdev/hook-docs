@@ -76,11 +76,15 @@ const useArray = (initialState: any[] = []) => {
             }
         }
 
-    /** Reduce the values of an array to a single value (going left-to-right) */
+    /** Reduce the values of an array to a single value (going left-to-right) 
+     * @deprecated
+    */
     const reduce: (cb: any, initialValue?:any) => void 
         = (cb: any, initialValue:any = 0) => setArray([array.reduce(cb, initialValue)])
 
-    /** Reduce the values of an array to a single value (going right-to-left) */
+    /** Reduce the values of an array to a single value (going right-to-left) 
+     * @deprecated
+    */
     const reduceRight: (cb: any, initialValue?:any) => void 
         = (cb: any, initialValue:any = 0) => setArray([array.reduceRight(cb, initialValue)])
 
