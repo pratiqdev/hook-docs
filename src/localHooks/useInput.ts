@@ -108,6 +108,9 @@ const useInput = (config: I_useInputConfig = {}) => {
     const [isActive, setIsActive] = useState(false)
     const [style, setStyle] = useState({})
     const [className, setClassName] = useState('')
+
+    const initRef = useRef(false)
+
     
     //+ ///////////////////////////////////////////////////////////// FUNCTIONS
 
@@ -138,6 +141,7 @@ const useInput = (config: I_useInputConfig = {}) => {
         setValue(settings.value)
         setWasValidated(false)
         setInvalidMessage('')
+        initRef.current = false
     }
 
 
@@ -195,13 +199,19 @@ const useInput = (config: I_useInputConfig = {}) => {
         // setting styles should go in order from least important to most
 
         const handleClassVsStyle = (SGN) => {
-            if(typeof settings.style[SGN] === 'string'){
-                setClassName(settings.className + ' ' + settings.style[SGN])
-                setStyle({...settings.rootStyle})
-            }else{
-                setStyle({...settings.rootStyle, ...settings.style[SGN]})
-                setClassName(settings.className)
+            if(SGN in settings.style){
+                if(typeof settings.style[SGN] === 'string'){
+                    setClassName(settings.className + ' ' + settings.style[SGN])
+                    setStyle({...settings.rootStyle})
+                }else{
+                    setStyle({...settings.rootStyle, ...settings.style[SGN]})
+                    setClassName(settings.className)
+                }
             }
+            // else{
+            //     setClassName(settings.className)
+            //     setStyle(settings.rootStyle)
+            // }
         }
 
         
@@ -230,7 +240,6 @@ const useInput = (config: I_useInputConfig = {}) => {
     
 
     
-    const initRef = useRef(false)
 
     useEffect(()=>{
         if(!initRef.current){

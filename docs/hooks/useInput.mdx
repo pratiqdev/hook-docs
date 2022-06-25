@@ -31,7 +31,48 @@ const myInput = useInput({
 ```
 
 </TabItem>
+
 <TabItem value='advanced' label='Advanced'>
+
+```js
+import { useInput } from '@pratiq/hooks'
+
+const {
+    value,
+    setValue,
+    validate,
+    reset,
+    bind
+} = useInput({
+        value: 'Default',
+        placeholder: 'A placeholder',
+        validOnDefault: false,
+        validator: /^[a-z0-9]+$/,
+        className: 'default-classname',
+        rootStyle: {
+            background: '#444',
+            marginRight: '.5rem',
+        },
+        style: {
+            'valid': 'valid!!',
+            'invalid': 'invalid!!',
+            'default': {color: 'blue'},
+        },
+        onValidated?: (v) => console.log('validated! current value:', v);
+        onActive?: (v) => console.log('active! current value:', v);
+        onHover?: (v) => console.log('hovered! current value:', v);
+        onFocus?: (v) => console.log('focused! current value:', v);
+        onBlur?: (v) => console.log('blurred! current value:', v);
+    })
+
+<input {...bind} />
+<p>{value}</p>
+
+```
+
+</TabItem>
+
+<TabItem value='full' label='Full'>
 
 ```js
 import { useInput } from '@pratiq/hooks'

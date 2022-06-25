@@ -25,19 +25,19 @@ const DemoComponent = (props:any) => {
         },
         style: {
             'valid': 'valid!!',
-            'valid-active': 'valid-active!!',
-            'valid-focus': 'valid-focus!!',
-            'valid-hover': 'valid-hover!!',
+            // 'valid-active': 'valid-active!!',
+            // 'valid-focus': 'valid-focus!!',
+            // 'valid-hover': 'valid-hover!!',
             
             'invalid': 'invalid!!',
-            'invalid-active': {color: 'red'},
-            'invalid-focus': 'invalid-focus!!',
-            'invalid-hover': 'invalid-hover!!',
+            // 'invalid-active': {color: 'red'},
+            // 'invalid-focus': 'invalid-focus!!',
+            // 'invalid-hover': 'invalid-hover!!',
             
-            'default': {color: 'blue'},
-            'default-active': 'default-active!!',
-            'default-focus': 'default-focus!!',
-            'default-hover': 'default-hover!!',
+            // 'default': {color: 'blue'},
+            // 'default-active': 'default-active!!',
+            // 'default-focus': 'default-focus!!',
+            // 'default-hover': 'default-hover!!',
         }
     })
 
