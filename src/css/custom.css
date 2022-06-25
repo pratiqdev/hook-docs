@@ -693,3 +693,21 @@ hr{
 .prism-code{
   background: rgba(0, 0, 0, 0.03)
 }
+
+.card{
+  border-radius: .5rem;
+  background: rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1rem;
+  flex: 1;
+  min-width: 15rem;
+}
+
+.row{
+  display: flex;
+  padding: .5rem;
+  flex-wrap: wrap;
+}
+.row > * {
+  margin: .5rem
+}
