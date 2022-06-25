@@ -711,3 +711,14 @@ hr{
 .row > * {
   margin: .5rem
 }
+
+button{
+  border: 0px solid transparent;
+  border-radius: .25rem;
+  padding: .15rem .5rem;
+  cursor: pointer !important;
+}
+
+button:hover{
+  background: rgba(100,100,255,.5);
+}
