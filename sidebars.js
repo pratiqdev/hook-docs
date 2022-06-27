@@ -11,6 +11,17 @@
 
 // @ts-check
 
+const hookFiles = [
+  'hooks/useArray',
+  // 'hooks/useCountdown',
+  'hooks/useInput',
+  'hooks/useAsync',
+  'hooks/useClamp',
+  'hooks/useClickOutside',
+  'hooks/useDebounceEffect',
+  // 'hooks/useDebounce',
+].sort()
+
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   // By default, Docusaurus generates a sidebar from the docs folder structure
@@ -35,16 +46,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Hooks',
-      items: [
-        'hooks/useArray',
-        // 'hooks/useCountdown',
-        'hooks/useInput',
-        'hooks/useAsync',
-        'hooks/useClamp',
-        'hooks/useClickOutside',
-        'hooks/useDebounceEffect',
-        // 'hooks/useDebounce',
-      ],
+      items: hookFiles
     },
     // {
     //   type: 'category',
