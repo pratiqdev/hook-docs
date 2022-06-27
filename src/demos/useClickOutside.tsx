@@ -15,41 +15,29 @@ const DemoComponent = (props:any) => {
         setValue(true)
     })
 
-   
 
-    return(
-        <Layout>
-
-
-    
-
-
-
-
-
-
-<CodeBlock language='ts' className='demo-display' >
-{
+const demoCode = 
 `const [value, setValue] = useState(false)
 const ref = useClickOutside(()=>{
     setValue(true)
 })
 
 <button ref={ref} onClick={()=>setValue(false)}>Click Me!</button>
-<button>Click Outside!</button>
 
-// value: ${value} (clicked outside)
+// click: ${!value ? 'inside' : 'outside'}
 `
-}
-</CodeBlock>
+
+
+   
+
+    return(
+        <Layout>
+
+            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
 
             <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
-                {/* <button onClick={() => setValue(0)}>Set 0</button> */}
                 <button ref={ref} onClick={()=>setValue(false)}>Click Me!</button>
-                <button>Click Outside!</button>
             </div>
-
-
 
         </Layout>
     )

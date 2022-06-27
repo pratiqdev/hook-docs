@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 /**
  * Creating a sidebar enables you to:
  - create an ordered group of docs
@@ -11,16 +13,10 @@
 
 // @ts-check
 
-const hookFilesSorted = [
-  'hooks/useArray',
-  // 'hooks/useCountdown',
-  'hooks/useInput',
-  'hooks/useAsync',
-  'hooks/useClamp',
-  'hooks/useClickOutside',
-  'hooks/useDebounceEffect',
-  // 'hooks/useDebounce',
-].sort()
+const hookFiles = []
+
+fs.readdirSync('./docs/hooks').forEach(file => hookFiles.push('hooks/' + file.replace('.mdx', '')));
+
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
@@ -46,7 +42,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Hooks',
-      items: hookFilesSorted
+      items: hookFiles.sort()
     },
     // {
     //   type: 'category',
