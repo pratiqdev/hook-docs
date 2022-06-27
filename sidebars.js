@@ -11,7 +11,7 @@
 
 // @ts-check
 
-const hookFiles = [
+const hookFilesSorted = [
   'hooks/useArray',
   // 'hooks/useCountdown',
   'hooks/useInput',
@@ -46,7 +46,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Hooks',
-      items: hookFiles
+      items: hookFilesSorted
     },
     // {
     //   type: 'category',
