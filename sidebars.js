@@ -40,8 +40,10 @@ const sidebars = {
         // 'hooks/useCountdown',
         'hooks/useInput',
         'hooks/useAsync',
+        'hooks/useClamp',
+        'hooks/useClickOutside',
         'hooks/useDebounceEffect',
-        'hooks/useDebounce',
+        // 'hooks/useDebounce',
       ],
     },
     // {

@@ -12,8 +12,15 @@ const DemoComponent = (props:any) => {
     const [value, setValue] = useState(1)
 
     const trigger = useDebounce(() => {
+        console.log('useDebounce | callback')
         setValue(v => v + 1)
-    }, 500)
+    },
+    {
+        wait: 500,
+        leading: false,
+        trailing: false,
+        maxWait: 1000
+    })
 
 
     return(
