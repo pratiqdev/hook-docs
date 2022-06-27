@@ -703,12 +703,16 @@ hr{
   min-width: 15rem;
 }
 
-.row{
+/*
+  - TODO
+  - Change name of custom row class to simple-row
+  */  
+.simple-row{
   display: flex;
   padding: .5rem;
   flex-wrap: wrap;
 }
-.row > * {
+.simple-row > * {
   margin: .5rem
 }
 
