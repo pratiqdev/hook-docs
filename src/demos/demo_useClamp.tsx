@@ -28,6 +28,14 @@ const DemoComponent = (props:any) => {
 
 
 
+            <div style={{padding: '1rem'}}>
+                <button onClick={() => setValue(v => v + 1)}>Increment</button>
+                <button onClick={() => setValue(v => v - 1)}>Decrement</button>
+                <button onClick={() => setValue(10)}>Set 10</button>
+                <button onClick={() => setValue(0)}>Set 0</button>
+                <button onClick={reset}>Reset</button>
+            </div>
+
 <CodeBlock language='ts' className='demo-display' >
 {
 `const [value, setValue, reset] = useClamp({
@@ -40,14 +48,6 @@ const DemoComponent = (props:any) => {
 `
 }
 </CodeBlock>
-
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
-                <button onClick={() => setValue(v => v + 1)}>Increment</button>
-                <button onClick={() => setValue(v => v - 1)}>Decrement</button>
-                <button onClick={() => setValue(10)}>Set 10</button>
-                <button onClick={() => setValue(0)}>Set 0</button>
-                <button onClick={reset}>Reset</button>
-            </div>
 
 
 

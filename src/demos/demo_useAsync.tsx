@@ -77,7 +77,7 @@ data: ${JSON.stringify(displayData, null, 2)}
 }
 </CodeBlock>
 
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
+            <div style={{padding: '1rem'}}>
                 <button onClick={reload}>Reload</button>
                 <button onClick={() => setItem(p => p + 1)}>Next Item</button>
                 <button onClick={() => setItem(p => p - 1)}>Prev Item</button>

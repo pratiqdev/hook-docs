@@ -32,20 +32,19 @@ const DemoComponent = (props:any) => {
 
 
 
+            <div style={{padding: '1rem'}}>
+                <button onClick={trigger}>Increment</button>
+            </div>
 
 
 <CodeBlock language='ts' className='demo-display' >
 {
-`
-value: ${value.toString()}
+`value: ${value.toString()}
 */
 `
 }
 </CodeBlock>
 
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
-                <button onClick={trigger}>Increment</button>
-            </div>
 
 
 

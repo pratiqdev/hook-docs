@@ -9,9 +9,11 @@ import {useState, useRef, useEffect, useMemo} from 'react'
 // }
 
 export interface I_Fetch {
-    options?: object,
-    watch?: any[],
-    expire?: number
+    watch?: any[];
+    expire?: number;
+    options?: object;
+    initialData?: any;
+    autoLoad?: boolean;
 }
 
 /**
@@ -30,47 +32,52 @@ export interface I_Fetch {
 * 
 */
 
-const useFetch = (url: string = '', config: I_Fetch = {}) => {
+const useFetch = (url: string = '', config: I_Fetch) => {
 
     const settings = useMemo(() => { return {
-        options: config.options     ?? {},
-        watch: config.watch         ?? [],
-        expire: config.expire       ?? 5_000,
+        options: config.options         ?? {},
+        watch: config.watch             ?? [],
+        expire: config.expire           ?? 5_000,
+        initialData: config.initialData ?? null,
+        autoLoad: config.autoLoad       ?? true,
     }}, [config])
 
 
     const [loading, setLoading] = useState(false)
+    const [loaded, setLoaded] = useState(false)
     const [error, setError] = useState<any>(null)
-    const [value, setValue] = useState<any>(null)
-    let done = false
+    const [value, setValue] = useState<any>(settings.initialData)
+    let done = useRef(false)
+    let init = useRef(false)
 
     let expireHandle: any = useRef()
 
 
 
     const handleExpire = () => {
-        if(!done){
+        if(!done.current){
             clearTimeout(expireHandle.current)
-            setError(`Request expired. Expiration set to ${settings.expire} seconds`)
-            setValue(undefined)
+            setError(`Request expired. Expiration set to ${settings.expire} ms`)
+            setValue(settings.initialData)
             setLoading(false)
-            done = true
+            setLoaded(false)
+            done.current = true
         }
     }
 
     function errorIntercept(response: any) {
         if (!response.ok) {
             setError(response.statusText)
-            done = true
+            done.current = true
         }
         return response;
     }
     
 
     const handleError = (e: any) => {
-        if(!done){
+        if(!done.current){
             clearTimeout(expireHandle.current)
-            done = true
+            done.current = true
             try{
                 if(e && e instanceof TypeError){ setError(e.message)}
                 else if(e && typeof e === 'object'){ setError(e) }
@@ -78,30 +85,43 @@ const useFetch = (url: string = '', config: I_Fetch = {}) => {
                 else{ setError(true) }
             }catch(err){
                 setError(true)
-                setValue('handleError removed value')
+                setValue(settings.initialData)
             }finally{ 
                 setLoading(false)
+                setLoaded(false)
             }
         }
     }
 
     const handleValue = (v: any) => {
-        if(!done){
+        if(!done.current){
             clearTimeout(expireHandle.current)
-            done = true
+            done.current = true
             setValue(v)
             setError(undefined)
             setLoading(false)
+            setLoaded(true)
         }
     }
 
+
+    const reset = () => {
+        setLoaded(false)
+        setLoading(false)
+        setError(null)
+        setValue(settings.initialData)
+
+    }
+
     const reload = () => {
+        done.current = false
         console.log('reload')
         clearTimeout(expireHandle.current)
         expireHandle.current = setTimeout(handleExpire, settings.expire);
         setLoading(true)
+        setLoaded(false)
         setError(null)
-        setValue(null)
+        setValue(settings.initialData)
         
         try{
 
@@ -124,6 +144,7 @@ const useFetch = (url: string = '', config: I_Fetch = {}) => {
     }
     
     useEffect(() => {
+        if(!init.current) return;
         console.log('useFetch | use effect')
         reload()
         
@@ -131,7 +152,13 @@ const useFetch = (url: string = '', config: I_Fetch = {}) => {
         // eslint-disable-next-line
     }, [...settings.watch, url])
 
-    return [value, loading, error, reload]
+    useEffect(()=>{
+        console.log('autoload')
+        settings.autoLoad && reload()
+        init.current = true
+    },[])
+
+    return {value, loading, loaded, error, reload, reset}
 }
 
 export default useFetch

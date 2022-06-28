@@ -29,8 +29,6 @@ useEventListener('keydown', (e) => log('key: ', e.key))
 
             <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
 
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
-            </div>
 
         </Layout>
     )

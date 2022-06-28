@@ -24,10 +24,7 @@ const demoCode =
 
     return(
         <Layout>
-
-            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
-
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
+            <div style={{padding: '1rem'}}>
                 <div style={{marginBottom: '.5rem'}}>
                     <button onClick={()=>copy('Some Text')}>Copy</button><code>Some Text</code>
                 </div>
@@ -39,6 +36,7 @@ const demoCode =
                 </div>
             </div>
 
+            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
         </Layout>
     )
 }

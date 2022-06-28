@@ -8,7 +8,7 @@ const Methods = (props:any) => {
     const {title, description, type} = props.item
     const [open, setOpen] = useState(props.open || false)
     return(
-        <div className='method' id={`group-${title}`}>
+        <div className='method-container' id={`group-${title}`}>
             <div className='title-row' onClick={()=>setOpen(b => !b)}>
                 <div className='chevron'>
                     {open ? <ChevronIconDown /> : <ChevronIconRight />}

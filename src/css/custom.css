@@ -263,7 +263,7 @@ input:focus{
 
 .demo-layout pre{
   background: var(--ifm-color-codeblock-light);
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -318,6 +318,7 @@ input:focus{
 
 .demo-layout .desc-row button:hover{
   background: var(--ifm-color-primary-light);
+  /* background: red; */
 }
 
 .demo-display button{
@@ -328,8 +329,12 @@ input:focus{
   max-width: 100%;
   /* white-space: pre-wrap; */
   overflow-x: auto;
-  padding: 1rem !important;
-  margin-right: 1rem;
+  /* padding: 1rem !important; */
+  /* margin-right: 1rem; */
+}
+
+.demo-display {
+  margin-bottom: 0px !important;
 }
 
 
@@ -415,7 +420,7 @@ input:focus{
 }
 
 
-.demo-layout .method{
+.demo-layout .method-container{
   display: flex;
   flex-direction: column;
   padding: 0 .5rem;
@@ -426,28 +431,28 @@ input:focus{
   margin-bottom: 0;
 }
 
-.demo-layout .method:last-child{
+.demo-layout .method-container:last-child{
   border-bottom: 0px solid rgb(100,100,100,.2);
 }
 
-.demo-layout .method:hover{
+.demo-layout .method-container:hover{
   background: rgb(230, 230, 230, .4);
   border-bottom: 1px solid transparent;
   border-radius: 0;
 }
 
-[data-theme='dark'] .demo-layout .method:hover{
+[data-theme='dark'] .demo-layout .method-container:hover{
   background: rgb(230, 230, 230, .1);
   border-bottom: 1px solid transparent;
 }
 
 
-.demo-layout .method * {
+.demo-layout .method-container * {
   margin: 0;
   padding: 0;
 }
 
-.demo-layout .method pre{
+.demo-layout .method-container pre{
   padding: .5rem .5rem;
 }
 
@@ -457,18 +462,18 @@ input:focus{
   align-items: center;
 }
 
-.demo-layout .method .title-row{
+.demo-layout .method-container .title-row{
   margin-bottom: .5rem;
   cursor: pointer;
 }
 
-.demo-layout .method .title-row .chevron{
+.demo-layout .method-container .title-row .chevron{
   display: inline-block;
   margin-right: 1rem;
 }
 
 
-.demo-layout .method .title-row b {
+.demo-layout .method-container .title-row b {
   margin-right: 1rem;
   font-size: 1rem;
   min-width: 5rem;

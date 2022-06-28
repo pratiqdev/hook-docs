@@ -28,14 +28,14 @@ setValue('Bobby', 100_000) // expiration in milliseconds
     return(
         <Layout>
 
-            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
-
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
+            <div style={{padding: '1rem'}}>
                 <Method pre={`setValue('Alice')`} func={() => setValue('Alice')} />
                 <Method pre={`setValue('Bobby')`} func={() => setValue('Bobby')} />
                 <Method pre={`setValue('Charles')`} func={() => setValue('Charles')} />
                 <Method pre={`remove()`} func={remove} />
             </div>
+
+            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
 
         </Layout>
     )

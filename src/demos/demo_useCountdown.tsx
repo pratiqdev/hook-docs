@@ -78,15 +78,12 @@ const handleReset = () => {
 
     return(
         <Layout>
-
-            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
-
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
+            <div style={{padding: '1rem'}}>
                 <Method pre={`start()`} func={start} />
                 <Method pre={`stop()`} func={stop} />
                 <Method pre={`reset()`} func={handleReset} />
             </div>
-
+            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
         </Layout>
     )
 }

@@ -10,14 +10,47 @@ import useFetch from '@site/src/localHooks/local_useFetch'
 
 //+ useAsync
 const DemoComponent = (props:any) => {
-    const [log, setLog] = useState('')
-    const [value, loading, error, reload] = useFetch('https://jsonplaceholder.typicode.com/users')
+    const [trigger, setTrigger] = useState(false)
+    const [expiration, setExpiration] = useState(100)
+
+    const response = useFetch('https://jsonplaceholder.typicode.com/users', {
+        autoLoad: false,
+        expire: expiration,
+        initialData: ['initial data'],
+        watch: [trigger, expiration],
+        options: {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        }
+    })
 
 const demoCode = 
-`// loading: ${loading ? 'true' : 'false'}
-// error: ${error ? error : 'null'}
+`const [trigger, setTrigger] = useState(false)
+const [expiration, setExpiration] = useState(100)
 
-${value && JSON.stringify(value[1], null, 2)}
+
+const response = useFetch('https://jsonplaceholder.typicode.com/users', {
+    autoLoad: false,
+    expire: expiration, // ${expiration}
+    initialData: ['initial data'],
+    watch: [trigger],
+    options: {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }
+})
+
+// loading: 
+${response.loading ? 'true' : 'false'}
+
+// loaded: 
+${response.loaded ? 'true' : 'false'}
+
+// error: 
+${response.error ? response.error : 'null'}
+
+// data:
+${response.value && JSON.stringify(response.value.filter((x,i) => i < 2), null, 2)}
 `
 
 
@@ -26,12 +59,17 @@ ${value && JSON.stringify(value[1], null, 2)}
     return(
         <Layout>
 
-            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
 
+            <div style={{padding: '1rem'}}>
+                <button onClick={response.reload}>Reload Request</button>
+                <button onClick={() => setTrigger(b => !b)}>Trigger dep change</button>
+            </div>
             <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
-                <button onClick={reload}>Reload</button>
+                <button onClick={() => setExpiration(n => n + 100)}>Increase Expiration</button>
+                <button onClick={() => setExpiration(n => n - 100)}>Decrease Expiration</button>
             </div>
 
+            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
         </Layout>
     )
 }

@@ -33,11 +33,12 @@ const ref = useClickOutside(()=>{
     return(
         <Layout>
 
-            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
 
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
+            <div style={{padding: '1rem'}}>
                 <button ref={ref} onClick={()=>setValue(false)}>Click Me!</button>
             </div>
+            
+            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
 
         </Layout>
     )

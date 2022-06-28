@@ -41,6 +41,13 @@ const DemoComponent = (props:any) => {
 
 
 
+            <div style={{padding: '1rem'}}>
+                <input {...myInput_2.bind} />
+                <button onClick={myInput_2.reset}>Reset</button>
+                <button onClick={myInput_2.validate}>Validate</button>
+                <br />
+                {myInput_2.invalidMessage}
+            </div>
 
 
 
@@ -79,14 +86,7 @@ const DemoComponent = (props:any) => {
 `}
             </CodeBlock>
 
-            <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
-                <input {...myInput_2.bind} />
-                <button onClick={myInput_2.reset}>Reset</button>
-                <button onClick={myInput_2.validate}>Validate</button>
-                <br />
-                {myInput_2.invalidMessage}
-            </div>
-
+ 
 
 
         </Layout>
