@@ -109,7 +109,7 @@ const useCountdown = (config: interfaceCountdownConfig) => {
       hours: Math.floor(ss / 3600) % 24,
       minutes: Math.floor(ss / 60) % 60,
       seconds: ss % 60,
-      realSeconds: Math.ceil(ss / 1000),
+      realSeconds: Math.ceil(t / 1000),
       milliseconds: t % 1000,
       total: t
     } 
@@ -180,15 +180,16 @@ const useCountdown = (config: interfaceCountdownConfig) => {
       // If the diffTime is less than 0, set ticking to false, clear the
       //    timeout and set time to 0
 
-    setTimeObj({
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      realSeconds: 0,
-      milliseconds: 0,
-      total: 0
-    });
+      setTimeObj({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        realSeconds: 0,
+        milliseconds: 0,
+        total: 0
+      });
+
       clearTimeout(tRef.current);
       setDone(true);
       setTime(0);

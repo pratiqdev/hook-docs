@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
-import useClipboard from '../localHooks/useClipboard'
+import useClipboard from '../localHooks/local_useClipboard'
 
 
 

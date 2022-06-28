@@ -4,7 +4,7 @@ import Layout from '../components/DemoLayout'
 import Methods from '../components/Methods'
 import Method from '../components/Method'
 // import MethodInput from '../components/MethodInput'
-import useArray from '../localHooks/useArray'
+import useArray from '../localHooks/local_useArray'
 // import { useArray } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
 

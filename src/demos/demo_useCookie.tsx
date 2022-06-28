@@ -4,7 +4,7 @@ import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
 import Method from '../components/Method'
-import useCookie from '../localHooks/useCookie'
+import useCookie from '../localHooks/local_useCookie'
 
 
 

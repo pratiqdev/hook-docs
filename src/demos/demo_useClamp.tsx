@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
-import useClamp from '../localHooks/useClamp'
+import useClamp from '../localHooks/local_useClamp'
 
 
 

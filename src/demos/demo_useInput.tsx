@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
-import useInput from '../localHooks/useInput'
+import useInput from '../localHooks/local_useInput'
 import CodeBlock from '@theme/CodeBlock'
 
 

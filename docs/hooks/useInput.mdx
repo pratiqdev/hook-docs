@@ -1,6 +1,7 @@
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
-import DemoComponent from '../../src/demos/useInput'
+import RelatedTable from '@site/src/components/RelatedTable'
+import DemoComponent from '@site/src/demos/demo_useInput'
 
 # useInput
 
@@ -365,6 +366,6 @@ functions.
 <br />
 
 
-| Related Hooks | Description |
-|:--|:--|  
-[useHook](#) | Description of another hook and why it is similar / dissimilar 
+<RelatedTable items={{
+    'useStateWithValidation':'Store state and validate onChange with the provided validator function',
+}} />

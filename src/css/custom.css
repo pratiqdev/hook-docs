@@ -1,5 +1,6 @@
 * {
   /* border: 1px solid green; */
+  /* transition: background 1s; */
 }
 
 .app{
@@ -66,6 +67,7 @@
 }
 .hero__title{
   color: var(--ifm-color-primary-lighter);
+  font-size: max(3vw, 2rem);
 }
 .hero button{
   background: #222;
@@ -324,7 +326,10 @@ input:focus{
 
 .demo-display code{
   max-width: 100%;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
+  overflow-x: auto;
+  padding: 1rem !important;
+  margin-right: 1rem;
 }
 
 
@@ -541,6 +546,127 @@ hr{
 }
 
 
+
+
+
+
+.theme-code-block-highlighted-line{
+  background: rgba(0,0,0, .05) !important;
+}
+
+[data-theme='dark'] .theme-code-block-highlighted-line{
+  background: rgba(200,200,255, .1) !important;
+}
+
+.prism-code{
+  background: rgba(0, 0, 0, 0.03);
+  overflow-x: auto;
+}
+
+
+
+.card{
+  border-radius: .5rem;
+  background: rgba(100, 100, 100, 0.05);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1rem;
+  flex: 1;
+  min-width: 15rem;
+}
+
+/*
+  - TODO
+  - Change name of custom row class to simple-row
+  */  
+.simple-row{
+  display: flex;
+  padding: .5rem;
+  flex-wrap: wrap;
+}
+.simple-row > * {
+  margin: .5rem
+}
+
+button{
+  border: 0px solid transparent;
+  border-radius: .25rem;
+  padding: .15rem .5rem;
+  cursor: pointer !important;
+}
+
+button:hover{
+  background: rgba(100,100,255,.5);
+}
+
+
+
+
+
+
+/* =================================================================== CUSTOM */
+
+
+@media screen and (max-width: 1100px) {
+  .pagination-nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pagination-nav__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pagination-nav__link--next {
+    /* background: green; */
+    justify-content: center;
+  }
+
+  .pagination-nav__link--prev {
+    /* background: orange; */
+    justify-content: center;
+  }
+
+  /* .pagination-nav__label{
+    letter-spacing: .1rem;
+  } */
+}
+
+
+
+
+
+@media screen and (max-width: 996px) {
+
+  .navbar__brand{
+    width: 100%;
+    margin-right:40px;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-sidebar .navbar__brand{
+    width: 100%;
+    margin-right:40px;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+
+
+
+
+
+
+
+/* ==================================================================== UTILS */
+
+
+
 .p0{ padding: 0 !important }
 .p1{ padding: .25rem !important }
 .p2{ padding: .5rem !important }
@@ -676,53 +802,3 @@ hr{
 .text-green{ color: green !important }
 .text-blue{ color: blue !important }
 .text-purple{ color: purple !important }
-
-
-
-
-
-
- .theme-code-block-highlighted-line{
-  background: rgba(0,0,0, .05) !important;
-}
-
-[data-theme='dark'] .theme-code-block-highlighted-line{
-  background: rgba(200,200,255, .1) !important;
-}
-
-.prism-code{
-  background: rgba(0, 0, 0, 0.03)
-}
-
-.card{
-  border-radius: .5rem;
-  background: rgba(0, 0, 0, 0.03);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 1rem;
-  flex: 1;
-  min-width: 15rem;
-}
-
-/*
-  - TODO
-  - Change name of custom row class to simple-row
-  */  
-.simple-row{
-  display: flex;
-  padding: .5rem;
-  flex-wrap: wrap;
-}
-.simple-row > * {
-  margin: .5rem
-}
-
-button{
-  border: 0px solid transparent;
-  border-radius: .25rem;
-  padding: .15rem .5rem;
-  cursor: pointer !important;
-}
-
-button:hover{
-  background: rgba(100,100,255,.5);
-}

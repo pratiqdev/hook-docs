@@ -3,28 +3,22 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
-import useClickOutside from '../localHooks/useClickOutside'
+import Method from '@site/src/components/Method'
+import useEventListener from '@site/src/localHooks/local_useEventListener'
 
 
 
 //+ useAsync
 const DemoComponent = (props:any) => {
-    const [value, setValue] = useState(false)
-
-    const ref = useClickOutside(()=>{
-        setValue(true)
-    })
-
+    const [log, setLog] = useState('')
+    useEventListener('click', (e: any) => setLog('click: ' + e.target.localName))
+    useEventListener('keydown', (e: any) => setLog('key: ' + e.key))
 
 const demoCode = 
-`const [value, setValue] = useState(false)
-const ref = useClickOutside(()=>{
-    setValue(true)
-})
+`useEventListener('click', (e) => log('click: ', e.target.localName))  
+useEventListener('keydown', (e) => log('key: ', e.key))
 
-<button ref={ref} onClick={()=>setValue(false)}>Click Me!</button>
-
-// click: ${!value ? 'inside' : 'outside'}
+// log: ${log}
 `
 
 
@@ -36,7 +30,6 @@ const ref = useClickOutside(()=>{
             <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
 
             <div style={{padding: '1rem', marginTop: '-1.5rem'}}>
-                <button ref={ref} onClick={()=>setValue(false)}>Click Me!</button>
             </div>
 
         </Layout>

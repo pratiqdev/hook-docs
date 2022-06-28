@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
-import useAsync from '../localHooks/useAsync'
+import useAsync from '../localHooks/local_useAsync'
 import CodeBlock from '@theme/CodeBlock'
 import wait from '../localHooks/wait'
 

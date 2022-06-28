@@ -49,7 +49,7 @@ const config = {
       },
 
       navbar: {
-        title: '@pratiq/hooks',
+        // title: '@pratiq/hooks',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
