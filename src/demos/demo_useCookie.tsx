@@ -10,7 +10,7 @@ import useCookie from '../localHooks/local_useCookie'
 
 //+ useAsync
 const DemoComponent = (props:any) => {
-    const [value, setValue, remove] = useCookie('MY_COOKIE_KEY')
+    // const [value, setValue, remove] = useCookie('MY_COOKIE_KEY')
 
 
 const demoCode = 
@@ -19,7 +19,7 @@ const demoCode =
 setValue('Alice')
 setValue('Bobby', 100_000) // expiration in milliseconds
 
-// value: ${value || 'undefined'}
+// value: ${'' || 'undefined'}
 `
 
 

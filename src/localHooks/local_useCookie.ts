@@ -15,7 +15,7 @@ import isBrowser from './utils/isBrowser'
 * 
 */
 
-const useCookie= (key: string) => {
+const useCookie = (key: string) => {
     if (!isBrowser()) return;
 
     const getCookie = () => {
