@@ -16,12 +16,17 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 
 
 export interface IUseAsyncConfig {
+    /** The callback function to invoke */
+    callback?: Function;
+
     /** Supply default data while the promise is pending */
     defaultData?: any;
-    /** Set loading state used on mount */
-    defaultLoading?: boolean;
+
     /** Load automatically on mount */
-    manualLoad?: boolean;
+    autoLoad?: boolean;
+
+    /** An array of dependencies to watch and reload on change */
+    deps?: any[];
 }
 
 interface IUseAsyncReturnObject {
@@ -30,36 +35,36 @@ interface IUseAsyncReturnObject {
     data: any;
 }
 
-type UseAsyncType = (callback: Function, config?: IUseAsyncConfig, deps?: any[]) => IUseAsyncReturnObject;
+type UseAsyncType = (config: IUseAsyncConfig) => IUseAsyncReturnObject;
 
 
 
 
 
 
-const useAsync: UseAsyncType = (_callback, _config = {}, _deps = []) => {
+const useAsync: UseAsyncType = (config: IUseAsyncConfig = {}) => {
 
     const settings = useMemo(() => { return {
-        defaultLoading: _config.defaultLoading   ?? false,
-        defaultData: _config.defaultData         ?? null,
-        manualLoad: _config.manualLoad           ?? false
-    }}, [_config])
+        // defaultLoading: _config.defaultLoading   ?? false,
+        deps: config.deps                       ?? [],
+        defaultData: config.defaultData         ?? null,
+        autoLoad: config.autoLoad               ?? false
+    }}, [config])
 
     
-    const [loading, setLoading] = useState(settings.defaultLoading)
+    const [loading, setLoading] = useState(false)
     const [data, setData] = useState<any>(settings.defaultData)
     const [error, setError] = useState<any>(null)
     const isLoading = useRef(false)
     const reloadAbandoned = useRef(false)
-    const oldDeps = useRef(JSON.stringify(_deps))
+    const oldDeps = useRef(JSON.stringify(settings.deps))
 
-    if(!_callback) {
+    if(!config.callback) {
         console.log('useAsync requires a callback function')
         return {loading, error, data};
     }
     
-    const deps = useMemo(()=>{ return [..._deps]}, [_deps])
-    const callback = useMemo(() => _callback, [..._deps, _callback])
+    const callback = useMemo(() => config.callback, [...settings.deps, config.callback])
 
     const reload = useCallback(() => {
         if(loading || isLoading.current) return;
@@ -69,7 +74,7 @@ const useAsync: UseAsyncType = (_callback, _config = {}, _deps = []) => {
         setError(null)
         setData(settings.defaultData)
 
-        _callback()
+        config.callback()
             .then(data => {
                 setData(data)
                 setError(null)
@@ -83,16 +88,16 @@ const useAsync: UseAsyncType = (_callback, _config = {}, _deps = []) => {
                 isLoading.current = false
             })
 
-    }, [..._deps])
+    }, settings.deps)
 
 
     useEffect(() => {
-        console.log('dep change:', deps)
+        console.log('dep change:', config.deps)
         reload()
-    }, [..._deps])
+    }, config.deps)
     
     useEffect(() => {
-        !settings.manualLoad && reload()
+        settings.autoLoad && reload()
     }, [])
 
     return {data, loading, error, reload}

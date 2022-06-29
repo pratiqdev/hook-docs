@@ -4,7 +4,7 @@ import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
 import useAsync from '../localHooks/local_useAsync'
 import CodeBlock from '@theme/CodeBlock'
-import wait from '../localHooks/wait'
+import wait from '../localHooks/utils/wait'
 
 
 
@@ -13,18 +13,20 @@ const DemoComponent = (props:any) => {
     const [item, setItem] = useState(5)
     const [displayData, setDisplayData] = useState(['default','data'])
 
-    const {loading, error, data, reload} = useAsync(async () => {
-        try{
-            let response = await fetch(`https://jsonplaceholder.typicode.com/posts/${item}`)
-            await wait()
-            return response.json()
-        }catch(err){
-            return 'Fetch error:', err
-        }
-    }, {
+    const {loading, error, data, reload} = useAsync({
         manualLoad: true,
         defaultLoading: false,
-        defaultData: ['default', 'data']
+        defaultData: ['default', 'data'],
+        deps: [item],
+        callback: async () => {
+            try{
+                let response = await fetch(`https://jsonplaceholder.typicode.com/posts/${item}`)
+                await wait()
+                return response.json()
+            }catch(err){
+                return 'Fetch error:', err
+            }
+        },
     }, [item])
 
     useEffect(()=>{
@@ -48,22 +50,27 @@ const DemoComponent = (props:any) => {
 <CodeBlock language='ts' className='demo-display' >
 {
 `const [item, setItem] = useState(5)
+
+const myAsyncFunc = async () => {
+    try{
+        let response = await fetch(\`https://placeholder.com/posts/\${item}\`)
+        await wait()
+        return response.json()
+    }catch(err){
+        return 'Fetch error:', err
+    }
+}
+
+const config = {
+    manualLoad: false,
+    defaultLoading: false,
+    defaultError: 'Default error',
+    defaultData: ['default', 'data']
+}
+
 const {loading, error, data, reload} = useAsync(
-    async () => {
-        try{
-            let response = await fetch(\`https://placeholder.com/posts/\${item}\`)
-            await wait()
-            return response,json()
-        }catch(err){
-            return 'Fetch error:', err
-        }
-    }, 
-    {
-        manualLoad: false,
-        defaultLoading: false,
-        defaultError: 'Default error',
-        defaultData: ['default', 'data']
-    }, 
+    myAsyncFunc,
+    config,
     [item]
 )  
 

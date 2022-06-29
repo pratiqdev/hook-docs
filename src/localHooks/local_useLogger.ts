@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useMemo } from "react";
+import tinyId from "./utils/tinyId";
 
  const debugMode = true
  
@@ -32,24 +33,28 @@ import { useEffect } from "react";
 
 interface IUseLogger {
     active?: boolean;
-
+    origin?: string;
 }
 
 // the `document.URL` is the current page that this component is rendered in
 
-const useLogger = (config: IUseLogger) => {
+const useLogger = (config: IUseLogger = {}) => {
+    const initRef = useRef(false)
+
+    const settings = useMemo(()=> ({
+        active: config.active       ?? true,
+        origin: config.origin       ?? tinyId(4)
+    }), [config])
+
+    const LOG = (...values) => {
+        (settings.active && Function.prototype.bind.call(console.log, console, `${settings.origin} |`, ...values))()
+    }
 
     useEffect(()=>{
-        if(document){
-            console.log('document.URL:',document.URL)
+        if(!initRef.current){
+            initRef.current = true
+            LOG('INIT | active:', settings.active)
         }
-        // if(document && document.currentScript){
-        //     console.log({
-        //         currentScript: document.currentScript,
-        //         //@ts-ignore
-        //         scriptSource: document.currentScript.src,
-        //     })
-        // }
     },[])
 }
 

@@ -1,7 +1,221 @@
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 import DemoComponent from '../../src/demos/demo_useAsync'
+import RelatedTable from '../../src/components/RelatedTable'
 
-# useAsync
+# x - useAsync
+
+Run an async function and access internal loading and error state
+
+
+<!--=========================================================================-->
+<hr />
+
+## Usage
+
+<Tabs>
+
+<TabItem value='simple' label='Simple'>
+
+```jsx
+import { useAsync } from '@pratiq/hooks'
+
+const pkg = useAsync({
+    callback: async () => { ... }
+})
+
+<p>Result: {pkg.data}</p>
+```
+
+</TabItem>
+
+<TabItem value='advanced' label='Advanced'>
+
+```jsx
+import { useAsync } from '@pratiq/hooks'
+
+const pkg = useAsync({
+    autoLoad: false,
+    callback: async () => { ... }
+})
+
+<p>Loading: {pkg.loading}</p>
+<p>Result: {pkg.data}</p>
+<button onClick={pkg.reload}>Reload</button>
+```
+
+</TabItem>
+
+<TabItem value='full' label='Full'>
+
+```jsx
+import { useAsync } from '@pratiq/hooks'
+
+const pkg = useAsync({
+    autoLoad: false,
+    defaultData: ['default','data']
+    deps: [],
+    callback:  async () => { 
+        const result = await fetch('...');
+        return result;
+    }
+})
+    
+<p>Loading: {pkg.loading}</p>
+<p>Error: {pkg.error}</p>
+<p>Result: {pkg.data}</p>
+<button onClick={pkg.reload}>Reload</button>
+```
+
+</TabItem>
+</Tabs>
+
+
+
+
+
+<!-- this alert makes more sense with the useFetch hook
+
+:::warning
+This hook does not handle offline events. When offline - the default data will 
+show and no error will appear
+::: 
+
+-->
+
+
+
+<!--=========================================================================-->
+
+<hr />
+
+## Demo
 
 <DemoComponent />
+
+
+
+
+
+
+
+
+<!--=========================================================================-->
+
+<hr />
+
+## Configuration
+
+Values used for initial state and internal settings are provided as a config
+object 
+
+
+### Interface
+```ts
+export interface IUseAsyncConfig {
+    callback?: Function;
+    defaultData?: any;
+    autoLoad?: boolean;
+    deps?: any[];
+}
+
+interface IUseAsyncReturnObject {
+    loading: boolean;
+    error: any;
+    data: any;
+}
+
+type UseAsyncType = (config: IUseAsyncConfig) => IUseAsyncReturnObject;
+```
+
+
+### Config Example
+
+```ts
+const pkg = useAsync(
+    async () => {}, // an async callback function
+    {
+        autoLoad:
+    }
+)
+```
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+<!--=========================================================================-->
+
+<hr />
+
+## Return Values / Methods
+
+Values and methods returned by `useAsync`
+
+
+### loading
+Current state is `true` if the async callback has been invoked and has not yet 
+returned any data or thrown an error.
+
+```ts
+pkg.loading // boolean
+```
+
+<br />
+
+
+### error
+Current state is `null` if no error was thrown, or any (usually an object) if
+an error was thrown by the async callback function.
+
+```ts
+pkg.error // any
+```
+
+<br />
+
+
+### data
+Current state is `null` if no data has been returned from the callback function
+or an error was thrown. This state will be set to the return value of the async 
+callback function if it completes with no errors.
+
+```ts
+pkg.data // any
+```
+
+<br />
+
+
+
+### reload
+Set the internal state back to its initial values and re-invoke the async
+callback function.
+
+```ts
+pkg.reset() // () => void
+```
+
+<br />
+
+
+
+
+
+
+
+
+
+
+<br />
+<RelatedTable items={{
+    'useFetch':'Perform fetch requests with common method functions returned',
+}} />

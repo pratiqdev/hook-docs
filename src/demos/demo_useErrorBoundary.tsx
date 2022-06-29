@@ -1,22 +1,9 @@
 // @ts-nocheck
 import React, { useEffect, useState, useRef } from 'react'
 import Layout from '../components/DemoLayout'
-// import { useInput } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
-import Method from '@site/src/components/Method'
 import useErrorBoundary from '@site/src/localHooks/local_useErrorBoundary'
 
-
-const RenderOnError = (props:any) => {
-    return (
-        <div style={{color: 'white', background: '#F004', padding: '1rem', display: 'flex', flexDirection: 'column'}}>
-            <h3>RenderOnError</h3>
-            <p>Name: {props.name}</p>
-            <p>Message: {props.message}</p>
-            <button onClick={props.resetErrorBoundary}>Try again</button>
-        </div>
-    )
-}
 
 const ThrowError = () => {
     throw new Error('an error!!')
@@ -35,7 +22,7 @@ const DemoComponent = (props:any) => {
                 <p>Name: {error.name}</p>
                 <p>Message: {error.message}</p>
                 <p>Stack Length: {error.stack.length}</p>
-                <button onClick={resetErrorBoundary}>Try again</button>
+                <button  style={{marginTop: '1rem'}} onClick={resetErrorBoundary}>Try again</button>
             </div>
         )
     }

@@ -4,7 +4,7 @@ import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
 import useDebounceEffect from '../localHooks/local_useDebounceEffect'
-import wait from '../localHooks/wait'
+import wait from '../localHooks/utils/wait'
 
 
 

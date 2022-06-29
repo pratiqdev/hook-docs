@@ -10,7 +10,10 @@ import useLogger from '@site/src/localHooks/local_useLogger'
 
 //+ useAsync
 const DemoComponent = (props:any) => {
-    const log = useLogger()
+    const log = useLogger({
+        active: true,
+        origin: 'demo_useLogger!'
+    })
 
     const demoCode = `//`
 
