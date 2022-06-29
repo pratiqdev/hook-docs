@@ -109,7 +109,7 @@ const useErrorBoundary = (config: IUseErrorBoundary) => {
             case 1: return () => <config.renderOnError message={errContentRef.current.message} name={errContentRef.current.name} stack={errContentRef.current.stack}/> ;
             case 2: return ( <DefaultErrorComponent />);
             default: return ( <React.Fragment>{config.children}</React.Fragment>);
-        }
+        } 
     }
 
 }
