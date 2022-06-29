@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useMemo} from 'react'
     
 /**
 * useGeolocation()
@@ -44,13 +44,19 @@ interface IUseGeolocationOptions {
 
 }
 
-const useGeolocation = (options: IUseGeolocationOptions) => {
+const useGeolocation = (options: IUseGeolocationOptions = {}) => {
     const [error, setError] = useState<any>(null)
     const [data, setData] = useState(null)
     const lastTime = useRef<any>(Date.now())
 
     useEffect(()=>{
-        console.log('useEffect - options change')
+        console.log('MOUNTED -------------------')
+        return () => console.log('UNMOUNTED -------------')
+    }, [])
+
+
+
+    useEffect(()=>{
         const successHandler = (e: any) => {
             setError(null)
             const {
@@ -78,6 +84,7 @@ const useGeolocation = (options: IUseGeolocationOptions) => {
         }
         
         const errorHandler = (e:any) => {
+            console.log('error:',e)
             setError(e.message)
             setData(null)
         }
@@ -94,7 +101,11 @@ const useGeolocation = (options: IUseGeolocationOptions) => {
             options
         )
         return () => navigator.geolocation.clearWatch(id)
-    }, [options])
+    }, [...Object.values(options)])
+
+    useEffect(()=>{ console.log('option change') },[options])
+    useEffect(()=>{ console.log('data change') },[data])
+    useEffect(()=>{ console.log('error change') },[error])
 
     return {data, error}
 
