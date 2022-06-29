@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import isBrowser from './utils/isBrowser'
     
 /**
 * useClickOutside()
@@ -15,6 +16,7 @@ import React, { useEffect, useRef } from 'react'
 */
 
 const useClickOutside= (callback: Function, customRef?: any) => {
+    if(!isBrowser()) return;
 
     const ref = customRef || useRef<any>(null)
 

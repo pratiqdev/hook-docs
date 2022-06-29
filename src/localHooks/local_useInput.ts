@@ -76,7 +76,7 @@ const useInput = (config: I_useInputConfig = {}) => {
                 res[x] = {}
             }
         })
-        console.log('new style:', res)
+        // console.log('new style:', res)
 
         return res
     }

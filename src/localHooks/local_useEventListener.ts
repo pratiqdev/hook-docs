@@ -14,7 +14,7 @@ import {useRef, useEffect} from 'react'
 * 
 */
 
-const useEventListener = (eventType: string, callback: Function, element: any = window) => {
+const useEventListener = (eventType: string, callback: Function, element: any) => {
     const callbackRef = useRef<any>(callback)
     
     useEffect(() => {
@@ -22,8 +22,11 @@ const useEventListener = (eventType: string, callback: Function, element: any = 
     }, [callback])
 
     useEffect(() => {
-        const handler = (e: Event) => callbackRef.current(e)
-        element.addEventListener(eventType, handler)
+        let handler:any;
+        if(!element && typeof window !== 'undefined'){
+            handler = (e: Event) => callbackRef.current(e)
+            element.addEventListener(eventType, handler)
+        }
         return () => element.removeEventListener(eventType, handler)
     }, [eventType, element])
 }
