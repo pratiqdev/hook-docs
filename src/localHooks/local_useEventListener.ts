@@ -22,11 +22,9 @@ const useEventListener = (eventType: string, callback: Function, element: any) =
     }, [callback])
 
     useEffect(() => {
-        let handler:any;
-        if(!element && typeof window !== 'undefined'){
-            handler = (e: Event) => callbackRef.current(e)
-            element.addEventListener(eventType, handler)
-        }
+        if(!element && typeof window !== 'undefined'){ element = window }
+        const handler = (e: Event) => callbackRef.current(e)
+        element.addEventListener(eventType, handler)
         return () => element.removeEventListener(eventType, handler)
     }, [eventType, element])
 }
