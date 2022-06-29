@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import isBrowser from './utils/isBrowser'
     
 /**
@@ -39,7 +39,7 @@ const useCookie= (key: string) => {
 
 
 
-    const [value, setValue] = useState(getCookie)
+    const [value, setValue] = useState(null)
 
 
     const handleCookie = (value: string, expiration: number = 86_400_000) => {
@@ -56,6 +56,10 @@ const useCookie= (key: string) => {
         document.cookie = key + '=; Max-Age=-99999999; path=/; SameSite=None; Secure;"'; 
         setValue(getCookie)
     }
+
+    useEffect(()=>{
+        setValue(getCookie())
+    }, [])
 
     return [value, handleCookie, removeCookie]
 }
