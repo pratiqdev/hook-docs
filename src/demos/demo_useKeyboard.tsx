@@ -34,19 +34,19 @@ const demoCode =
 
 // keyb:
 {
-    key:        ${keyb.key},
-    lastKey:    ${keyb.lastKey},
-    down:       ${keyb.down},
-    ctrl:       ${keyb.ctrl},
-    alt:        ${keyb.alt},
-    shift:      ${keyb.shift},
-    meta:       ${keyb.meta},
-    repeat:     ${keyb.repeat},
-    combo:      ${keyb.combo},
-    space:      ${keyb.space},
+    key:        ${keyb && keyb.key},
+    lastKey:    ${keyb && keyb.lastKey},
+    down:       ${keyb && keyb.down},
+    ctrl:       ${keyb && keyb.ctrl},
+    alt:        ${keyb && keyb.alt},
+    shift:      ${keyb && keyb.shift},
+    meta:       ${keyb && keyb.meta},
+    repeat:     ${keyb && keyb.repeat},
+    combo:      ${keyb && keyb.combo},
+    space:      ${keyb && keyb.space},
     lastEvent:  {...} // last dom event that occurred
-    events:     [...] // array of current-only dom events (${keyb.events.length})
-    history:    [---] // array of all dom events that occurred (${keyb.history.length})
+    events:     [...] // array of current-only dom events (${keyb && keyb.events.length})
+    history:    [---] // array of all dom events that occurred (${keyb && keyb.history.length})
 }
 `
 
