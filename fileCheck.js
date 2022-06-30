@@ -38,13 +38,30 @@ hookDocFiles.forEach(file => {
         length: fileContents.length,
         missingHeadings: [],
         missingComponents: [],
-        deprecatedHeadings: []
+        deprecatedHeadings: [],
+        notEnoughContent: [],
     }
     
-    requiredHeadings.forEach(rh => {
+    requiredHeadings.forEach((rh, i) => {
         if(!new RegExp(rh).test(fileContents)){
             res.missingHeadings.push(rh)
+        }else{
+            var match1 = new RegExp(requiredHeadings[i]).exec(fileContents).index
+            var match2
+
+            if(i < requiredHeadings.length - 1){
+                let m = new RegExp(requiredHeadings[i + 1]).exec(fileContents)
+                match2 = m?.index || 0
+            }else{
+                match2 = fileContents.length
+            }
+
+            if (match2 - match1 < 250) {
+                console.log("match found at " + match2);
+                res.notEnoughContent.push(rh)
+            }
         }
+
     })
 
     requiredComponents.forEach(rc => {
@@ -58,6 +75,8 @@ hookDocFiles.forEach(file => {
             res.deprecatedHeadings.push(dh)
         }
     })
+
+
 
     if(
         res.missingHeadings.length === 0 
@@ -132,6 +151,15 @@ if(content.missingComponents.length > 0){
 `#### Missing Components
 
 - ${content.missingComponents.join('\n- ').replace(/</g, '')}
+
+`
+}
+
+if(content.notEnoughContent.length > 0){
+    contentString += 
+`#### Not Enough Content
+
+- ${content.notEnoughContent.join('\n- ').replace(/#/g, '')}
 
 `
 }
