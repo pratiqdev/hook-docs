@@ -72,16 +72,16 @@ const keyb = useKeyboard({
 ## Return Values
 
 ```js
-key:        ${keyb.key},
-lastKey:    ${keyb.lastKey},
-down:       ${keyb.down},
-ctrl:       ${keyb.ctrl},
-alt:        ${keyb.alt},
-shift:      ${keyb.shift},
-meta:       ${keyb.meta},
-repeat:     ${keyb.repeat},
-combo:      ${keyb.combo},
-space:      ${keyb.space},
+key:        {keyb.key},
+lastKey:    {keyb.lastKey},
+down:       {keyb.down},
+ctrl:       {keyb.ctrl},
+alt:        {keyb.alt},
+shift:      {keyb.shift},
+meta:       {keyb.meta},
+repeat:     {keyb.repeat},
+combo:      {keyb.combo},
+space:      {keyb.space},
 lastEvent:  {...} // last dom event that occurred
 events:     [...] // array of current-only dom events (${keyb.events.length})
 history:    [---] // array of all dom events that occurred (${keyb.history.length})
