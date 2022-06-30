@@ -58,8 +58,8 @@ const demoCode =
     return(
         <Layout>
             <div style={{padding: '1rem'}}>
-                <button onClick={keyb.reset}>Reset</button>
-                <button onClick={keyb.clearHistory}>Clear History</button>
+                <button onClick={() => keyb && keyb.reset()}>Reset</button>
+                <button onClick={() => keyb && keyb.clearHistory}>Clear History</button>
             </div>
             <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
         </Layout>
