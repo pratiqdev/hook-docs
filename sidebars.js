@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 
 
 if(process.env.NODE_ENV === 'production'){
-  fs.unlinkSync('./docs/hooks/meta.mdx')
+  fs.unlink('./docs/hooks/meta.mdx')
 }else{
 
   const metaContent = fs.readFileSync('./docs/hooks/meta.mdx', {encoding: 'utf8'})
