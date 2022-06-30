@@ -3,9 +3,6 @@ const fs = require('fs')
 const { exec } = require('child_process');
 
 
-if(process.env.NODE_ENV === 'production'){
-  fs.unlink('./docs/hooks/meta.mdx')
-}else{
 
   const metaContent = fs.readFileSync('./docs/hooks/meta.mdx', {encoding: 'utf8'})
 
@@ -41,7 +38,6 @@ if(process.env.NODE_ENV === 'production'){
     });
   }
 
-}
 
 /**
  * Creating a sidebar enables you to:
