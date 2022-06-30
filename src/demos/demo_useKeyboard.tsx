@@ -50,9 +50,9 @@ const demoCode =
 }
 `
 
-useEffect(()=>{
-    // console.log('events:', keyb.events)
-}, [keyb.events.length])
+// useEffect(()=>{
+//     // console.log('events:', keyb.events)
+// }, [keyb.events.length])
    
 
     return(
