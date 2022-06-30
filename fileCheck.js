@@ -49,16 +49,12 @@ hookDocFiles.forEach(file => {
             var match1 = new RegExp(requiredHeadings[i]).exec(fileContents).index
             var match2
 
-            if(i < requiredHeadings.length - 1){
-                let m = new RegExp(requiredHeadings[i + 1]).exec(fileContents)
-                match2 = m?.index || 0
-            }else{
-                match2 = fileContents.length
-            }
+            let m = new RegExp(requiredHeadings[i + 1]).exec(fileContents)
+            match2 = m?.index || fileContents.length
 
             if (match2 - match1 < 250) {
                 console.log("match found at " + match2);
-                res.notEnoughContent.push(rh)
+                res.notEnoughContent.push(`${rh} (${match2 - match1})`)
             }
         }
 

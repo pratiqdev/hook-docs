@@ -53,10 +53,12 @@ const { exec } = require('child_process');
 // @ts-check
 
 const hookFiles = []
+const utilFiles = []
 
 fs.readdirSync('./docs/hooks').forEach(file => hookFiles.push('hooks/' + file.replace('.mdx', '')));
+fs.readdirSync('./docs/utilities').forEach(file => utilFiles.push('utilities/' + file.replace('.mdx', '')));
 
-console.log('sidebar | sorted hook files:', hookFiles)
+// console.log('sidebar | sorted hook files:', hookFiles)
 
 
 
@@ -85,6 +87,11 @@ const sidebars = {
       type: 'category',
       label: 'Hooks',
       items: hookFiles.sort()
+    },
+    {
+      type: 'category',
+      label: 'Utilities',
+      items: utilFiles.sort()
     },
     // {
     //   type: 'category',
