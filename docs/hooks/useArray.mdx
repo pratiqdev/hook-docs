@@ -1,11 +1,13 @@
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import RelatedTable from '../../src/components/RelatedTable'
 import DemoComponent from '../../src/demos/demo_useArray'
 
 # useArray
 
 Hook for managing the state of an array with common methods that change the array
 included in the return object.
+
 
 
 
@@ -131,13 +133,13 @@ console.log(value) // [1, 2, 3, 9]
 
 <hr />
 
-## Configuration
+## API 
 
 Values used for initial state and internal settings are provided as a config
 object 
 
 
-### Interface
+### Interfaces
 ```ts
 interface I_useInputConfig {
     initialState?: any[]
@@ -173,6 +175,16 @@ interface I_useInputConfig {
 <!--=========================================================================-->
 
 <hr />
+
+
+## Return Values
+
+```ts
+{
+  array,      // the current value of the array
+  ...methods  // all methods included in this hook
+}
+```
 
 ## Hook Methods
 
@@ -524,9 +536,15 @@ functions.
 
 <!--=========================================================================-->
 
-<br />
+<hr />
 
+
+## Related Hooks
 
 | Related Hooks | Description |
 |:--|:--|  
 [useHook](#) | Description of another hook and why it is similar / dissimilar 
+
+<RelatedTable items={{
+  'useClamp':'useState integer type with a clamped range and default value'
+}} />

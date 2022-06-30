@@ -1,4 +1,47 @@
+const config = require('./config.js')
 const fs = require('fs')
+const { exec } = require('child_process');
+
+
+if(process.env.NODE_ENV === 'production'){
+  fs.unlinkSync('./docs/hooks/meta.mdx')
+}else{
+
+  const metaContent = fs.readFileSync('./docs/hooks/meta.mdx', {encoding: 'utf8'})
+
+  const trimmedMeta =
+  metaContent
+  .substring(0,100)
+  .replace('# File Meta', '')
+  .replace('Last Check:', '')
+  
+  const lastTime = parseInt(trimmedMeta)
+
+  console.log('lastTime:', lastTime)
+
+  // last time: 1000
+  // this time: 2400
+  const waitTime = 10_000
+  const now = Date.now()
+
+  if(now - lastTime >= waitTime){
+    console.log('Creating new meta...')
+    const ls = exec('node fileCheck', function (error, stdout, stderr) {
+      if (error) {
+        console.log(error.stack);
+        console.log('Error code: ' + error.code);
+        console.log('Signal received: ' + error.signal);
+      }
+      // console.log('Child Process STDOUT: ' + stdout);
+      // console.log('Child Process STDERR: ' + stderr);
+    });
+    
+    ls.on('exit', function (code) {
+      console.log('Child process exited with exit code ' + code);
+    });
+  }
+
+}
 
 /**
  * Creating a sidebar enables you to:
@@ -16,6 +59,9 @@ const fs = require('fs')
 const hookFiles = []
 
 fs.readdirSync('./docs/hooks').forEach(file => hookFiles.push('hooks/' + file.replace('.mdx', '')));
+
+console.log('sidebar | sorted hook files:', hookFiles)
+
 
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
