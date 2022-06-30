@@ -12,14 +12,24 @@ import useKeyboard from '@site/src/localHooks/local_useKeyboard'
 const DemoComponent = (props:any) => {
 
     const keyb = useKeyboard({
-        ignoreKeys: ['capslock', 'tab']
+        ignoreKeys: ['capslock', 'tab'],
+        maxHistory: 10,
+        combos: {
+            'CTRL-E': () => console.log('ctrl-e ---'),
+            'shift-p': () => console.log('shift-p ---'),
+        }
     })
-
-    const demoCode = 
+    
+const demoCode = 
 `const keyb = useKeyboard({
     element: myElementId,
     minComboKeys: 2,
-    ignoreKeys: ['capslock', 'tab']
+    ignoreKeys: ['capslock', 'tab'],
+    maxHistory: 10.
+    combos: {
+        'CTRL-E': () => console.log('ctrl-e ---'),
+        'shift-p': () => console.log('shift-p ---'),
+    }
 })
 
 // keyb:
@@ -34,18 +44,23 @@ const DemoComponent = (props:any) => {
     repeat:     ${keyb.repeat},
     combo:      ${keyb.combo},
     space:      ${keyb.space},
-    events:     [...] // array of dom events
-    lastEvent:  {...} // last dom event
+    lastEvent:  {...} // last dom event that occurred
+    events:     [...] // array of current-only dom events (${keyb.events.length})
+    history:    [---] // array of all dom events that occurred (${keyb.history.length})
 }
 `
 
 useEffect(()=>{
-    console.log('events:', keyb.events)
+    // console.log('events:', keyb.events)
 }, [keyb.events.length])
    
 
     return(
         <Layout>
+            <div style={{padding: '1rem'}}>
+                <button onClick={keyb.reset}>Reset</button>
+                <button onClick={keyb.clearHistory}>Clear History</button>
+            </div>
             <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
         </Layout>
     )

@@ -21,7 +21,9 @@ interface IUseKeyboard {
     element?: any;
     listDom?: boolean;
     minComboKeys?: number;
-    ignoreKeys?: string[]
+    ignoreKeys?: string[];
+    maxHistory?: number;
+    combos?: { [key: string]: Function };
 }
 
 const useKeyboard = (config: IUseKeyboard = {}) => {
@@ -31,7 +33,9 @@ const useKeyboard = (config: IUseKeyboard = {}) => {
         element: config.element             ?? window,
         listDom: config.listDom             ?? false,
         minComboKeys: config.minComboKeys   ?? 2,
-        ignoreKeys: config.ignoreKeys       ?? []
+        ignoreKeys: config.ignoreKeys       ?? [],
+        maxHistory: config.maxHistory       ?? 0,
+        combos: config.combos               ?? null
     }),[config])
 
 
@@ -42,14 +46,26 @@ const useKeyboard = (config: IUseKeyboard = {}) => {
     const [_combo, set_combo] = useState<string | null>(null)
     
     const [_ctrl, set_ctrl] = useState<boolean>(false)
-    const [_meta, set_meta] = useState<boolean>(false)
     const [_alt, set_alt] = useState<boolean>(false)
     const [_shift, set_shift] = useState<boolean>(false)
     const [_space, set_space] = useState<boolean>(false)
+    const [_meta, set_meta] = useState<boolean>(false)
     
-    const [_lastEvent, set_lastEvent] = useState<object>({})
+    const [_lastEvent, set_lastEvent] = useState<T_Event>({})
     const [_eventsArray, set_eventsArray] = useState<T_Event[]>([])
+    const [_history, set_history] = useState<T_Event[]>([])
 
+    // useEffect(()=>{
+    //     if(settings.maxHistory > 0 && _history.length > settings.maxHistory){
+    //         console.log('aaa', {
+    //             history: settings.maxHistory,
+    //             length: _history.length
+    //         })
+    //         _history.splice(0,1)
+    //         set_history(_history)
+    //     }
+
+    // },[_history])
 
 
 
@@ -57,11 +73,17 @@ const useKeyboard = (config: IUseKeyboard = {}) => {
     /////////////////////////////////////////////////////////////////////
     const cleanupKeys = () => {
         set_key(null)
+        set_lastKey(null)
         set_down(false)
+        set_repeat(false)
+        set_combo(null)
+
         set_ctrl(false)
         set_alt(false)
         set_shift(false)
-        set_combo(null)
+        set_space(false)
+        set_meta(false)
+
         set_lastEvent({})
         set_eventsArray([])
     }
@@ -79,9 +101,54 @@ const useKeyboard = (config: IUseKeyboard = {}) => {
     }, settings.ignoreKeys)
 
     /////////////////////////////////////////////////////////////////////
+    const handleCombos = () => {
+        
+        let dk = _eventsArray.map((e: any) => e?.code?.toUpperCase())
+
+        Object.entries(settings.combos).forEach((combo:any) => {
+            
+            // the callback function name split into an array
+            let funcNameSplit = 
+                combo[0]
+                .toLowerCase()
+                .split('-')
+
+            // a string of all the keys pressed
+            let keyString = 
+                dk
+                .join('-')
+                .replace(/CONTROLLEFT/g, 'CTRL')
+                .replace(/CONTROLRIGHT/g, 'CTRL')
+                .replace(/SHIFTLEFT/g, 'SHIFT')
+                .replace(/SHIFTRIGHT/g, 'SHIFT')
+                .replace(/ALTRIGHT/g, 'ALT')
+                .replace(/ALTLEFT/g, 'ALT')
+                .replace(/ARROW/g, '')
+                .replace(/KEY/g, '')
+                .toLowerCase()
+
+
+            let match = 0
+
+            funcNameSplit.forEach((funcKey: string, i:number) => {
+                keyString.split('-').forEach((pressKey: string, j:number) => {
+                    if(funcKey === pressKey) {
+                        match++
+                    }
+                })
+            })
+
+            if(match === funcNameSplit.length){
+                combo[1]()
+            }
+            
+        })
+
+    }
+
+    /////////////////////////////////////////////////////////////////////
     const keySwitch = useCallback(() => {
-
-
+        
         let dk = _eventsArray.map((e: any) => e?.code?.toUpperCase())
         set_lastEvent(_eventsArray[_eventsArray.length - 1])
 
@@ -93,12 +160,12 @@ const useKeyboard = (config: IUseKeyboard = {}) => {
         set_alt(dk.toString().match(/ALT/) ? true : false)
         set_meta(dk.toString().match(/META/) ? true : false)
         set_space(dk.toString().match(/SPACE/) ? true : false)
+        
+
 
 
         if(dk.length >= settings.minComboKeys){
             set_combo(dk.toString())
-            // if(_ctrl){}
-            // console.log(`combo | ctrl:${_ctrl}, alt: ${_alt}`)
         }
         else{
             set_combo(null)
@@ -117,7 +184,18 @@ const useKeyboard = (config: IUseKeyboard = {}) => {
         }else{
             set_repeat(false)
         }
-        isNotIgnored(e) && set_eventsArray((existingEvents: any[]) => [...existingEvents, e])
+        if(isNotIgnored(e)){
+            set_eventsArray((existingEvents: any[]) => [...existingEvents, e])
+
+            set_history((currentHistory: T_Event[]) => {
+                if(settings.maxHistory > 0 && currentHistory.length >= settings.maxHistory){
+                    currentHistory.splice(0,1)
+                    return [...currentHistory, e]
+                }else{
+                    return [...currentHistory, e]
+                }
+            })  
+        }
     }, [isNotIgnored])
 
     /////////////////////////////////////////////////////////////////////
@@ -144,7 +222,11 @@ const useKeyboard = (config: IUseKeyboard = {}) => {
     // event handlers 
     useEffect(() => {
         keySwitch()
-    }, [_eventsArray, keySwitch])
+    }, [_eventsArray])
+
+    useEffect(() => {
+        handleCombos()
+    }, [_history])
 
     useEffect(()=> { 
         return cleanupKeys
@@ -177,6 +259,9 @@ const useKeyboard = (config: IUseKeyboard = {}) => {
         repeat: _repeat, 
         combo: _combo, 
         space: _space,
+        history: _history,
+        reset: cleanupKeys,
+        clearHistory: () => set_history([])
     }
 }
 

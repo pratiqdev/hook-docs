@@ -7,4 +7,149 @@ import DemoComponent from '../../src/demos/demo_useKeyboard'
 Keep in mind that each keyboard handles ghosting differently. Here is an article 
 on [keyboard ghosting](https://google.com/keyboard-ghosting)
 
+
+<!-- ======================================================================= -->
+<hr />
+
+## Usage
+
+
+
+
+
+
+<!-- ======================================================================= -->
+<hr />
+
+## Demo
+
 <DemoComponent />
+
+
+
+
+<!-- ======================================================================= -->
+<hr />
+
+## Configuration
+
+### Interfaces
+
+```js
+interface IUseKeyboard {
+    element?: any;
+    listDom?: boolean;
+    minComboKeys?: number;
+    ignoreKeys?: string[];
+    maxHistory?: number;
+    combos?: { [key: string]: Function };
+}
+```
+
+### Config Example
+
+```js
+const keyb = useKeyboard({
+    element: myElementId,
+    minComboKeys: 2,
+    ignoreKeys: ['capslock', 'tab'],
+    maxHistory: 10.
+    combos: {
+        'CTRL-E': () => console.log('ctrl-e ---'),
+        'shift-p': () => console.log('shift-p ---'),
+    }
+})
+```
+
+
+
+
+
+
+<!-- ======================================================================= -->
+<hr />
+
+## Return Values
+
+```js
+key:        ${keyb.key},
+lastKey:    ${keyb.lastKey},
+down:       ${keyb.down},
+ctrl:       ${keyb.ctrl},
+alt:        ${keyb.alt},
+shift:      ${keyb.shift},
+meta:       ${keyb.meta},
+repeat:     ${keyb.repeat},
+combo:      ${keyb.combo},
+space:      ${keyb.space},
+lastEvent:  {...} // last dom event that occurred
+events:     [...] // array of current-only dom events (${keyb.events.length})
+history:    [---] // array of all dom events that occurred (${keyb.history.length})
+```
+
+
+
+<!-- ======================================================================= -->
+<hr />
+
+## Hook Methods
+
+
+```js
+reset: () => void;
+clearHistory: () => void;
+```
+
+
+
+
+<!-- ======================================================================= -->
+<hr />
+
+## Combos
+
+Simple combo callbacks can be used for simple key combos.  
+
+:::info
+
+More advanced key combos should be handled on keyb.key change using the 
+keyb.combo return value. 
+
+:::
+
+| Event Key | Replaced With |
+|---|---|
+| CONTROLLEFT | ctrl |
+| CONTROLRIGHT | ctrl |
+| SHIFTLEFT | shift |
+| SHIFTRIGHT | shift |
+| ALTLEFT | alt |
+| ALTRIGHT | alt |
+| KEYA | a |
+| ARROWDOWN | down |
+
+
+
+
+<!--=========================================================================-->
+
+<hr />
+
+
+## Internal
+
+This hook internally uses the `useState` hook to store the array and provides 
+a wrapper around common array modification methods. 
+
+Methods in `useArray` do not provide access to the current state for callback 
+functions.
+
+<!--=========================================================================-->
+
+<br />
+
+
+| Related Hooks | Description |
+|:--|:--|  
+[useMouse](#) | ................................................................
+[usePosition](#) | ................................................................
