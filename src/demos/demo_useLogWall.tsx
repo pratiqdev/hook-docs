@@ -1,0 +1,76 @@
+// @ts-nocheck
+import React, { useEffect, useState } from 'react'
+import Layout from '../components/DemoLayout'
+// import { useInput } from '@pratiq/hooks'
+import CodeBlock from '@theme/CodeBlock'
+import Method from '@site/src/components/Method'
+import useLogWall from '@site/src/localHooks/local_useLogWall'
+
+
+
+//+ useAsync
+const DemoComponent = (props:any) => {
+    // const log = useLogger({
+    //     active: true,
+    //     origin: 'demo_useLogger!'
+    // })
+    const {log, LogWindow, resetLog} = useLogWall({
+        title:'useLogWall Demo', 
+        shortcutKey: 'digit0', 
+        windowOnly: false, 
+        debugLevel:3,
+        docUrl: 'https://my-doc-site.xyz/docs/',
+    })
+
+    const demoCode = `//`
+
+
+    useEffect(()=>{
+        // setTimeout(()=>{
+        //     log(0, 'log type zero')
+        // },1000)
+
+        setTimeout(()=>{
+            log(1, 'log type one')
+        },2000)
+
+        setTimeout(()=>{
+            log(2, {
+                title: 'A Title (Type 2)',
+                1: 'Line 1',
+                2: 'Line 2',
+            })
+        },3000)
+
+        setTimeout(()=>{
+            log(3, {
+                title: 'Some Error (Type 3)',
+                doc: 'some-error',
+                stack: '??'
+            })
+        },4000)
+        
+
+    }, [])
+
+
+   
+
+    return(
+        <Layout>
+            <LogWindow />
+
+
+            <div style={{padding: '1rem'}}>
+                {/* <button onClick={response.reload}>Reload Request</button> */}
+                {/* <button onClick={() => setHighAcc(b => !b)}>{highAcc ? 'Disable' : 'Enable'} High Accuracy</button> */}
+
+            </div>
+
+            <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>
+        </Layout>
+    )
+}
+
+
+export default DemoComponent
