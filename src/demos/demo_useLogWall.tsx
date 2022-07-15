@@ -14,7 +14,7 @@ const DemoComponent = (props:any) => {
     //     active: true,
     //     origin: 'demo_useLogger!'
     // })
-    const {log, LogWindow, resetLog} = useLogWall({
+    const LogWall = useLogWall({
         title:'useLogWall Demo', 
         shortcutKey: 'digit0', 
         windowOnly: false, 
@@ -25,44 +25,48 @@ const DemoComponent = (props:any) => {
     const demoCode = `//`
 
 
-    useEffect(()=>{
-        // setTimeout(()=>{
-        //     log(0, 'log type zero')
-        // },1000)
+    // useEffect(()=>{
+    //     // setTimeout(()=>{
+    //     //     log(0, 'log type zero')
+    //     // },1000)
 
-        setTimeout(()=>{
-            log(1, 'log type one')
-        },2000)
+    //     setTimeout(()=>{
+    //         log(1, 'log type one')
+    //     },2000)
 
-        setTimeout(()=>{
-            log(2, {
-                title: 'A Title (Type 2)',
-                1: 'Line 1',
-                2: 'Line 2',
-            })
-        },3000)
+    //     setTimeout(()=>{
+    //         log(2, {
+    //             title: 'A Title (Type 2)',
+    //             1: 'Line 1',
+    //             2: 'Line 2',
+    //         })
+    //     },3000)
 
-        setTimeout(()=>{
-            log(3, {
-                title: 'Some Error (Type 3)',
-                doc: 'some-error',
-                stack: '??'
-            })
-        },4000)
+    //     setTimeout(()=>{
+    //         log(3, {
+    //             title: 'Some Error (Type 3)',
+    //             doc: 'some-error',
+    //             stack: '??'
+    //         })
+    //     },4000)
         
 
-    }, [])
+    // }, [])
 
 
    
 
     return(
         <Layout>
-            <LogWindow />
+            <LogWall.Window />
 
 
             <div style={{padding: '1rem'}}>
-                {/* <button onClick={response.reload}>Reload Request</button> */}
+                
+                <button onClick={() => LogWall.log(3, {
+                    title: 'A log on the wall!',
+                    1:'This log exceeds the minimum log level required to show the wall.'
+                })}>Log to Wall</button>
                 {/* <button onClick={() => setHighAcc(b => !b)}>{highAcc ? 'Disable' : 'Enable'} High Accuracy</button> */}
 
             </div>
