@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import isBrowser from '../utils/isBrowser.js'  
+import isBrowser from './utils/isBrowser'  
 
 /**
 * useValidCss()
@@ -29,7 +29,7 @@ const useWindow = () => {
 
 
 
-    const [windowSize, setWindowSize] = useState({
+    const [windowSize, setWindowSize] = useState<any>({
         width: window.innerWidth,
         height: window.innerHeight,
         ratio: toFixedNumber(window.innerWidth / window.innerHeight, 2),
@@ -37,12 +37,16 @@ const useWindow = () => {
         scrollY: toFixedNumber(window.scrollY),
         scrollX: toFixedNumber(window.scrollX),
         angle: 0,
-        orientation: 'landscape-primary'
+        type: 'landscape-primary',
     })
 
     const handler = () => {
-        const { orientation } = window.screen as any;
-        const { angle, type } = orientation;
+        // const { orientation } = window.screen as any;
+        const screen = window?.screen as any
+        var so = screen?.orientation || screen?.mozOrientation || screen?.msOrientation;
+        // const { angle, type } = orientation;
+        const angle = so.angle || 0
+        const type = so.type || 'landscape-primm'
 
         setWindowSize({
             width: window.innerWidth,
@@ -53,12 +57,13 @@ const useWindow = () => {
             maxHeight: Math.max( _body.scrollHeight, _body.offsetHeight, _html.clientHeight, _html.scrollHeight, _html.offsetHeight ),
             scrollY: toFixedNumber(window.scrollY),
             scrollX: toFixedNumber(window.scrollX),
-            angle: orientation && angle ? angle : 0,
-            orientation: orientation && type ? type : 'landscape-primary'
+            angle,
+            type,
         })
     }
 
     useEffect(() => {
+        handler()
         window.addEventListener('resize', handler)
         window.addEventListener('scroll', handler)
         window.screen.orientation.addEventListener('change', handler, true);

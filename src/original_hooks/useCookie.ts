@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import isBrowser from '../utils/isBrowser.js'
+import isBrowser from '../localHooks/utils/isBrowser.js'
     
 /**
 * useClipboard()

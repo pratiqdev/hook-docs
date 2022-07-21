@@ -75,12 +75,15 @@ const useTemperature = ({
 
         //- celsius 
             // T(°F) = T(°C) × 1.8 + 32 
+            /** F = C x 1.8 + 32 */
             const _convert_c_f = (c: number) => c * 1.8 + 32
 
             // T(K) = T(°C) + 273.15
+            /** K = C + 273.15 */
             const _convert_c_k = (c: number) => c + 273.15
 
             // T(°R) = (T(°C) + 273.15) × 1.8
+            /** R = ( C + 273.15 x 1.8 ) */
             const _convert_c_r = (c: number) => (c + 273.15) * 1.8
 
         //- kelvin
@@ -97,7 +100,7 @@ const useTemperature = ({
             // T(°C) = (T(°F) - 32) / 1.8
             const _convert_f_c = (f: number) => (f - 32) / 1.8
 
-            // T(K) = (T(°F) + 459.67)× 5/9
+            /** T(K) = (T(°F) + 459.67) × 5/9 */
             const _convert_f_k = (f: number) => (f + 459.67) * (5/9)
 
             // T(°R) = T(°F) + 459.67

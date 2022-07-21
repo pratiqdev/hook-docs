@@ -1,7 +1,15 @@
 import React from 'react'
 import CodeBlock from '@theme/CodeBlock'
 
-const Method = (props:any) => {
+interface IMethodProps {
+    id?: string;
+    pre?: string;
+    desc?: string;
+    func?: any;
+    hidden?: boolean;
+}
+
+const Method = (props:IMethodProps) => {
     return(
         <div className={!props.hidden ? 'desc-row' : 'desc-row-hidden'}>
             <button id={`method-${props.id}`} onClick={props.func}>{' '}</button>
