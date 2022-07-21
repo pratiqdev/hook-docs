@@ -4,7 +4,7 @@ import Layout from '../components/DemoLayout'
 // import { useInput } from '@pratiq/hooks'
 import CodeBlock from '@theme/CodeBlock'
 import Method from '@site/src/components/Method'
-import useWindow from '@site/src/localHooks/local_useWindow'
+import useStateWithValidation from '@site/src/localHooks/local_useStateWithValidation'
 import HeadlessTable from '../components/HeadlessTable'
 
 
@@ -12,14 +12,13 @@ import HeadlessTable from '../components/HeadlessTable'
 //+ useAsync
 const DemoComponent = (props:any) => {
 
-    const pkg = useWindow()
+    const [value, setValue, isValid] = useStateWithValidation({
+        value: 123,
+        validator: 123
+    })
 
     const demoCode = 
-`const pkg = useWindow()
-
-<pre>{ JSON.stringify( pkg ) }</pre>
-`
-
+``
 
 
 
@@ -27,20 +26,14 @@ const DemoComponent = (props:any) => {
     return(
         <Layout>
             <div style={{padding: '1rem', display: 'flex', flexDirection: 'column'}}>
-                {/* <pre>{JSON.stringify(pkg, null, 2)}</pre> */}
+                <Method pre={`setValue("bop")`} func={()=> setValue('bop')} />
+                <Method pre={`setValue("abc")`} func={()=> setValue('abc')} />
                 <HeadlessTable items={{
-                    'Height': pkg.height,
-                    'Width': pkg.width,
-                    'Max Height': pkg.maxHeight,
-                    'Ratio': pkg.ratio,
-                    'Scroll X': pkg.scrollX,
-                    'Scroll Y': pkg.scrollY,
-                    'Mouse X': pkg.x,
-                    'Mouse Y': pkg.y,
-                    'Angle': pkg.angle,
-                    'Type': pkg.type,
-                    'Orientation': pkg.orientation
-                }}/>
+                    'Value': value,
+                    'isValid': ''+isValid
+                }} />
+
+                
             </div>
 
             <CodeBlock language='ts' className='demo-display' >{demoCode}</CodeBlock>

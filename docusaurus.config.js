@@ -57,7 +57,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'hooks/useArray',
+            docId: 'intro',
             position: 'left',
             label: 'Docs',
           },

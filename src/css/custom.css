@@ -671,10 +671,15 @@ button:hover{
   width: 100%;
 }
 
+.footer-related-table td:nth-child(1) {
+  white-space: nowrap;
+}
+
 .footer-related-table {
   margin-top: 1rem;
   background: rgb(100,100,100,.02);
 }
+
 
 
 

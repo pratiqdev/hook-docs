@@ -27,7 +27,7 @@ const useWindow = () => {
         return Math.round(num*pow) / pow;
     }
 
-
+    const [coords, setCoords] = useState({x:0, y:0})
 
     const [windowSize, setWindowSize] = useState<any>({
         width: window.innerWidth,
@@ -38,6 +38,7 @@ const useWindow = () => {
         scrollX: toFixedNumber(window.scrollX),
         angle: 0,
         type: 'landscape-primary',
+        orientation: '...'
     })
 
     const handler = () => {
@@ -47,6 +48,7 @@ const useWindow = () => {
         // const { angle, type } = orientation;
         const angle = so.angle || 0
         const type = so.type || 'landscape-primm'
+        const orio = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait'
 
         setWindowSize({
             width: window.innerWidth,
@@ -59,25 +61,32 @@ const useWindow = () => {
             scrollX: toFixedNumber(window.scrollX),
             angle,
             type,
+            orientation: orio,
         })
+    }
+
+    const mouseHandler = (e) => {
+        setCoords({x:e.clientX, y: e.clientY})
     }
 
     useEffect(() => {
         handler()
         window.addEventListener('resize', handler)
         window.addEventListener('scroll', handler)
+        window.addEventListener('mousemove', mouseHandler)
         window.screen.orientation.addEventListener('change', handler, true);
-
+        
         return () => {
             window.removeEventListener('resize', handler)
             window.removeEventListener('scroll', handler)
+            window.removeEventListener('mousemove', mouseHandler)
             window.screen.orientation.removeEventListener('change', handler, true);
         }
-    })
+    }, [])
 
 
 
-    return windowSize
+    return {...windowSize, ...coords}
 }
 
 export default useWindow
