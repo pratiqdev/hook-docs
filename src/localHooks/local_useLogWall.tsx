@@ -1,4 +1,5 @@
 import * as React from 'react'
+import isBrowser from './utils/isBrowser'
 
 interface I_LogWallConfig {
     debugLevel?: number;
@@ -10,6 +11,7 @@ interface I_LogWallConfig {
 
 
 const useLogWall = (config: I_LogWallConfig = {}) => {
+    if(!isBrowser()) return {};
 
 
  

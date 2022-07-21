@@ -17,7 +17,7 @@ import isBrowser from './utils/isBrowser'
 
 const useWindow = () => {
 
-    if (!isBrowser()) return;
+    if (!isBrowser()) return {};
 
     let _body = document.body,
         _html = document.documentElement;
