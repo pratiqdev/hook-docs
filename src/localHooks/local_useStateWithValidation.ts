@@ -40,20 +40,32 @@ const useStateWithValidation = (config: IUseStateWithValidationConfig = {}) => {
 
 
     const [value, setValue] = useState(settings.value)
+    const [lastValidValue, setLastValidValue] = useState(null)
     const [isValid, setIsValid] = useState(() => handleValidate(settings.value))
 
 
     const handleChange = useCallback(newValue => {
         const v = typeof newValue === 'function' ? newValue(value) : newValue
         setValue(v)
-        handleValidate(v)
+        let isV = handleValidate(v)
+        setIsValid(isV)
+        isV && setLastValidValue(v)
     }, [settings.validator, value])
 
+
     useEffect(()=>{
-        setIsValid(handleValidate(value))
+        let isV = handleValidate(value)
+        setIsValid(isV)
+        isV && setLastValidValue(value)
     },[])
 
-    return [value, handleChange, isValid]
+    // return [value, handleChange, isValid, lastValidValue]
+    return {
+        value,
+        setValue: handleChange,
+        isValid,
+        lastValidValue
+    }
 }
 
 export default useStateWithValidation

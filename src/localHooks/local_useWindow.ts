@@ -42,13 +42,10 @@ const useWindow = () => {
     })
 
     const handler = () => {
-        // const { orientation } = window.screen as any;
         const screen = window?.screen as any
         var so = screen?.orientation || screen?.mozOrientation || screen?.msOrientation;
-        // const { angle, type } = orientation;
         const angle = so.angle || 0
         const type = so.type || 'landscape-primm'
-        const orio = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait'
 
         setWindowSize({
             width: window.innerWidth,
@@ -61,7 +58,7 @@ const useWindow = () => {
             scrollX: toFixedNumber(window.scrollX),
             angle,
             type,
-            orientation: orio,
+            orientation: window.innerWidth > window.innerHeight ? 'landscape' : 'portrait'
         })
     }
 

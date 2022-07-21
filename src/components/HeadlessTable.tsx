@@ -7,7 +7,7 @@ interface IHeadlessTable {
 }
 
 const HeadlessTable = (props: IHeadlessTable) => (
-    <table className='footer-related-table'>
+    <table className='footer-headless-table'>
         <tbody>
             {props.items && Object.entries(props.items).map(x => 
                 <tr>

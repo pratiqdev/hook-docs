@@ -681,6 +681,24 @@ button:hover{
 }
 
 
+/* force the footers related tables second column to take up the remaining space */
+.footer-headless-table td:nth-child(2) {
+  width: 100%;
+}
+
+.footer-headless-table td:nth-child(1) {
+  white-space: nowrap;
+}
+
+.footer-headless-table {
+  margin-top: 1rem;
+  background: rgb(100,100,100,.02);
+}
+
+.footer-headless-table td {
+  padding: .25rem .5rem;
+}
+
 
 
 /* ==================================================================== UTILS */

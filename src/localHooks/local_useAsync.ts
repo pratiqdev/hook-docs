@@ -35,6 +35,7 @@ interface IUseAsyncReturnObject {
     data: any;
 }
 
+
 type UseAsyncType = (config: IUseAsyncConfig) => IUseAsyncReturnObject;
 
 
