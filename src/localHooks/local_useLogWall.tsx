@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-interface I_loggerConfig {
+interface I_LogWallConfig {
     debugLevel?: number;
     title?: string;
     windowOnly?: boolean;
@@ -9,7 +9,7 @@ interface I_loggerConfig {
 }
 
 
-const useLogWall = (config: I_loggerConfig = {}) => {
+const useLogWall = (config: I_LogWallConfig = {}) => {
 
 
  
@@ -56,10 +56,11 @@ const useLogWall = (config: I_loggerConfig = {}) => {
     }, [config])
 
     const logMessage = React.useRef<any>([])
-    const logHistory = React.useRef<any>([])
+    // const logHistory = React.useRef<any>([])
+    const [logHistory, setLogHistory] = React.useState<any[]>([])
     const logLength = React.useRef<any>(0)
     const [hasError, setHasError] = React.useState(false)
-    const [showLogger, setShowLogger] = React.useState(true)
+    const [showLogger, setShowLogger] = React.useState(false)
     const [trig, setTrig] = React.useState(false)
 
     const trigger = () => setTrig(b => !b)
@@ -195,7 +196,8 @@ const useLogWall = (config: I_loggerConfig = {}) => {
             background: '#111',
             fontSize: '.8rem',
             padding: '.5rem',
-            borderRadius: '.25rem'
+            borderRadius: '.25rem',
+            marginTop: '1rem'
         }
 
     }
@@ -363,9 +365,11 @@ const useLogWall = (config: I_loggerConfig = {}) => {
             !settings.windowOnly && console.log(x)
         }
 
-        logHistory.current.push(logGroup)
+        // logHistory.current.push(logGroup)
+        let tempHist = [...logHistory]
+        tempHist.push(logGroup)
+        setLogHistory(tempHist)
         logMessage.current.push(logGroup)
-        trigger()
 
     }, [hasError, settings.debugLevel, settings.windowOnly])
 
@@ -398,11 +402,11 @@ const useLogWall = (config: I_loggerConfig = {}) => {
 
 
                     <p style={style.logWindowTitle}>Log History</p>
-                    <button onClick={()=> {setReverse(b => !b); logHistory.current.reverse()}}>{reverse ? '^' : 'v'}</button>
+                    <button onClick={()=> {setReverse(b => !b); setLogHistory(lh => lh.reverse()) }}>{reverse ? '^' : 'v'}</button>
                     <div style={style.logHistory}>
                         {
                             logLength.current > 1 
-                                ? logHistory.current.map((x:any, i:number)=><LogSection key={i} data={x} level={x[0].level}/>)
+                                ? logHistory.map((x:any, i:number)=><LogSection key={i} data={x} level={x[0].level}/>)
                                 : <div style={style.logPlaceholder}><p>No Logs</p></div>
                         }
                     </div>
@@ -433,7 +437,7 @@ const useLogWall = (config: I_loggerConfig = {}) => {
     // remove all logs and reset vars
     const resetLog = () => {
         logLength.current = 0
-        logHistory.current = []
+        setLogHistory([])
         logMessage.current = []
     }
 
@@ -441,7 +445,7 @@ const useLogWall = (config: I_loggerConfig = {}) => {
     if(process.env.NODE_ENV === 'production'){
         return {log: ()=>{}, LogWindow: () => <></>, resetLog: ()=>{} }
     }else{
-        return {log, LogWindow, resetLog}
+        return {log, Window:LogWindow, resetLog}
     }
     
 }
